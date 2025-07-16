@@ -1,220 +1,348 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treinamentos</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(180deg, #454444, #454444);
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área de Treinamentos</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary-color: #00ff80;
+        --bg-color: #2b2b2b;
+        --card-bg: #3b3b3b;
+        --text-color: #fff;
+    }
 
+    body {
+        font-family: 'Roboto', sans-serif;
+        background: var(--bg-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
 
-        header {
-            background: linear-gradient(180deg, #ffffff, #f1f1f1);
-            display: flex;
-            align-items: center;
-            padding: 15px 30px;
-            justify-content: space-between;
-            border-bottom: 2px solid #00ff80;
-        }
+    header {
+        background: #1f1f1f;
+        padding: 15px 30px;
+        border-bottom: 2px solid var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-        header img {
-            height: 50px;
-        }
+    .logo img {
+        height: 50px;
+    }
 
-        header h1 {
-            font-size: 1.8em;
-            color: #00ff80;
-            margin: 0;
-        }
+    header h1 {
+        font-size: 1.6em;
+        color: var(--primary-color);
+        margin-right: 60px;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 20px;
-        }
+    .container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+    }
 
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-        }
+    .login-box {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        animation: fadeIn 0.6s ease;
+    }
 
-        .video-card {
-            background: linear-gradient(180deg, #e1e0e0, #454444);
-            border-radius: 12px;
-            padding: 15px;
-            background: linear-gradient(180deg, #868585, #454444);
-            transition: transform 0.2s ease;
-            text-align: center;
-        }
+    .login-box h2 {
+        margin-bottom: 20px;
+        color: var(--primary-color);
+    }
 
-        .video-card:hover {
-            transform: scale(1.03);
-        }
+    .login-box input {
+        width: 250px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 2px solid var(--primary-color);
+        outline: none;
+        margin-bottom: 15px;
+        font-size: 1em;
+    }
 
-        .video-thumb {
-            position: relative;
-            width: 100%;
-            padding-top: 56.25%; /* 16:9 proporção */
-            background: #000;
-            cursor: pointer;
-            border-radius: 10px;
-            overflow: hidden;
-        }
+    .login-box button {
+        background: var(--primary-color);
+        border: none;
+        color: #000;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
 
-        .video-thumb img, .video-thumb iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-        }
+    .login-box button:hover {
+        background: #00cc66;
+    }
 
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    .error {
+        color: #ff4d4d;
+        font-weight: bold;
+        margin-top: 10px;
+    }
 
-        .play-button::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-left: 20px solid #fff;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-        }
+    .search-box {
+        text-align: center;
+        margin: 15px 0;
+    }
 
-        .video-title {
-            margin-top: 10px;
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #00ff80;
-        }
-    </style>
+    .search-box input {
+        width: 80%;
+        max-width: 400px;
+        padding: 10px;
+        border-radius: 8px;
+        border: 2px solid var(--primary-color);
+        outline: none;
+        font-size: 1em;
+    }
+
+    .back-btn {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #000;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: background 0.3s;
+    }
+
+    .back-btn:hover {
+        background: #00cc66;
+    }
+
+    .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+    }
+
+    .video-card {
+        background: var(--card-bg);
+        border-radius: 12px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .video-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+    }
+
+    .video-thumb {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%;
+        background: #000;
+        cursor: pointer;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .video-thumb img, .video-thumb iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .play-button {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60px;
+        height: 60px;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .play-button::before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 20px solid #fff;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+    }
+
+    .video-title {
+        margin-top: 10px;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: var(--primary-color);
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        background: #1f1f1f;
+        border-top: 2px solid var(--primary-color);
+    }
+
+    footer img {
+        height: 40px;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+</style>
 </head>
 <body>
+
 <header>
-    <img src="images-removebg-preview.png" alt="Logo">
+    <div class="logo"><img id="logoHeader" src="images-removebg-preview.png" alt="Logo"></div>
     <h1>Treinamentos</h1>
 </header>
 
 <div class="container">
-    <div class="video-grid">
+    <!-- Tela inicial -->
+    <div id="loginArea" class="login-box">
+        <h2>Acesse seus vídeos</h2>
+        <input type="text" id="domainInput" placeholder="Digite seu domínio (ex: empresa.com.br)" oninput="formatarDominio(this)">
+        <br>
+        <button onclick="validarDominio()">Entrar</button>
+        <div class="error" id="errorMsg" style="display:none;">Domínio não encontrado!</div>
+    </div>
 
-        <!-- Video 1 -->
-        <div class="video-card">
-            <div class="video-thumb" data-video="JiEhrPTtHI0" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/JiEhrPTtHI0/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Cadastro de Produto Simplificado</div>
+    <!-- Tela de vídeos -->
+    <div id="videoArea" style="display:none; width: 100%;">
+        <div class="back-btn" onclick="voltarInicio()">← Voltar</div>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Buscar vídeo..." oninput="filtrarVideos()">
         </div>
-
-        <!-- Video 2 -->
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Lançamento de Pré Venda</div>
-        </div>
-
-        <!-- Outro exemplo -->
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-        <div class="video-card">
-            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
-            </div>
-            <div class="video-title">Outro Treinamento</div>
-        </div>
-
+        <div class="video-grid" id="videoGrid"></div>
     </div>
 </div>
 
+<footer>
+    <img id="logoFooter" src="images-removebg-preview.png" alt="Logo">
+</footer>
+
 <script>
+const clientes = {
+    "grupoduzani": {
+        cor: "#00ff80",
+        logo: "images-removebg-preview.png",
+        videos: [
+            { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
+            { id: "CvqE6vATDwA", titulo: "Lançamento de Pré Venda" },
+            { id: "CvqE6vATDwA", titulo: "Vendas Diretas" },
+            { id: "CvqE6vATDwA", titulo: "Manufatura" },
+            { id: "CvqE6vATDwA", titulo: "Vitrine" },
+            { id: "CvqE6vATDwA", titulo: "Emissão de Nota Fiscal" },
+            { id: "CvqE6vATDwA", titulo: "Contas a Pagar" },
+            { id: "CvqE6vATDwA", titulo: "Contas a receber" },
+            { id: "CvqE6vATDwA", titulo: "Cadastro de Pessoa" },
+            { id: "CvqE6vATDwA", titulo: "Caixa" }
+        ]
+    },
+    "loja.com": {
+        cor: "#ff9800",
+        logo: "https://via.placeholder.com/150x50?text=Loja+Logo",
+        videos: [
+            { id: "CvqE6vATDwA", titulo: "Treinamento Loja" },
+            { id: "JiEhrPTtHI0", titulo: "Configuração Inicial" }
+        ]
+    }
+};
+
+let currentVideos = [];
+
+function formatarDominio(input) {
+    input.value = input.value
+        .toLowerCase()
+        .replace(/[^a-z0-9.-]/g, '');
+}
+
+function validarDominio() {
+    const dominio = document.getElementById('domainInput').value.trim().toLowerCase();
+    const errorMsg = document.getElementById('errorMsg');
+
+    if (clientes[dominio]) {
+        const cliente = clientes[dominio];
+        currentVideos = cliente.videos;
+
+        document.documentElement.style.setProperty('--primary-color', cliente.cor);
+
+        document.getElementById('logoHeader').src = cliente.logo;
+        document.getElementById('logoFooter').src = cliente.logo;
+
+        document.getElementById('loginArea').style.display = 'none';
+        document.getElementById('videoArea').style.display = 'block';
+        renderVideos(currentVideos);
+        errorMsg.style.display = 'none';
+    } else {
+        errorMsg.style.display = 'block';
+    }
+}
+
+function renderVideos(lista) {
+    const container = document.getElementById('videoGrid');
+    container.innerHTML = "";
+    lista.forEach(video => {
+        const card = document.createElement('div');
+        card.className = "video-card";
+        card.setAttribute("data-title", video.titulo.toLowerCase());
+        card.innerHTML = `
+            <div class="video-thumb" data-video="${video.id}" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">${video.titulo}</div>
+        `;
+        container.appendChild(card);
+    });
+}
+
 function loadVideo(element) {
     const videoId = element.getAttribute('data-video');
     element.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen></iframe>`;
+}
+
+function filtrarVideos() {
+    const search = document.getElementById('searchInput').value.toLowerCase();
+    const cards = document.querySelectorAll('.video-card');
+    cards.forEach(card => {
+        const title = card.getAttribute('data-title');
+        card.style.display = title.includes(search) ? "block" : "none";
+    });
+}
+
+function voltarInicio() {
+    document.getElementById('loginArea').style.display = 'block';
+    document.getElementById('videoArea').style.display = 'none';
+    document.getElementById('domainInput').value = "";
+    document.getElementById('searchInput').value = "";
 }
 </script>
 </body>
