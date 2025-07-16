@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamentos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #ffffff, #e8e8e8);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        header {
+            background: linear-gradient(180deg, #ffffff, #f1f1f1);
+            display: flex;
+            align-items: center;
+            padding: 15px 30px;
+            justify-content: space-between;
+            border-bottom: 2px solid #00ff80;
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        header h1 {
+            font-size: 1.8em;
+            color: #00ff80;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .video-card {
+            background: linear-gradient(180deg, #ffffff, #eeeeee);
+            border-radius: 12px;
+            padding: 15px;
+            background: linear-gradient(180deg, #ffffff, #e5e4e4);
+            transition: transform 0.2s ease;
+            text-align: center;
+        }
+
+        .video-card:hover {
+            transform: scale(1.03);
+        }
+
+        .video-thumb {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 proporção */
+            background: #000;
+            cursor: pointer;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .video-thumb img, .video-thumb iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 20px solid #fff;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+        }
+
+        .video-title {
+            margin-top: 10px;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #00ff80;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="images-removebg-preview.png" alt="Logo">
+    <h1>Treinamentos</h1>
+</header>
+
+<div class="container">
+    <div class="video-grid">
+
+        <!-- Video 1 -->
+        <div class="video-card">
+            <div class="video-thumb" data-video="JiEhrPTtHI0" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/JiEhrPTtHI0/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Cadastro de Produto Simplificado</div>
+        </div>
+
+        <!-- Video 2 -->
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Lançamento de Pré Venda</div>
+        </div>
+
+        <!-- Outro exemplo -->
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+        <div class="video-card">
+            <div class="video-thumb" data-video="CvqE6vATDwA" onclick="loadVideo(this)">
+                <img src="https://img.youtube.com/vi/CvqE6vATDwA/hqdefault.jpg" alt="Thumbnail">
+                <div class="play-button"></div>
+            </div>
+            <div class="video-title">Outro Treinamento</div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+function loadVideo(element) {
+    const videoId = element.getAttribute('data-video');
+    element.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen></iframe>`;
+}
+</script>
+</body>
+</html>
