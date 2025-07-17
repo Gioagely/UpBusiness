@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Área de Treinamentos</title>
+<title>Tutoriais</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
     :root {
@@ -138,10 +138,10 @@
 
     .video-card {
         background: var(--card-bg);
-        border-radius: 12px;
-        padding: 15px;
+        border-radius: 10px;
+        padding: 10px;
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.3);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -235,7 +235,7 @@
     </div>
 
     <!-- Tela de vídeos -->
-    <div id="videoArea" style="display:none; width: 100%;">
+    <div id="videoArea" style="display:none; width: 80%;">
         <div class="back-btn" onclick="voltarInicio()">← Voltar</div>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Buscar vídeo..." oninput="filtrarVideos()">
@@ -250,28 +250,54 @@
 
 <script>
 const clientes = {
-    "grupoduzani": {
+    "grupoduzani" : {
         cor: "#00ff80",
         logo: "images-removebg-preview.png",
         videos: [
             { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
-            { id: "CvqE6vATDwA", titulo: "Lançamento de Pré Venda" },
-            { id: "CvqE6vATDwA", titulo: "Vendas Diretas" },
-            { id: "CvqE6vATDwA", titulo: "Manufatura" },
-            { id: "CvqE6vATDwA", titulo: "Vitrine" },
-            { id: "CvqE6vATDwA", titulo: "Emissão de Nota Fiscal" },
-            { id: "CvqE6vATDwA", titulo: "Contas a Pagar" },
-            { id: "CvqE6vATDwA", titulo: "Contas a receber" },
-            { id: "CvqE6vATDwA", titulo: "Cadastro de Pessoa" },
-            { id: "CvqE6vATDwA", titulo: "Caixa" }
+            { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
+            { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
+            { id: "JiEhrPTtHI0", titulo: "Manufatura" },
+            { id: "JiEhrPTtHI0", titulo: "Vitrine" },
+            { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
+            { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
+            { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
+            { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
+            { id: "JiEhrPTtHI0", titulo: "Caixa" }
+        ]
+        
+    },
+    "becker": {
+        cor: "#00ff80",
+        logo: "images-removebg-preview.png",
+        videos: [
+            { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
+            { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
+            { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
+            { id: "JiEhrPTtHI0", titulo: "Manufatura" },
+            { id: "JiEhrPTtHI0", titulo: "Vitrine" },
+            { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
+            { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
+            { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
+            { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
+            { id: "JiEhrPTtHI0", titulo: "Caixa" }
         ]
     },
-    "loja.com": {
-        cor: "#ff9800",
-        logo: "https://via.placeholder.com/150x50?text=Loja+Logo",
+
+    "lanicle": {
+        cor: "#00ff80",
+        logo: "images-removebg-preview.png",
         videos: [
-            { id: "CvqE6vATDwA", titulo: "Treinamento Loja" },
-            { id: "JiEhrPTtHI0", titulo: "Configuração Inicial" }
+             { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
+            { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
+            { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
+            { id: "JiEhrPTtHI0", titulo: "Manufatura" },
+            { id: "JiEhrPTtHI0", titulo: "Vitrine" },
+            { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
+            { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
+            { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
+            { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
+            { id: "JiEhrPTtHI0", titulo: "Caixa" }
         ]
     }
 };
@@ -344,6 +370,8 @@ function voltarInicio() {
     document.getElementById('domainInput').value = "";
     document.getElementById('searchInput').value = "";
 }
+
+
 </script>
 </body>
 </html>
