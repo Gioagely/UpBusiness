@@ -5,15 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tutoriais</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Aplica o tema antes de qualquer renderização -->
+<script>
+  (function() {
+    const temaSalvo = localStorage.getItem('tema') || 'dark';
+    document.documentElement.classList.add(temaSalvo === 'light' ? 'light-theme' : 'dark-theme');
+  })();
+</script>
+
 <style>
     :root {
         --primary-color: #00ff80;
-        --bg-color: #2b2b2b;
-        --card-bg: #3b3b3b;
-        --text-color: #fff;
         --button-hover-color: #00cc66;
         --border-radius: 12px;
         --input-padding: 12px;
+    }
+
+    .dark-theme {
+        --bg-color: #2b2b2b;
+        --card-bg: #3b3b3b;
+        --text-color: #ffffff;
+        --header-footer-bg: #1f1f1f;
+        --overlay-color: rgba(43, 43, 43, 0.9);
+        --overlay-opacity: 0.15;
+    }
+
+    .light-theme {
+        --bg-color: #ffffffe9;
+        --card-bg: #f5f3f3;
+        --text-color: #000000;
+        --header-footer-bg: #e0e0e0;
+        --overlay-color: rgba(255, 255, 255, 0.85);
+        --overlay-opacity: 0;
     }
 
     * {
@@ -30,10 +54,9 @@
         flex-direction: column;
         min-height: 100vh;
         position: relative;
-        overflow-y: auto; /* Permite rolagem */
+        overflow-y: auto;
     }
 
-    /* Fundo com imagem e sobreposição */
     body::before,
     body::after {
         content: "";
@@ -42,19 +65,18 @@
         left: 0;
         width: 100%;
         height: 100%;
-        pointer-events: none; /* Não bloqueia interações */
+        pointer-events: none;
+        z-index: -1;
     }
 
     body::before {
         background: url('5087191-papel-de-parede-abstrato-efeito-3d-para-apresentacoes-e-sites-calmante-colorido-ondulado-vetor.jpg') no-repeat center center;
         background-size: cover;
-        opacity: 0.15; /* Ajuste da opacidade do fundo */
-        z-index: -1;
+        opacity: var(--overlay-opacity);
     }
 
     body::after {
-        background: rgba(43, 43, 43, 0.9); /* Camada escura para contraste */
-        z-index: 0;
+        background: var(--overlay-color);
     }
 
     header, .container, footer {
@@ -63,7 +85,7 @@
     }
 
     header {
-        background: #1f1f1f;
+        background: var(--header-footer-bg);
         padding: 15px 30px;
         border-bottom: 2px solid var(--primary-color);
         display: flex;
@@ -79,6 +101,21 @@
         font-size: 1.6em;
         color: var(--primary-color);
         margin-right: 60px;
+    }
+
+    .theme-toggle {
+        background: var(--primary-color);
+        color: #000;
+        border: none;
+        padding: 8px 16px;
+        border-radius: var(--border-radius);
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .theme-toggle:hover {
+        background: var(--button-hover-color);
     }
 
     .container {
@@ -118,6 +155,8 @@
         margin-bottom: 15px;
         font-size: 1em;
         transition: border-color 0.3s ease;
+        color: inherit;
+        background: transparent;
     }
 
     .login-box input:focus {
@@ -159,6 +198,8 @@
         border: 2px solid var(--primary-color);
         outline: none;
         font-size: 1em;
+        background: transparent;
+        color: inherit;
     }
 
     .back-btn {
@@ -260,7 +301,7 @@
     footer {
         text-align: center;
         padding: 15px;
-        background: #1f1f1f;
+        background: var(--header-footer-bg);
         border-top: 2px solid var(--primary-color);
     }
 
@@ -279,6 +320,7 @@
 <header>
     <div class="logo"><img id="logoHeader" src="images-removebg-preview.png" alt="Logo"></div>
     <h1>Tutoriais</h1>
+    <button class="theme-toggle" onclick="alternarTema()">Alternar Tema</button>
 </header>
 
 <div class="container">
@@ -305,56 +347,42 @@
 
 <script>
 const clientes = {
-    "grupoduzani" : {
-        cor: "#00ff80",
-        logo: "images-removebg-preview.png",
-        videos: [
-            { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
-            { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
-            { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
-            { id: "JiEhrPTtHI0", titulo: "Manufatura" },
-            { id: "JiEhrPTtHI0", titulo: "Vitrine" },
-            { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
-            { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
-            { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
-            { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
-            { id: "JiEhrPTtHI0", titulo: "Caixa" }
-        ]
-        
-    },
-    "becker": {
-        cor: "#00ff80",
-        logo: "images-removebg-preview.png",
-        videos: [
-            { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
-            { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
-            { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
-            { id: "JiEhrPTtHI0", titulo: "Manufatura" },
-            { id: "JiEhrPTtHI0", titulo: "Vitrine" },
-            { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
-            { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
-            { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
-            { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
-            { id: "JiEhrPTtHI0", titulo: "Caixa" }
-        ]
-    },
-
-    "lanicle": {
-        cor: "#00ff80",
-        logo: "images-removebg-preview.png",
-        videos: [
-             { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
-            { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
-            { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
-            { id: "JiEhrPTtHI0", titulo: "Manufatura" },
-            { id: "JiEhrPTtHI0", titulo: "Vitrine" },
-            { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
-            { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
-            { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
-            { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
-            { id: "JiEhrPTtHI0", titulo: "Caixa" }
-        ]
-    }
+    "grupoduzani": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
+        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
+        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
+        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
+        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
+        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
+        { id: "JiEhrPTtHI0", titulo: "Caixa" }
+    ] },
+    "becker": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
+        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
+        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
+        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
+        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
+        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
+        { id: "JiEhrPTtHI0", titulo: "Caixa" }
+    ] },
+    "lanicle": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
+        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
+        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
+        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
+        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
+        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
+        { id: "JiEhrPTtHI0", titulo: "Caixa" }
+    ] }
 };
 
 let currentVideos = [];
@@ -420,6 +448,20 @@ function voltarInicio() {
     document.getElementById('domainInput').value = "";
     document.getElementById('searchInput').value = "";
 }
+
+function alternarTema() {
+    const html = document.documentElement;
+    if (html.classList.contains('light-theme')) {
+        html.classList.remove('light-theme');
+        html.classList.add('dark-theme');
+        localStorage.setItem('tema', 'dark');
+    } else {
+        html.classList.remove('dark-theme');
+        html.classList.add('light-theme');
+        localStorage.setItem('tema', 'light');
+    }
+}
 </script>
+
 </body>
 </html>
