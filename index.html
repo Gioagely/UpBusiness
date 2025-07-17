@@ -32,14 +32,13 @@
     }
 
     .light-theme {
-    --bg-color: #ffffff;
-    --card-bg: #f3f3f3;
-    --text-color: #000000;
-    --header-footer-bg: #e0e0e0;
-    --overlay-color: rgba(255, 255, 255, 0.744);
-    --overlay-opacity: 0.15; /* antes estava 0 */
-}
-
+        --bg-color: #ffffff;
+        --card-bg: #f3f3f3;
+        --text-color: #000000;
+        --header-footer-bg: #e0e0e0;
+        --overlay-color: rgba(255, 255, 255, 0.744);
+        --overlay-opacity: 0.15;
+    }
 
     * {
         font-family: 'Roboto', sans-serif;
@@ -55,7 +54,7 @@
         flex-direction: column;
         min-height: 100vh;
         position: relative;
-        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     body::before,
@@ -90,18 +89,21 @@
         padding: 15px 30px;
         border-bottom: 2px solid var(--primary-color);
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
     }
 
     .logo img {
-        height: 50px;
+        height: 40px;
     }
 
     header h1 {
-        font-size: 1.6em;
+        font-size: 1.4em;
         color: var(--primary-color);
-        margin-right: 60px;
+        flex: 1;
+        text-align: center;
+        margin: 10px 0;
     }
 
     .theme-toggle {
@@ -125,29 +127,29 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        padding: 20px;
+        padding: 20px 10px;
     }
 
     .login-box {
         background: var(--card-bg);
-        padding: 40px;
+        padding: 30px 20px;
         border-radius: var(--border-radius);
         text-align: center;
         box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         animation: fadeIn 0.6s ease;
-        max-width: 400px;
         width: 100%;
-        transition: transform 0.3s ease;
+        max-width: 400px;
     }
 
     .login-box h2 {
         margin-bottom: 20px;
         color: var(--primary-color);
         font-weight: 700;
-        font-size: 1.6em;
+        font-size: 1.5em;
     }
 
-    .login-box input {
+    .login-box input,
+    .search-box input {
         width: 100%;
         padding: var(--input-padding);
         border-radius: var(--border-radius);
@@ -155,27 +157,24 @@
         outline: none;
         margin-bottom: 15px;
         font-size: 1em;
-        transition: border-color 0.3s ease;
         color: inherit;
         background: transparent;
     }
 
-    .login-box input:focus {
-        border-color: var(--button-hover-color);
-    }
-
-    .login-box button {
+    .login-box button,
+    .back-btn {
         background: var(--primary-color);
         border: none;
         color: #000;
-        padding: 12px 25px;
+        padding: 12px 20px;
         border-radius: var(--border-radius);
         font-size: 1em;
         cursor: pointer;
         transition: background 0.3s, transform 0.2s;
     }
 
-    .login-box button:hover {
+    .login-box button:hover,
+    .back-btn:hover {
         background: var(--button-hover-color);
         transform: scale(1.05);
     }
@@ -187,45 +186,17 @@
     }
 
     .search-box {
-        text-align: center;
-        margin: 15px 0;
-    }
-
-    .search-box input {
-        width: 80%;
+        width: 100%;
         max-width: 400px;
-        padding: 10px;
-        border-radius: var(--border-radius);
-        border: 2px solid var(--primary-color);
-        outline: none;
-        font-size: 1em;
-        background: transparent;
-        color: inherit;
-    }
-
-    .back-btn {
-        display: inline-block;
-        background: var(--primary-color);
-        color: #000;
-        padding: 10px 20px;
-        border-radius: var(--border-radius);
-        font-weight: bold;
-        cursor: pointer;
-        margin-bottom: 20px;
-        transition: background 0.3s;
-    }
-
-    .back-btn:hover {
-        background: var(--button-hover-color);
+        margin: 15px auto;
     }
 
     .video-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
         gap: 20px;
         width: 100%;
         max-width: 1200px;
-        justify-items: center;
     }
 
     .video-card {
@@ -235,8 +206,6 @@
         text-align: center;
         box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        width: 100%;
-        max-width: 320px;
     }
 
     .video-card:hover {
@@ -254,7 +223,8 @@
         overflow: hidden;
     }
 
-    .video-thumb img, .video-thumb iframe {
+    .video-thumb img,
+    .video-thumb iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -294,7 +264,7 @@
 
     .video-title {
         margin-top: 10px;
-        font-size: 1.1em;
+        font-size: 1em;
         font-weight: bold;
         color: var(--primary-color);
     }
@@ -307,17 +277,32 @@
     }
 
     footer img {
-        height: 40px;
+        height: 30px;
     }
 
     @keyframes fadeIn {
         from { opacity: 0; transform: scale(0.95); }
         to { opacity: 1; transform: scale(1); }
     }
+
+    @media (max-width: 600px) {
+        header {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .theme-toggle {
+            margin-top: 10px;
+        }
+
+        .video-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
 </head>
 <body>
-
 <header>
     <div class="logo"><img id="logoHeader" src="images-removebg-preview.png" alt="Logo"></div>
     <h1>Tutoriais</h1>
@@ -373,6 +358,30 @@ const clientes = {
         { id: "JiEhrPTtHI0", titulo: "Caixa" }
     ] },
     "lanicle": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
+        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
+        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
+        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
+        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
+        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
+        { id: "JiEhrPTtHI0", titulo: "Caixa" }
+    ] },
+    "larulp": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
+        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
+        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
+        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
+        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
+        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
+        { id: "JiEhrPTtHI0", titulo: "Caixa" }
+    ] },
+    "aguadecheiro": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
         { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
         { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
         { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
@@ -463,6 +472,5 @@ function alternarTema() {
     }
 }
 </script>
-
 </body>
 </html>
