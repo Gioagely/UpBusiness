@@ -11,6 +11,9 @@
         --bg-color: #2b2b2b;
         --card-bg: #3b3b3b;
         --text-color: #fff;
+        --button-hover-color: #00cc66;
+        --border-radius: 12px;
+        --input-padding: 12px;
     }
 
     body {
@@ -54,41 +57,52 @@
 
     .login-box {
         background: var(--card-bg);
-        padding: 30px;
-        border-radius: 12px;
+        padding: 40px;
+        border-radius: var(--border-radius);
         text-align: center;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
         animation: fadeIn 0.6s ease;
+        max-width: 400px;
+        width: 100%;
+        transition: transform 0.3s ease;
     }
 
     .login-box h2 {
         margin-bottom: 20px;
         color: var(--primary-color);
+        font-weight: 700;
+        font-size: 1.6em;
     }
 
     .login-box input {
-        width: 250px;
-        padding: 10px;
-        border-radius: 8px;
+        width: 100%;
+        padding: var(--input-padding);
+        border-radius: var(--border-radius);
         border: 2px solid var(--primary-color);
         outline: none;
         margin-bottom: 15px;
         font-size: 1em;
+        transition: border-color 0.3s ease;
+    }
+
+    .login-box input:focus {
+        border-color: var(--button-hover-color);
     }
 
     .login-box button {
         background: var(--primary-color);
         border: none;
         color: #000;
-        padding: 10px 20px;
-        border-radius: 8px;
+        padding: 12px 25px;
+        border-radius: var(--border-radius);
         font-size: 1em;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: background 0.3s, transform 0.2s;
     }
 
     .login-box button:hover {
-        background: #00cc66;
+        background: var(--button-hover-color);
+        transform: scale(1.05);
     }
 
     .error {
@@ -106,7 +120,7 @@
         width: 80%;
         max-width: 400px;
         padding: 10px;
-        border-radius: 8px;
+        border-radius: var(--border-radius);
         border: 2px solid var(--primary-color);
         outline: none;
         font-size: 1em;
@@ -117,7 +131,7 @@
         background: var(--primary-color);
         color: #000;
         padding: 10px 20px;
-        border-radius: 8px;
+        border-radius: var(--border-radius);
         font-weight: bold;
         cursor: pointer;
         margin-bottom: 20px;
@@ -125,7 +139,7 @@
     }
 
     .back-btn:hover {
-        background: #00cc66;
+        background: var(--button-hover-color);
     }
 
     .video-grid {
@@ -138,16 +152,16 @@
 
     .video-card {
         background: var(--card-bg);
-        border-radius: 10px;
-        padding: 10px;
+        border-radius: var(--border-radius);
+        padding: 15px;
         text-align: center;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
         transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .video-card:hover {
         transform: scale(1.05);
-        box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+        box-shadow: 0 8px 18px rgba(0,0,0,0.4);
     }
 
     .video-thumb {
@@ -156,7 +170,7 @@
         padding-top: 56.25%;
         background: #000;
         cursor: pointer;
-        border-radius: 10px;
+        border-radius: var(--border-radius);
         overflow: hidden;
     }
 
@@ -167,7 +181,12 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: 10px;
+        border-radius: var(--border-radius);
+        transition: transform 0.3s ease;
+    }
+
+    .video-thumb:hover img {
+        transform: scale(1.1);
     }
 
     .play-button {
@@ -370,8 +389,6 @@ function voltarInicio() {
     document.getElementById('domainInput').value = "";
     document.getElementById('searchInput').value = "";
 }
-
-
 </script>
 </body>
 </html>
