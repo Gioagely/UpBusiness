@@ -29,6 +29,37 @@
         display: flex;
         flex-direction: column;
         min-height: 100vh;
+        position: relative;
+        overflow-y: auto; /* Permite rolagem */
+    }
+
+    /* Fundo com imagem e sobreposição */
+    body::before,
+    body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Não bloqueia interações */
+    }
+
+    body::before {
+        background: url('5087191-papel-de-parede-abstrato-efeito-3d-para-apresentacoes-e-sites-calmante-colorido-ondulado-vetor.jpg') no-repeat center center;
+        background-size: cover;
+        opacity: 0.15; /* Ajuste da opacidade do fundo */
+        z-index: -1;
+    }
+
+    body::after {
+        background: rgba(43, 43, 43, 0.9); /* Camada escura para contraste */
+        z-index: 0;
+    }
+
+    header, .container, footer {
+        position: relative;
+        z-index: 1;
     }
 
     header {
