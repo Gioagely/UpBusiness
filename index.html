@@ -161,8 +161,7 @@
         background: transparent;
     }
 
-    .login-box button,
-    .back-btn {
+    .login-box button {
         background: var(--primary-color);
         border: none;
         color: #000;
@@ -173,10 +172,26 @@
         transition: background 0.3s, transform 0.2s;
     }
 
-    .login-box button:hover,
-    .back-btn:hover {
+    .login-box button:hover {
         background: var(--button-hover-color);
         transform: scale(1.05);
+    }
+
+    .back-btn {
+        display: inline-block;
+        background: var(--primary-color);
+        color: #000;
+        padding: 10px 20px;
+        border-radius: var(--border-radius);
+        font-weight: bold;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: background 0.3s;
+        font-size: 0.95em;
+    }
+
+    .back-btn:hover {
+        background: var(--button-hover-color);
     }
 
     .error {
