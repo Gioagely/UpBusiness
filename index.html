@@ -708,33 +708,52 @@
         }
         
         .video-content {
-            flex-direction: column;
+            flex-direction: row;
+            overflow-x: auto;
+            height: calc(100vh - 150px);
         }
         
-        .video-list-container, .video-player-container {
-            max-width: 100%;
-            width: 100%;
+        .video-list-container {
+            min-width: 280px;
+            height: 100%;
+            border-right: 1px solid var(--input-border);
+        }
+        
+        .video-player-container {
+            min-width: calc(100% - 280px);
+            height: 100%;
         }
         
         .video-list {
-            height: auto;
-            max-height: 300px;
+            max-height: none;
+            height: 100%;
         }
         
-        .video-item {
-            flex-direction: column;
-            align-items: flex-start;
+        .video-player {
+            height: 100%;
+            overflow-y: auto;
         }
         
-        .video-thumb {
-            width: 100%;
-            height: auto;
-            min-height: 150px;
+        .video-container {
+            padding-top: 56.25%;
             margin-bottom: 10px;
         }
         
+        .video-item {
+            flex-direction: row;
+            align-items: center;
+        }
+        
+        .video-thumb {
+            width: 100px;
+            min-width: 100px;
+            height: 60px;
+            margin-bottom: 0;
+            margin-right: 10px;
+        }
+        
         .video-actions, .admin-actions {
-            flex-direction: column;
+            flex-direction: row;
         }
         
         #videoArea, #adminArea {
@@ -761,6 +780,29 @@
         
         .toggle-text span {
             font-size: 0.6rem;
+        }
+    }
+
+    /* Ajustes para telas muito pequenas (menos de 480px) */
+    @media (max-width: 480px) {
+        .video-content {
+            flex-direction: column;
+            height: auto;
+        }
+        
+        .video-list-container, 
+        .video-player-container {
+            min-width: 100%;
+            height: auto;
+        }
+        
+        .video-list {
+            max-height: 200px;
+        }
+        
+        .video-player {
+            position: relative;
+            top: 0;
         }
     }
 </style>
