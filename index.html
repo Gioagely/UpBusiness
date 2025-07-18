@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tutoriais</title>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
 <script>
   (function() {
@@ -18,327 +18,833 @@
     :root {
         --primary-color: #00ff80;
         --button-hover-color: #00cc66;
-        --border-radius: 12px;
-        --input-padding: 12px;
+        --danger-color: #ff4444;
+        --danger-hover: #cc0000;
+        --border-radius: 8px;
+        --input-padding: 14px 16px;
+        --transition: all 0.3s ease;
     }
 
     .dark-theme {
-        --bg-color: #2b2b2b;
-        --card-bg: #3b3b3b;
-        --text-color: #ffffff;
-        --header-footer-bg: #1f1f1f;
-        --overlay-color: rgba(43, 43, 43, 0.9);
-        --overlay-opacity: 0.15;
+        --bg-color: #1a1a1a;
+        --card-bg: #2a2a2a;
+        --text-color: #f0f0f0;
+        --header-footer-bg: #121212;
+        --input-bg: rgba(255, 255, 255, 0.05);
+        --input-border: rgba(255, 255, 255, 0.1);
+        --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        --list-item-bg: #333333;
+        --list-item-hover: #444444;
     }
 
     .light-theme {
-        --bg-color: #ffffff;
-        --card-bg: #f3f3f3;
-        --text-color: #000000;
-        --header-footer-bg: #e0e0e0;
-        --overlay-color: rgba(255, 255, 255, 0.744);
-        --overlay-opacity: 0.15;
+        --bg-color: #f8f9fa;
+        --card-bg: #ffffff;
+        --text-color: #333333;
+        --header-footer-bg: #e9ecef;
+        --input-bg: rgba(0, 0, 0, 0.02);
+        --input-border: rgba(0, 0, 0, 0.1);
+        --shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+        --list-item-bg: #f1f1f1;
+        --list-item-hover: #e5e5e5;
     }
 
     * {
         font-family: 'Roboto', sans-serif;
         box-sizing: border-box;
+        margin: 0;
+        padding: 0;
     }
 
     body {
         background: var(--bg-color);
         color: var(--text-color);
-        margin: 0;
-        padding: 0;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
-        position: relative;
-        overflow-x: hidden;
+        line-height: 1.6;
     }
 
-    body::before,
-    body::after {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: -1;
-    }
-
-    body::before {
-        background: url('5087191-papel-de-parede-abstrato-efeito-3d-para-apresentacoes-e-sites-calmante-colorido-ondulado-vetor.jpg') no-repeat center center;
-        background-size: cover;
-        opacity: var(--overlay-opacity);
-    }
-
-    body::after {
-        background: var(--overlay-color);
-    }
-
-    header, .container, footer {
-        position: relative;
-        z-index: 1;
-    }
-
+    /* Header */
     header {
         background: var(--header-footer-bg);
-        padding: 15px 30px;
-        border-bottom: 2px solid var(--primary-color);
+        padding: 1rem 2rem;
         display: flex;
-        flex-wrap: wrap;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
     .logo img {
-        height: 40px;
+        height: 36px;
     }
 
-    header h1 {
-        font-size: 1.4em;
+    .logo-text {
+        font-weight: 700;
+        font-size: 1.2rem;
         color: var(--primary-color);
-        flex: 1;
-        text-align: center;
-        margin: 10px 0;
     }
 
     .theme-toggle {
-        background: var(--primary-color);
-        color: #000;
+        background: transparent;
         border: none;
-        padding: 8px 16px;
-        border-radius: var(--border-radius);
-        font-weight: bold;
+        color: var(--text-color);
+        font-size: 1.2rem;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: var(--transition);
+        padding: 8px;
+        border-radius: 50%;
     }
 
     .theme-toggle:hover {
-        background: var(--button-hover-color);
+        background: rgba(0, 255, 128, 0.1);
     }
 
+    /* Container Principal */
     .container {
         flex: 1;
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-direction: column;
-        padding: 20px 10px;
+        padding: 2rem;
     }
 
+    /* Tela de Login com Toggle */
     .login-box {
-        background: var(--card-bg);
-        padding: 30px 20px;
-        border-radius: var(--border-radius);
-        text-align: center;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-        animation: fadeIn 0.6s ease;
         width: 100%;
-        max-width: 400px;
+        max-width: 420px;
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 2.5rem;
+        box-shadow: var(--shadow);
+        text-align: center;
+        animation: fadeIn 0.6s ease;
     }
 
-    .login-box h2 {
-        margin-bottom: 20px;
+    .login-header {
+        margin-bottom: 2rem;
+    }
+
+    .login-header h2 {
+        font-size: 1.8rem;
+        font-weight: 500;
         color: var(--primary-color);
-        font-weight: 700;
-        font-size: 1.5em;
+        margin-bottom: 0.5rem;
     }
 
-    .login-box input,
-    .search-box input {
+    .login-header p {
+        color: var(--text-color);
+        opacity: 0.8;
+        font-weight: 300;
+    }
+
+    /* Toggle Switch */
+    .toggle-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1.5rem 0;
+    }
+
+    .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 28px;
+    }
+
+    .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: var(--danger-color);
+        transition: .4s;
+        border-radius: 34px;
+    }
+
+    .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 20px;
+        width: 20px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+
+    input:checked + .toggle-slider {
+        background-color: var(--primary-color);
+    }
+
+    input:checked + .toggle-slider:before {
+        transform: translateX(32px);
+    }
+
+    .toggle-text {
+        display: flex;
+        justify-content: space-between;
+        width: 80px;
+        margin-top: 5px;
+    }
+
+    .toggle-text span {
+        color: var(--primary-color);
+        font-size: 0.7rem;
+        font-weight: 500;
+        width: 50%;
+        text-align: center;
+    }
+
+    /* Formulários */
+    .login-form {
+        display: none;
+        animation: fadeIn 0.6s ease;
+    }
+
+    .login-form.active {
+        display: block;
+    }
+
+    .input-group {
+        margin-bottom: 1.5rem;
+        text-align: left;
+    }
+
+    .input-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--text-color);
+    }
+
+    .input-field {
+        position: relative;
+    }
+
+    .input-field i {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-color);
+        opacity: 0.6;
+    }
+
+    .login-box input {
         width: 100%;
         padding: var(--input-padding);
+        padding-left: 42px;
         border-radius: var(--border-radius);
-        border: 2px solid var(--primary-color);
+        border: 1px solid var(--input-border);
+        background: var(--input-bg);
+        color: var(--text-color);
+        font-size: 1rem;
+        transition: var(--transition);
+    }
+
+    .login-box input:focus {
         outline: none;
-        margin-bottom: 15px;
-        font-size: 1em;
-        color: inherit;
-        background: transparent;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(0, 255, 128, 0.2);
     }
 
-    .login-box button {
+    .login-btn {
+        width: 100%;
+        padding: 14px;
         background: var(--primary-color);
+        color: #000;
         border: none;
-        color: #000;
-        padding: 12px 20px;
         border-radius: var(--border-radius);
-        font-size: 1em;
+        font-size: 1rem;
+        font-weight: 500;
         cursor: pointer;
-        transition: background 0.3s, transform 0.2s;
+        transition: var(--transition);
+        margin-top: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
     }
 
-    .login-box button:hover {
+    .login-btn:hover {
         background: var(--button-hover-color);
-        transform: scale(1.05);
+        transform: translateY(-2px);
     }
 
-    .back-btn {
-        display: inline-block;
-        background: var(--primary-color);
-        color: #000;
-        padding: 10px 20px;
-        border-radius: var(--border-radius);
-        font-weight: bold;
-        cursor: pointer;
-        margin-bottom: 20px;
-        transition: background 0.3s;
-        font-size: 0.95em;
+    .login-btn.admin {
+        background: var(--danger-color);
     }
 
-    .back-btn:hover {
-        background: var(--button-hover-color);
+    .login-btn.admin:hover {
+        background: var(--danger-hover);
     }
 
     .error {
-        color: #ff4d4d;
-        font-weight: bold;
-        margin-top: 10px;
+        color: #ff6b6b;
+        font-size: 0.9rem;
+        margin-top: 1rem;
+        display: none;
     }
 
-    .search-box {
+    /* Lista de Vídeos */
+    .video-list {
         width: 100%;
-        max-width: 400px;
-        margin: 15px auto;
+        max-width: 800px;
+        margin: 0 auto;
     }
 
-    .video-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-        gap: 20px;
-        width: 100%;
-        max-width: 1200px;
-    }
-
-    .video-card {
-        background: var(--card-bg);
+    .video-item {
+        display: flex;
+        align-items: center;
+        background: var(--list-item-bg);
         border-radius: var(--border-radius);
-        padding: 15px;
-        text-align: center;
-        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin-bottom: 15px;
+        padding: 12px;
+        transition: var(--transition);
+        cursor: pointer;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
-    .video-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 8px 18px rgba(0,0,0,0.4);
+    .video-item:hover {
+        background: var(--list-item-hover);
+        transform: translateX(5px);
     }
 
     .video-thumb {
         position: relative;
-        width: 100%;
-        padding-top: 56.25%;
+        width: 120px;
+        min-width: 120px;
+        height: 70px;
         background: #000;
-        cursor: pointer;
-        border-radius: var(--border-radius);
+        border-radius: 6px;
         overflow: hidden;
     }
 
-    .video-thumb img,
-    .video-thumb iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
+    .video-thumb img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        border-radius: var(--border-radius);
-        transition: transform 0.3s ease;
     }
 
-    .video-thumb:hover img {
-        transform: scale(1.1);
-    }
-
-    .play-button {
+    .play-icon {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 60px;
-        height: 60px;
-        background: rgba(0, 0, 0, 0.6);
+        color: white;
+        font-size: 20px;
+        background: rgba(0,0,0,0.6);
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
-    .play-button::before {
-        content: '';
-        width: 0;
-        height: 0;
-        border-left: 20px solid #fff;
-        border-top: 12px solid transparent;
-        border-bottom: 12px solid transparent;
+    .video-info {
+        flex: 1;
+        padding: 0 15px;
     }
 
     .video-title {
-        margin-top: 10px;
-        font-size: 1em;
-        font-weight: bold;
+        font-weight: 500;
+        color: var(--primary-color);
+        margin-bottom: 5px;
+    }
+
+    .video-duration {
+        font-size: 0.8em;
+        color: var(--text-color);
+        opacity: 0.8;
+    }
+
+    .completed-status {
+        width: 22px;
+        height: 22px;
+        border: 2px solid var(--primary-color);
+        border-radius: 50%;
+        margin-right: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+    }
+
+    .completed-status.completed {
+        background: var(--primary-color);
+        color: #000;
+    }
+
+    /* Página do Vídeo */
+    .video-page {
+        display: none;
+        width: 80%;
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        padding-top: 56.25%;
+        margin-bottom: 20px;
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: var(--border-radius);
+    }
+
+    .video-actions {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        gap: 15px;
+    }
+
+    .video-actions button {
+        flex: 1;
+        background: var(--primary-color);
+        color: #000;
+        border: none;
+        padding: 12px;
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .video-actions button:hover {
+        background: var(--button-hover-color);
+    }
+
+    .video-info-page {
+        background: var(--card-bg);
+        padding: 20px;
+        border-radius: var(--border-radius);
+        margin-bottom: 20px;
+    }
+
+    .video-info-page h2 {
+        color: var(--primary-color);
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .completed-checkbox {
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+    }
+
+    .completed-checkbox input {
+        margin-right: 10px;
+        width: 18px;
+        height: 18px;
+        accent-color: var(--primary-color);
+    }
+
+    /* Área do Administrador */
+    .admin-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 20px;
+        gap: 10px;
+    }
+
+    .admin-btn {
+        padding: 10px 16px;
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        cursor: pointer;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        border: none;
+    }
+
+    .admin-btn.add {
+        background: var(--primary-color);
+        color: #000;
+    }
+
+    .admin-btn.add:hover {
+        background: var(--button-hover-color);
+    }
+
+    .admin-btn.edit {
+        background: #ffc107;
+        color: #000;
+    }
+
+    .admin-btn.delete {
+        background: var(--danger-color);
+        color: white;
+    }
+
+    .admin-btn.delete:hover {
+        background: var(--danger-hover);
+    }
+
+    /* Modal */
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        z-index: 1000;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal-content {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        width: 90%;
+        max-width: 500px;
+        box-shadow: var(--shadow);
+        animation: fadeIn 0.3s ease;
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-header h3 {
+        font-size: 1.5rem;
         color: var(--primary-color);
     }
 
+    .close-modal {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--text-color);
+    }
+
+    .modal-body {
+        margin-bottom: 1.5rem;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+    }
+
+    /* Footer */
     footer {
         text-align: center;
-        padding: 15px;
+        padding: 1.5rem;
         background: var(--header-footer-bg);
-        border-top: 2px solid var(--primary-color);
+        border-top: 1px solid rgba(0, 255, 128, 0.1);
     }
 
     footer img {
         height: 30px;
     }
 
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.95); }
-        to { opacity: 1; transform: scale(1); }
+    /* Componentes Reutilizáveis */
+    .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--primary-color);
+        color: #000;
+        padding: 10px 16px;
+        border-radius: var(--border-radius);
+        font-weight: 500;
+        cursor: pointer;
+        margin-bottom: 20px;
+        transition: var(--transition);
+        border: none;
     }
 
-    @media (max-width: 600px) {
+    .back-btn:hover {
+        background: var(--button-hover-color);
+    }
+
+    .search-box {
+        width: 100%;
+        max-width: 800px;
+        margin: 15px auto;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: var(--input-padding);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--input-border);
+        background: var(--input-bg);
+        color: var(--text-color);
+        font-size: 1rem;
+        transition: var(--transition);
+    }
+
+    .search-box input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(0, 255, 128, 0.2);
+    }
+
+    /* Animações */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+        .login-box {
+            padding: 1.5rem;
+        }
+        
+        .login-header h2 {
+            font-size: 1.5rem;
+        }
+        
         header {
+            padding: 1rem;
+        }
+        
+        .video-item {
             flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
         }
-
-        .theme-toggle {
-            margin-top: 10px;
+        
+        .video-thumb {
+            width: 100%;
+            height: auto;
+            min-height: 150px;
+            margin-bottom: 10px;
         }
-
-        .video-grid {
-            grid-template-columns: 1fr;
+        
+        .video-actions, .admin-actions {
+            flex-direction: column;
+        }
+        
+        .video-page, #videoArea, #adminArea {
+            width: 95%;
+        }
+        
+        .toggle-switch {
+            width: 50px;
+            height: 24px;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        .toggle-slider:before {
+            height: 16px;
+            width: 16px;
+        }
+        
+        .toggle-text {
+            width: 50px;
+        }
+        
+        .toggle-text span {
+            font-size: 0.6rem;
         }
     }
 </style>
 </head>
 <body>
 <header>
-    <div class="logo"><img id="logoHeader" src="images-removebg-preview.png" alt="Logo"></div>
-    <h1>Tutoriais</h1>
-    <button class="theme-toggle" onclick="alternarTema()">Alternar Tema</button>
+    <div class="logo">
+        <img id="logoHeader" src="images-removebg-preview.png" alt="Logo">
+        <span class="logo-text">Tutoriais</span>
+    </div>
+    <button class="theme-toggle" onclick="alternarTema()">
+        <i class="fas fa-moon"></i>
+    </button>
 </header>
 
 <div class="container">
+    <!-- Tela de Login com Toggle Switch -->
     <div id="loginArea" class="login-box">
-        <h2>Acesse seus vídeos</h2>
-        <input type="text" id="domainInput" placeholder="Digite seu domínio (ex: upbusiness)" oninput="formatarDominio(this)">
-        <br>
-        <button onclick="validarDominio()">Entrar</button>
-        <div class="error" id="errorMsg" style="display:none;">Domínio não encontrado!</div>
+        <div class="login-header">
+            <h2>Bem-vindo ao Portal</h2>
+            <p>Selecione o tipo de acesso e insira suas credenciais</p>
+        </div>
+
+        <!-- Toggle Switch para Usuário/Admin -->
+        <div class="toggle-container">
+            <label class="toggle-switch">
+                <input type="checkbox" id="accessToggle" onchange="alternarTipoAcesso()">
+                <span class="toggle-slider"></span>
+            </label>
+            <div class="toggle-text">
+                <span>Cliente</span>
+                <span>Admin</span>
+            </div>
+        </div>
+
+        <!-- Formulário de Usuário -->
+        <div id="userForm" class="login-form active">
+            <div class="input-group">
+                <label for="domainInput">Domínio</label>
+                <div class="input-field">
+                    <i class="fas fa-building"></i>
+                    <input type="text" id="domainInput" placeholder="ex: upbusiness" oninput="formatarDominio(this)">
+                </div>
+            </div>
+            <button class="login-btn" onclick="validarDominio()">
+                <i class="fas fa-sign-in-alt"></i>
+                Entrar
+            </button>
+            <div class="error" id="errorMsg">Domínio não encontrado!</div>
+        </div>
+
+        <!-- Formulário de Administrador -->
+        <div id="adminForm" class="login-form">
+            <div class="input-group">
+                <label for="adminUser">Login</label>
+                <div class="input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="adminUser" placeholder="Digite seu login">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="adminPass">Senha</label>
+                <div class="input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="adminPass" placeholder="Digite sua senha">
+                </div>
+            </div>
+            <button class="login-btn admin" onclick="validarAdmin()">
+                <i class="fas fa-sign-in-alt"></i>
+                Entrar
+            </button>
+            <div class="error" id="adminErrorMsg">Credenciais incorretas!</div>
+        </div>
     </div>
 
-    <div id="videoArea" style="display:none; width: 80%;">
-        <div class="back-btn" onclick="voltarInicio()">← Voltar</div>
+    <!-- Área de Vídeos (Usuário) -->
+    <div id="videoArea" style="display:none; width: 90%;">
+        <button class="back-btn" onclick="voltarInicio()">
+            <i class="fas fa-arrow-left"></i>
+            Voltar
+        </button>
         <div class="search-box">
             <input type="text" id="searchInput" placeholder="Buscar vídeo..." oninput="filtrarVideos()">
         </div>
-        <div class="video-grid" id="videoGrid"></div>
+        <div class="video-list" id="videoList"></div>
+    </div>
+
+    <!-- Área de Vídeos (Admin) -->
+    <div id="adminArea" style="display:none; width: 90%;">
+        <button class="back-btn" onclick="voltarInicio()">
+            <i class="fas fa-arrow-left"></i>
+            Voltar
+        </button>
+        <div class="admin-actions">
+            <button class="admin-btn add" onclick="abrirModalAdicionar()">
+                <i class="fas fa-plus"></i>
+                Adicionar Vídeo
+            </button>
+        </div>
+        <div class="search-box">
+            <input type="text" id="adminSearchInput" placeholder="Buscar vídeo..." oninput="filtrarVideosAdmin()">
+        </div>
+        <div class="video-list" id="adminVideoList"></div>
+    </div>
+
+    <!-- Página do Vídeo -->
+    <div id="videoPage" class="video-page">
+        <button class="back-btn" onclick="voltarParaLista()">
+            <i class="fas fa-arrow-left"></i>
+            Voltar para lista
+        </button>
+        <div class="video-container">
+            <iframe id="currentVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+        <div class="video-info-page">
+            <h2 id="videoPageTitle"></h2>
+            <div class="completed-checkbox">
+                <input type="checkbox" id="completedCheckbox">
+                <label for="completedCheckbox">Marcar como concluído</label>
+            </div>
+        </div>
+        <div class="video-actions">
+            <button id="prevVideoBtn" onclick="navegarVideo('anterior')">
+                <i class="fas fa-chevron-left"></i>
+                Vídeo Anterior
+            </button>
+            <button id="nextVideoBtn" onclick="navegarVideo('proximo')">
+                Próximo Vídeo
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para Adicionar/Editar Vídeo -->
+<div id="videoModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">Adicionar Novo Vídeo</h3>
+            <button class="close-modal" onclick="fecharModal()">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div class="input-group">
+                <label for="videoId">ID do Vídeo (YouTube)</label>
+                <input type="text" id="videoId" placeholder="Ex: JiEhrPTtHI0">
+            </div>
+            <div class="input-group">
+                <label for="videoTitulo">Título do Vídeo</label>
+                <input type="text" id="videoTitulo" placeholder="Digite o título do vídeo">
+            </div>
+            <div class="input-group">
+                <label for="videoDuracao">Duração (opcional)</label>
+                <input type="text" id="videoDuracao" placeholder="Ex: 5:23">
+            </div>
+            <div class="input-group" id="dominioGroup" style="display: none;">
+                <label for="videoDominio">Domínio</label>
+                <input type="text" id="videoDominio" placeholder="Ex: upbusiness">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="admin-btn delete" onclick="fecharModal()">Cancelar</button>
+            <button class="admin-btn add" id="modalConfirmBtn" onclick="confirmarVideo()">Confirmar</button>
+        </div>
     </div>
 </div>
 
@@ -347,70 +853,59 @@
 </footer>
 
 <script>
-const clientes = {
+// Dados dos clientes e vídeos
+let clientes = {
     "grupoduzani": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
-        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
-        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
-        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
-        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
-        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
-        { id: "JiEhrPTtHI0", titulo: "Caixa" }
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado", duracao: "5:23" },
+        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda", duracao: "7:45" },
+        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas", duracao: "4:12" },
+        { id: "JiEhrPTtHI0", titulo: "Manufatura", duracao: "6:30" },
+        { id: "JiEhrPTtHI0", titulo: "Vitrine", duracao: "3:55" },
+        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal", duracao: "8:20" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar", duracao: "5:45" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a receber", duracao: "6:10" },
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa", duracao: "4:35" },
+        { id: "JiEhrPTtHI0", titulo: "Caixa", duracao: "7:15" }
     ] },
     "becker": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
-        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
-        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
-        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
-        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
-        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
-        { id: "JiEhrPTtHI0", titulo: "Caixa" }
-    ] },
-    "lanicle": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
-        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
-        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
-        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
-        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
-        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
-        { id: "JiEhrPTtHI0", titulo: "Caixa" }
-    ] },
-    "larulp": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
-        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
-        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
-        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
-        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
-        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
-        { id: "JiEhrPTtHI0", titulo: "Caixa" }
-    ] },
-    "aguadecheiro": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado" },
-        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda" },
-        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas" },
-        { id: "JiEhrPTtHI0", titulo: "Manufatura" },
-        { id: "JiEhrPTtHI0", titulo: "Vitrine" },
-        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a receber" },
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa" },
-        { id: "JiEhrPTtHI0", titulo: "Caixa" }
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado", duracao: "5:23" },
+        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda", duracao: "7:45" },
+        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas", duracao: "4:12" },
+        { id: "JiEhrPTtHI0", titulo: "Manufatura", duracao: "6:30" },
+        { id: "JiEhrPTtHI0", titulo: "Vitrine", duracao: "3:55" },
+        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal", duracao: "8:20" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar", duracao: "5:45" },
+        { id: "JiEhrPTtHI0", titulo: "Contas a receber", duracao: "6:10" },
+        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa", duracao: "4:35" },
+        { id: "JiEhrPTtHI0", titulo: "Caixa", duracao: "7:15" }
     ] }
 };
 
+// Variáveis globais
 let currentVideos = [];
+let currentVideoIndex = 0;
+let currentDominio = '';
+let isAdmin = false;
+let editingVideoIndex = -1;
+
+// Função para alternar entre os tipos de acesso
+function alternarTipoAcesso() {
+    const isAdminMode = document.getElementById('accessToggle').checked;
+    document.getElementById('userForm').classList.toggle('active', !isAdminMode);
+    document.getElementById('adminForm').classList.toggle('active', isAdminMode);
+    
+    // Limpar mensagens de erro ao alternar
+    document.getElementById('errorMsg').style.display = 'none';
+    document.getElementById('adminErrorMsg').style.display = 'none';
+    
+    // Limpar campos ao alternar
+    if (!isAdminMode) {
+        document.getElementById('adminUser').value = '';
+        document.getElementById('adminPass').value = '';
+    } else {
+        document.getElementById('domainInput').value = '';
+    }
+}
 
 function formatarDominio(input) {
     input.value = input.value.toLowerCase().replace(/[^a-z0-9.-]/g, '');
@@ -423,6 +918,9 @@ function validarDominio() {
     if (clientes[dominio]) {
         const cliente = clientes[dominio];
         currentVideos = cliente.videos;
+        currentDominio = dominio;
+        isAdmin = false;
+        
         document.documentElement.style.setProperty('--primary-color', cliente.cor);
         document.getElementById('logoHeader').src = cliente.logo;
         document.getElementById('logoFooter').src = cliente.logo;
@@ -435,57 +933,342 @@ function validarDominio() {
     }
 }
 
+function validarAdmin() {
+    const usuario = document.getElementById('adminUser').value;
+    const senha = document.getElementById('adminPass').value;
+    const errorMsg = document.getElementById('adminErrorMsg');
+
+    if (usuario === 'upvendas' && senha === '123') {
+        isAdmin = true;
+        document.getElementById('loginArea').style.display = 'none';
+        document.getElementById('adminArea').style.display = 'block';
+        
+        // Carrega todos os vídeos de todos os clientes para o admin
+        currentVideos = [];
+        for (const dominio in clientes) {
+            currentVideos = currentVideos.concat(clientes[dominio].videos.map(v => ({
+                ...v,
+                dominio: dominio
+            })));
+        }
+        
+        renderVideosAdmin();
+        errorMsg.style.display = 'none';
+    } else {
+        errorMsg.style.display = 'block';
+    }
+}
+
+// Funções para renderizar vídeos
 function renderVideos(lista) {
-    const container = document.getElementById('videoGrid');
+    const container = document.getElementById('videoList');
     container.innerHTML = "";
-    lista.forEach(video => {
-        const card = document.createElement('div');
-        card.className = "video-card";
-        card.setAttribute("data-title", video.titulo.toLowerCase());
-        card.innerHTML = `
-            <div class="video-thumb" data-video="${video.id}" onclick="loadVideo(this)">
-                <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="Thumbnail">
-                <div class="play-button"></div>
+    lista.forEach((video, index) => {
+        const videoKey = `completed_${video.id}`;
+        const isCompleted = localStorage.getItem(videoKey) === 'true';
+        
+        const item = document.createElement('div');
+        item.className = "video-item";
+        item.setAttribute("data-title", video.titulo.toLowerCase());
+        item.setAttribute("data-index", index);
+        item.onclick = () => abrirVideo(index);
+        
+        item.innerHTML = `
+            <div class="completed-status ${isCompleted ? 'completed' : ''}">
+                ${isCompleted ? '✓' : ''}
             </div>
-            <div class="video-title">${video.titulo}</div>
+            <div class="video-thumb">
+                <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="Thumbnail">
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="video-info">
+                <div class="video-title">${video.titulo}</div>
+                <div class="video-duration">Duração: ${video.duracao}</div>
+            </div>
         `;
-        container.appendChild(card);
+        container.appendChild(item);
     });
 }
 
-function loadVideo(element) {
-    const videoId = element.getAttribute('data-video');
-    element.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" frameborder="0" allowfullscreen></iframe>`;
+function renderVideosAdmin() {
+    const container = document.getElementById('adminVideoList');
+    container.innerHTML = "";
+    currentVideos.forEach((video, index) => {
+        const item = document.createElement('div');
+        item.className = "video-item";
+        item.setAttribute("data-title", video.titulo.toLowerCase());
+        item.setAttribute("data-index", index);
+        
+        item.innerHTML = `
+            <div class="video-thumb" onclick="abrirVideo(${index})">
+                <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="Thumbnail">
+                <div class="play-icon">▶</div>
+            </div>
+            <div class="video-info">
+                <div class="video-title">${video.titulo} <small>(${video.dominio})</small></div>
+                <div class="video-duration">Duração: ${video.duracao}</div>
+            </div>
+            <div class="admin-actions" style="margin-left: auto;">
+                <button class="admin-btn edit" onclick="editarVideo(${index}, event)">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <button class="admin-btn delete" onclick="excluirVideo(${index}, event)">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
+        container.appendChild(item);
+    });
+}
+
+// Funções para manipulação de vídeos
+function abrirVideo(index) {
+    currentVideoIndex = parseInt(index);
+    const video = currentVideos[currentVideoIndex];
+    
+    if (isAdmin) {
+        document.getElementById('adminArea').style.display = 'none';
+    } else {
+        document.getElementById('videoArea').style.display = 'none';
+    }
+    
+    document.getElementById('videoPage').style.display = 'block';
+    document.getElementById('currentVideo').src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
+    document.getElementById('videoPageTitle').textContent = video.titulo;
+    
+    // Verificar se há vídeos anterior/próximo
+    document.getElementById('prevVideoBtn').style.display = currentVideoIndex > 0 ? 'block' : 'none';
+    document.getElementById('nextVideoBtn').style.display = currentVideoIndex < currentVideos.length - 1 ? 'block' : 'none';
+    
+    // Carregar estado do checkbox (se estiver salvo)
+    const videoKey = `completed_${video.id}`;
+    document.getElementById('completedCheckbox').checked = localStorage.getItem(videoKey) === 'true';
+    
+    // Esconder checkbox de conclusão para admin
+    document.getElementById('completedCheckbox').closest('.completed-checkbox').style.display = isAdmin ? 'none' : 'flex';
+}
+
+function voltarParaLista() {
+    document.getElementById('videoPage').style.display = 'none';
+    
+    if (isAdmin) {
+        document.getElementById('adminArea').style.display = 'block';
+    } else {
+        document.getElementById('videoArea').style.display = 'block';
+    }
+    
+    document.getElementById('currentVideo').src = '';
+}
+
+function navegarVideo(direcao) {
+    // Salvar estado do checkbox antes de navegar (se for usuário)
+    if (!isAdmin) {
+        const currentVideo = currentVideos[currentVideoIndex];
+        const videoKey = `completed_${currentVideo.id}`;
+        localStorage.setItem(videoKey, document.getElementById('completedCheckbox').checked);
+    }
+    
+    if (direcao === 'anterior' && currentVideoIndex > 0) {
+        currentVideoIndex--;
+    } else if (direcao === 'proximo' && currentVideoIndex < currentVideos.length - 1) {
+        currentVideoIndex++;
+    }
+    
+    abrirVideo(currentVideoIndex);
 }
 
 function filtrarVideos() {
     const search = document.getElementById('searchInput').value.toLowerCase();
-    const cards = document.querySelectorAll('.video-card');
-    cards.forEach(card => {
-        const title = card.getAttribute('data-title');
-        card.style.display = title.includes(search) ? "block" : "none";
+    const items = document.querySelectorAll('#videoList .video-item');
+    items.forEach(item => {
+        const title = item.getAttribute('data-title');
+        item.style.display = title.includes(search) ? "flex" : "none";
+    });
+}
+
+function filtrarVideosAdmin() {
+    const search = document.getElementById('adminSearchInput').value.toLowerCase();
+    const items = document.querySelectorAll('#adminVideoList .video-item');
+    items.forEach(item => {
+        const title = item.getAttribute('data-title');
+        item.style.display = title.includes(search) ? "flex" : "none";
     });
 }
 
 function voltarInicio() {
-    document.getElementById('loginArea').style.display = 'block';
     document.getElementById('videoArea').style.display = 'none';
+    document.getElementById('adminArea').style.display = 'none';
+    document.getElementById('videoPage').style.display = 'none';
+    document.getElementById('loginArea').style.display = 'block';
+    
     document.getElementById('domainInput').value = "";
     document.getElementById('searchInput').value = "";
+    document.getElementById('adminSearchInput').value = "";
+    document.getElementById('currentVideo').src = '';
+    
+    document.getElementById('errorMsg').style.display = 'none';
+    document.getElementById('adminErrorMsg').style.display = 'none';
+    
+    // Resetar o toggle para usuário
+    document.getElementById('accessToggle').checked = false;
+    alternarTipoAcesso();
 }
 
+// Funções do Administrador
+function abrirModalAdicionar() {
+    editingVideoIndex = -1;
+    document.getElementById('modalTitle').textContent = 'Adicionar Novo Vídeo';
+    document.getElementById('videoId').value = '';
+    document.getElementById('videoTitulo').value = '';
+    document.getElementById('videoDuracao').value = '';
+    document.getElementById('modalConfirmBtn').textContent = 'Adicionar';
+    document.getElementById('modalConfirmBtn').onclick = confirmarVideo;
+    
+    // Mostrar campo de domínio apenas se estiver em um domínio específico
+    if (currentDominio) {
+        document.getElementById('dominioGroup').style.display = 'block';
+        document.getElementById('videoDominio').value = currentDominio;
+    } else {
+        document.getElementById('dominioGroup').style.display = 'none';
+    }
+    
+    document.getElementById('videoModal').style.display = 'flex';
+}
+
+function abrirModalEditar(index) {
+    editingVideoIndex = index;
+    const video = currentVideos[index];
+    
+    document.getElementById('modalTitle').textContent = 'Editar Vídeo';
+    document.getElementById('videoId').value = video.id;
+    document.getElementById('videoTitulo').value = video.titulo;
+    document.getElementById('videoDuracao').value = video.duracao || '';
+    document.getElementById('modalConfirmBtn').textContent = 'Salvar';
+    document.getElementById('modalConfirmBtn').onclick = confirmarVideo;
+    
+    // Mostrar campo de domínio para edição
+    document.getElementById('dominioGroup').style.display = 'block';
+    document.getElementById('videoDominio').value = video.dominio || '';
+    
+    document.getElementById('videoModal').style.display = 'flex';
+}
+
+function fecharModal() {
+    document.getElementById('videoModal').style.display = 'none';
+}
+
+function confirmarVideo() {
+    const id = document.getElementById('videoId').value.trim();
+    const titulo = document.getElementById('videoTitulo').value.trim();
+    const duracao = document.getElementById('videoDuracao').value.trim();
+    const dominio = document.getElementById('videoDominio').value.trim();
+
+    if (!id || !titulo) {
+        alert('ID e Título são obrigatórios!');
+        return;
+    }
+
+    const novoVideo = {
+        id: id,
+        titulo: titulo,
+        duracao: duracao || '0:00',
+        dominio: dominio || currentDominio || 'admin'
+    };
+
+    if (editingVideoIndex >= 0) {
+        // Editar vídeo existente
+        currentVideos[editingVideoIndex] = novoVideo;
+        
+        // Atualizar também no cliente específico
+        if (clientes[novoVideo.dominio]) {
+            const cliente = clientes[novoVideo.dominio];
+            const videoIndex = cliente.videos.findIndex(v => v.id === id);
+            if (videoIndex >= 0) {
+                cliente.videos[videoIndex] = novoVideo;
+            }
+        }
+    } else {
+        // Adicionar novo vídeo
+        currentVideos.push(novoVideo);
+        
+        // Adicionar também ao cliente específico
+        if (clientes[novoVideo.dominio]) {
+            clientes[novoVideo.dominio].videos.push(novoVideo);
+        } else if (currentDominio && clientes[currentDominio]) {
+            // Se estiver adicionando de um domínio específico
+            clientes[currentDominio].videos.push(novoVideo);
+        }
+    }
+
+    // Atualizar a exibição
+    if (isAdmin) {
+        renderVideosAdmin();
+    } else {
+        renderVideos(clientes[currentDominio].videos);
+    }
+
+    fecharModal();
+}
+
+function editarVideo(index, event) {
+    event.stopPropagation();
+    abrirModalEditar(index);
+}
+
+function excluirVideo(index, event) {
+    event.stopPropagation();
+    
+    if (confirm('Tem certeza que deseja excluir este vídeo?')) {
+        const video = currentVideos[index];
+        
+        // Remover do array principal
+        currentVideos.splice(index, 1);
+        
+        // Remover também do cliente específico se existir
+        if (video.dominio && clientes[video.dominio]) {
+            const cliente = clientes[video.dominio];
+            const videoIndex = cliente.videos.findIndex(v => v.id === video.id);
+            if (videoIndex >= 0) {
+                cliente.videos.splice(videoIndex, 1);
+            }
+        }
+        
+        renderVideosAdmin();
+    }
+}
+
+// Funções de tema
 function alternarTema() {
     const html = document.documentElement;
+    const themeToggle = document.querySelector('.theme-toggle i');
+    
     if (html.classList.contains('light-theme')) {
         html.classList.remove('light-theme');
         html.classList.add('dark-theme');
         localStorage.setItem('tema', 'dark');
+        themeToggle.classList.replace('fa-sun', 'fa-moon');
     } else {
         html.classList.remove('dark-theme');
         html.classList.add('light-theme');
         localStorage.setItem('tema', 'light');
+        themeToggle.classList.replace('fa-moon', 'fa-sun');
     }
 }
+
+// Inicializar ícone do tema corretamente
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.querySelector('.theme-toggle i');
+    if (document.documentElement.classList.contains('light-theme')) {
+        themeToggle.classList.replace('fa-moon', 'fa-sun');
+    }
+});
+
+// Salvar estado do checkbox quando marcado
+document.getElementById('completedCheckbox').addEventListener('change', function() {
+    const currentVideo = currentVideos[currentVideoIndex];
+    const videoKey = `completed_${currentVideo.id}`;
+    localStorage.setItem(videoKey, this.checked);
+});
 </script>
 </body>
 </html>
