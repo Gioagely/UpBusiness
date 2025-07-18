@@ -303,11 +303,70 @@
         display: none;
     }
 
+    /* Layout de Vídeos */
+    .video-content {
+        display: flex;
+        width: 100%;
+        max-width: 1200px;
+        gap: 20px;
+    }
+
+    .video-list-container {
+        flex: 1;
+        min-width: 300px;
+        max-width: 400px;
+    }
+
+    .video-player-container {
+        flex: 2;
+        min-width: 0;
+    }
+
+    /* Módulos de Vídeos */
+    .module {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        margin-bottom: 20px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+
+    .module-header {
+        background: var(--primary-color);
+        color: #000;
+        padding: 12px 16px;
+        font-weight: 500;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .module-header i {
+        transition: transform 0.3s ease;
+    }
+
+    .module-header.collapsed i {
+        transform: rotate(-90deg);
+    }
+
+    .module-content {
+        padding: 10px;
+        max-height: 1000px;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .module-content.collapsed {
+        max-height: 0;
+        padding: 0 10px;
+    }
+
     /* Lista de Vídeos */
     .video-list {
         width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
+        height: calc(100vh - 200px);
+        overflow-y: auto;
     }
 
     .video-item {
@@ -325,6 +384,11 @@
     .video-item:hover {
         background: var(--list-item-hover);
         transform: translateX(5px);
+    }
+
+    .video-item.active {
+        border-left: 4px solid var(--primary-color);
+        background: var(--list-item-hover);
     }
 
     .video-thumb {
@@ -393,12 +457,14 @@
         color: #000;
     }
 
-    /* Página do Vídeo */
-    .video-page {
-        display: none;
-        width: 80%;
-        max-width: 900px;
-        margin: 0 auto;
+    /* Player de Vídeo */
+    .video-player {
+        position: sticky;
+        top: 20px;
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 20px;
+        box-shadow: var(--shadow);
     }
 
     .video-container {
@@ -601,8 +667,7 @@
 
     .search-box {
         width: 100%;
-        max-width: 800px;
-        margin: 15px auto;
+        margin: 15px 0;
     }
 
     .search-box input {
@@ -642,6 +707,20 @@
             padding: 1rem;
         }
         
+        .video-content {
+            flex-direction: column;
+        }
+        
+        .video-list-container, .video-player-container {
+            max-width: 100%;
+            width: 100%;
+        }
+        
+        .video-list {
+            height: auto;
+            max-height: 300px;
+        }
+        
         .video-item {
             flex-direction: column;
             align-items: flex-start;
@@ -658,7 +737,7 @@
             flex-direction: column;
         }
         
-        .video-page, #videoArea, #adminArea {
+        #videoArea, #adminArea {
             width: 95%;
         }
         
@@ -758,19 +837,49 @@
     </div>
 
     <!-- Área de Vídeos (Usuário) -->
-    <div id="videoArea" style="display:none; width: 90%;">
+    <div id="videoArea" style="display:none; width: 100%;">
         <button class="back-btn" onclick="voltarInicio()">
             <i class="fas fa-arrow-left"></i>
             Voltar
         </button>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Buscar vídeo..." oninput="filtrarVideos()">
+        
+        <div class="video-content">
+            <div class="video-list-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Buscar vídeo..." oninput="filtrarVideos()">
+                </div>
+                <div class="video-list" id="videoList"></div>
+            </div>
+            
+            <div class="video-player-container">
+                <div class="video-player">
+                    <div class="video-container">
+                        <iframe id="currentVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info-page">
+                        <h2 id="videoPageTitle">Selecione um vídeo para assistir</h2>
+                        <div class="completed-checkbox" style="display: none;">
+                            <input type="checkbox" id="completedCheckbox">
+                            <label for="completedCheckbox">Marcar como concluído</label>
+                        </div>
+                    </div>
+                    <div class="video-actions">
+                        <button id="prevVideoBtn" onclick="navegarVideo('anterior')">
+                            <i class="fas fa-chevron-left"></i>
+                            Vídeo Anterior
+                        </button>
+                        <button id="nextVideoBtn" onclick="navegarVideo('proximo')">
+                            Próximo Vídeo
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="video-list" id="videoList"></div>
     </div>
 
     <!-- Área de Vídeos (Admin) -->
-    <div id="adminArea" style="display:none; width: 90%;">
+    <div id="adminArea" style="display:none; width: 100%;">
         <button class="back-btn" onclick="voltarInicio()">
             <i class="fas fa-arrow-left"></i>
             Voltar
@@ -781,37 +890,35 @@
                 Adicionar Vídeo
             </button>
         </div>
-        <div class="search-box">
-            <input type="text" id="adminSearchInput" placeholder="Buscar vídeo..." oninput="filtrarVideosAdmin()">
-        </div>
-        <div class="video-list" id="adminVideoList"></div>
-    </div>
-
-    <!-- Página do Vídeo -->
-    <div id="videoPage" class="video-page">
-        <button class="back-btn" onclick="voltarParaLista()">
-            <i class="fas fa-arrow-left"></i>
-            Voltar para lista
-        </button>
-        <div class="video-container">
-            <iframe id="currentVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-        <div class="video-info-page">
-            <h2 id="videoPageTitle"></h2>
-            <div class="completed-checkbox">
-                <input type="checkbox" id="completedCheckbox">
-                <label for="completedCheckbox">Marcar como concluído</label>
+        
+        <div class="video-content">
+            <div class="video-list-container">
+                <div class="search-box">
+                    <input type="text" id="adminSearchInput" placeholder="Buscar vídeo..." oninput="filtrarVideosAdmin()">
+                </div>
+                <div class="video-list" id="adminVideoList"></div>
             </div>
-        </div>
-        <div class="video-actions">
-            <button id="prevVideoBtn" onclick="navegarVideo('anterior')">
-                <i class="fas fa-chevron-left"></i>
-                Vídeo Anterior
-            </button>
-            <button id="nextVideoBtn" onclick="navegarVideo('proximo')">
-                Próximo Vídeo
-                <i class="fas fa-chevron-right"></i>
-            </button>
+            
+            <div class="video-player-container">
+                <div class="video-player">
+                    <div class="video-container">
+                        <iframe id="adminCurrentVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="video-info-page">
+                        <h2 id="adminVideoPageTitle">Selecione um vídeo para assistir</h2>
+                    </div>
+                    <div class="video-actions">
+                        <button id="adminPrevVideoBtn" onclick="navegarVideoAdmin('anterior')">
+                            <i class="fas fa-chevron-left"></i>
+                            Vídeo Anterior
+                        </button>
+                        <button id="adminNextVideoBtn" onclick="navegarVideoAdmin('proximo')">
+                            Próximo Vídeo
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -836,6 +943,10 @@
                 <label for="videoDuracao">Duração (opcional)</label>
                 <input type="text" id="videoDuracao" placeholder="Ex: 5:23">
             </div>
+            <div class="input-group">
+                <label for="videoModulo">Módulo/Categoria</label>
+                <input type="text" id="videoModulo" placeholder="Ex: Vendas">
+            </div>
             <div class="input-group" id="dominioGroup" style="display: none;">
                 <label for="videoDominio">Domínio</label>
                 <input type="text" id="videoDominio" placeholder="Ex: upbusiness">
@@ -853,37 +964,69 @@
 </footer>
 
 <script>
-// Dados dos clientes e vídeos
+// Dados dos clientes organizados por módulos
 let clientes = {
-    "grupoduzani": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado", duracao: "5:23" },
-        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda", duracao: "7:45" },
-        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas", duracao: "4:12" },
-        { id: "JiEhrPTtHI0", titulo: "Manufatura", duracao: "6:30" },
-        { id: "JiEhrPTtHI0", titulo: "Vitrine", duracao: "3:55" },
-        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal", duracao: "8:20" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar", duracao: "5:45" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a receber", duracao: "6:10" },
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa", duracao: "4:35" },
-        { id: "JiEhrPTtHI0", titulo: "Caixa", duracao: "7:15" }
-    ] },
-    "becker": { cor: "#00ff80", logo: "images-removebg-preview.png", videos: [
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado", duracao: "5:23" },
-        { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda", duracao: "7:45" },
-        { id: "JiEhrPTtHI0", titulo: "Vendas Diretas", duracao: "4:12" },
-        { id: "JiEhrPTtHI0", titulo: "Manufatura", duracao: "6:30" },
-        { id: "JiEhrPTtHI0", titulo: "Vitrine", duracao: "3:55" },
-        { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal", duracao: "8:20" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a Pagar", duracao: "5:45" },
-        { id: "JiEhrPTtHI0", titulo: "Contas a receber", duracao: "6:10" },
-        { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa", duracao: "4:35" },
-        { id: "JiEhrPTtHI0", titulo: "Caixa", duracao: "7:15" }
-    ] }
+    "grupoduzani": { 
+        cor: "#00ff80", 
+        logo: "images-removebg-preview.png", 
+        modulos: [
+            {
+                nome: "Vendas",
+                videos: [
+                    { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda", duracao: "7:45" },
+                    { id: "JiEhrPTtHI0", titulo: "Vendas Diretas", duracao: "4:12" },
+                    { id: "JiEhrPTtHI0", titulo: "Vitrine", duracao: "3:55" }
+                ]
+            },
+            {
+                nome: "Cadastros",
+                videos: [
+                    { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado", duracao: "5:23" },
+                    { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa", duracao: "4:35" }
+                ]
+            },
+            {
+                nome: "Financeiro",
+                videos: [
+                    { id: "JiEhrPTtHI0", titulo: "Contas a Pagar", duracao: "5:45" },
+                    { id: "JiEhrPTtHI0", titulo: "Contas a receber", duracao: "6:10" },
+                    { id: "JiEhrPTtHI0", titulo: "Caixa", duracao: "7:15" }
+                ]
+            },
+            {
+                nome: "Operações",
+                videos: [
+                    { id: "JiEhrPTtHI0", titulo: "Manufatura", duracao: "6:30" },
+                    { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal", duracao: "8:20" }
+                ]
+            }
+        ]
+    },
+    "becker": { 
+        cor: "#00ff80", 
+        logo: "images-removebg-preview.png", 
+        modulos: [
+            {
+                nome: "Vendas",
+                videos: [
+                    { id: "JiEhrPTtHI0", titulo: "Vendas Básicas", duracao: "6:20" },
+                    { id: "JiEhrPTtHI0", titulo: "Promoções", duracao: "4:45" }
+                ]
+            },
+            {
+                nome: "Estoque",
+                videos: [
+                    { id: "JiEhrPTtHI0", titulo: "Controle de Estoque", duracao: "5:30" },
+                    { id: "JiEhrPTtHI0", titulo: "Inventário", duracao: "7:15" }
+                ]
+            }
+        ]
+    }
 };
 
 // Variáveis globais
 let currentVideos = [];
-let currentVideoIndex = 0;
+let currentVideoIndex = -1;
 let currentDominio = '';
 let isAdmin = false;
 let editingVideoIndex = -1;
@@ -917,7 +1060,7 @@ function validarDominio() {
 
     if (clientes[dominio]) {
         const cliente = clientes[dominio];
-        currentVideos = cliente.videos;
+        currentVideos = cliente.modulos;
         currentDominio = dominio;
         isAdmin = false;
         
@@ -946,10 +1089,15 @@ function validarAdmin() {
         // Carrega todos os vídeos de todos os clientes para o admin
         currentVideos = [];
         for (const dominio in clientes) {
-            currentVideos = currentVideos.concat(clientes[dominio].videos.map(v => ({
-                ...v,
-                dominio: dominio
-            })));
+            clientes[dominio].modulos.forEach(modulo => {
+                modulo.videos.forEach(video => {
+                    currentVideos.push({
+                        ...video,
+                        modulo: modulo.nome,
+                        dominio: dominio
+                    });
+                });
+            });
         }
         
         renderVideosAdmin();
@@ -960,121 +1108,225 @@ function validarAdmin() {
 }
 
 // Funções para renderizar vídeos
-function renderVideos(lista) {
+function renderVideos(listaModulos) {
     const container = document.getElementById('videoList');
     container.innerHTML = "";
-    lista.forEach((video, index) => {
-        const videoKey = `completed_${video.id}`;
-        const isCompleted = localStorage.getItem(videoKey) === 'true';
+    
+    listaModulos.forEach((modulo, modIndex) => {
+        const moduleDiv = document.createElement('div');
+        moduleDiv.className = 'module';
         
-        const item = document.createElement('div');
-        item.className = "video-item";
-        item.setAttribute("data-title", video.titulo.toLowerCase());
-        item.setAttribute("data-index", index);
-        item.onclick = () => abrirVideo(index);
-        
-        item.innerHTML = `
-            <div class="completed-status ${isCompleted ? 'completed' : ''}">
-                ${isCompleted ? '✓' : ''}
-            </div>
-            <div class="video-thumb">
-                <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="Thumbnail">
-                <div class="play-icon">▶</div>
-            </div>
-            <div class="video-info">
-                <div class="video-title">${video.titulo}</div>
-                <div class="video-duration">Duração: ${video.duracao}</div>
-            </div>
+        const moduleHeader = document.createElement('div');
+        moduleHeader.className = 'module-header';
+        moduleHeader.innerHTML = `
+            ${modulo.nome}
+            <i class="fas fa-chevron-down"></i>
         `;
-        container.appendChild(item);
+        moduleHeader.onclick = function() {
+            this.classList.toggle('collapsed');
+            this.nextElementSibling.classList.toggle('collapsed');
+        };
+        
+        const moduleContent = document.createElement('div');
+        moduleContent.className = 'module-content';
+        
+        modulo.videos.forEach((video, vidIndex) => {
+            const videoKey = `completed_${video.id}`;
+            const isCompleted = localStorage.getItem(videoKey) === 'true';
+            const isActive = currentVideoIndex === `${modIndex}-${vidIndex}`;
+            
+            const item = document.createElement('div');
+            item.className = `video-item ${isActive ? 'active' : ''}`;
+            item.setAttribute("data-title", video.titulo.toLowerCase());
+            item.setAttribute("data-index", `${modIndex}-${vidIndex}`);
+            item.onclick = () => abrirVideo(`${modIndex}-${vidIndex}`);
+            
+            item.innerHTML = `
+                <div class="completed-status ${isCompleted ? 'completed' : ''}">
+                    ${isCompleted ? '✓' : ''}
+                </div>
+                <div class="video-thumb">
+                    <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="Thumbnail">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">${video.titulo}</div>
+                    <div class="video-duration">Duração: ${video.duracao}</div>
+                </div>
+            `;
+            moduleContent.appendChild(item);
+        });
+        
+        moduleDiv.appendChild(moduleHeader);
+        moduleDiv.appendChild(moduleContent);
+        container.appendChild(moduleDiv);
     });
+    
+    // Se não houver vídeo selecionado, seleciona o primeiro do primeiro módulo
+    if (currentVideoIndex === -1 && listaModulos.length > 0 && listaModulos[0].videos.length > 0) {
+        abrirVideo('0-0');
+    }
 }
 
 function renderVideosAdmin() {
     const container = document.getElementById('adminVideoList');
     container.innerHTML = "";
-    currentVideos.forEach((video, index) => {
-        const item = document.createElement('div');
-        item.className = "video-item";
-        item.setAttribute("data-title", video.titulo.toLowerCase());
-        item.setAttribute("data-index", index);
-        
-        item.innerHTML = `
-            <div class="video-thumb" onclick="abrirVideo(${index})">
-                <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="Thumbnail">
-                <div class="play-icon">▶</div>
-            </div>
-            <div class="video-info">
-                <div class="video-title">${video.titulo} <small>(${video.dominio})</small></div>
-                <div class="video-duration">Duração: ${video.duracao}</div>
-            </div>
-            <div class="admin-actions" style="margin-left: auto;">
-                <button class="admin-btn edit" onclick="editarVideo(${index}, event)">
-                    <i class="fas fa-edit"></i>
-                </button>
-                <button class="admin-btn delete" onclick="excluirVideo(${index}, event)">
-                    <i class="fas fa-trash"></i>
-                </button>
-            </div>
-        `;
-        container.appendChild(item);
+    
+    // Agrupar vídeos por módulo para o admin
+    const modulosMap = {};
+    currentVideos.forEach(video => {
+        if (!modulosMap[video.modulo]) {
+            modulosMap[video.modulo] = [];
+        }
+        modulosMap[video.modulo].push(video);
     });
+    
+    // Criar módulos para o admin
+    Object.keys(modulosMap).forEach((moduloNome, modIndex) => {
+        const videos = modulosMap[moduloNome];
+        
+        const moduleDiv = document.createElement('div');
+        moduleDiv.className = 'module';
+        
+        const moduleHeader = document.createElement('div');
+        moduleHeader.className = 'module-header';
+        moduleHeader.innerHTML = `
+            ${moduloNome}
+            <i class="fas fa-chevron-down"></i>
+        `;
+        moduleHeader.onclick = function() {
+            this.classList.toggle('collapsed');
+            this.nextElementSibling.classList.toggle('collapsed');
+        };
+        
+        const moduleContent = document.createElement('div');
+        moduleContent.className = 'module-content';
+        
+        videos.forEach((video, vidIndex) => {
+            const globalIndex = currentVideos.findIndex(v => v.id === video.id && v.titulo === video.titulo);
+            const isActive = currentVideoIndex === globalIndex.toString();
+            
+            const item = document.createElement('div');
+            item.className = `video-item ${isActive ? 'active' : ''}`;
+            item.setAttribute("data-title", video.titulo.toLowerCase());
+            item.setAttribute("data-index", globalIndex);
+            
+            item.innerHTML = `
+                <div class="video-thumb" onclick="abrirVideoAdmin(${globalIndex})">
+                    <img src="https://img.youtube.com/vi/${video.id}/mqdefault.jpg" alt="Thumbnail">
+                    <div class="play-icon">▶</div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">${video.titulo} <small>(${video.dominio})</small></div>
+                    <div class="video-duration">Duração: ${video.duracao}</div>
+                </div>
+                <div class="admin-actions" style="margin-left: auto;">
+                    <button class="admin-btn edit" onclick="editarVideo(${globalIndex}, event)">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="admin-btn delete" onclick="excluirVideo(${globalIndex}, event)">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            `;
+            moduleContent.appendChild(item);
+        });
+        
+        moduleDiv.appendChild(moduleHeader);
+        moduleDiv.appendChild(moduleContent);
+        container.appendChild(moduleDiv);
+    });
+    
+    // Se não houver vídeo selecionado, seleciona o primeiro
+    if (currentVideoIndex === -1 && currentVideos.length > 0) {
+        abrirVideoAdmin(0);
+    }
 }
 
 // Funções para manipulação de vídeos
 function abrirVideo(index) {
-    currentVideoIndex = parseInt(index);
-    const video = currentVideos[currentVideoIndex];
+    currentVideoIndex = index;
+    const [modIndex, vidIndex] = index.split('-').map(Number);
+    const video = clientes[currentDominio].modulos[modIndex].videos[vidIndex];
     
-    if (isAdmin) {
-        document.getElementById('adminArea').style.display = 'none';
-    } else {
-        document.getElementById('videoArea').style.display = 'none';
-    }
-    
-    document.getElementById('videoPage').style.display = 'block';
+    // Atualizar o player de vídeo
     document.getElementById('currentVideo').src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
     document.getElementById('videoPageTitle').textContent = video.titulo;
     
     // Verificar se há vídeos anterior/próximo
-    document.getElementById('prevVideoBtn').style.display = currentVideoIndex > 0 ? 'block' : 'none';
-    document.getElementById('nextVideoBtn').style.display = currentVideoIndex < currentVideos.length - 1 ? 'block' : 'none';
+    document.getElementById('prevVideoBtn').style.display = 'block';
+    document.getElementById('nextVideoBtn').style.display = 'block';
     
-    // Carregar estado do checkbox (se estiver salvo)
+    // Carregar estado do checkbox
     const videoKey = `completed_${video.id}`;
     document.getElementById('completedCheckbox').checked = localStorage.getItem(videoKey) === 'true';
+    document.getElementById('completedCheckbox').closest('.completed-checkbox').style.display = 'flex';
     
-    // Esconder checkbox de conclusão para admin
-    document.getElementById('completedCheckbox').closest('.completed-checkbox').style.display = isAdmin ? 'none' : 'flex';
+    // Atualizar a lista para destacar o vídeo atual
+    renderVideos(clientes[currentDominio].modulos);
 }
 
-function voltarParaLista() {
-    document.getElementById('videoPage').style.display = 'none';
+function abrirVideoAdmin(index) {
+    currentVideoIndex = index.toString();
+    const video = currentVideos[index];
     
-    if (isAdmin) {
-        document.getElementById('adminArea').style.display = 'block';
-    } else {
-        document.getElementById('videoArea').style.display = 'block';
-    }
+    // Atualizar o player de vídeo
+    document.getElementById('adminCurrentVideo').src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
+    document.getElementById('adminVideoPageTitle').textContent = `${video.titulo} (${video.dominio})`;
     
-    document.getElementById('currentVideo').src = '';
+    // Verificar se há vídeos anterior/próximo
+    document.getElementById('adminPrevVideoBtn').style.display = index > 0 ? 'block' : 'none';
+    document.getElementById('adminNextVideoBtn').style.display = index < currentVideos.length - 1 ? 'block' : 'none';
+    
+    // Atualizar a lista para destacar o vídeo atual
+    renderVideosAdmin();
 }
 
 function navegarVideo(direcao) {
-    // Salvar estado do checkbox antes de navegar (se for usuário)
-    if (!isAdmin) {
-        const currentVideo = currentVideos[currentVideoIndex];
-        const videoKey = `completed_${currentVideo.id}`;
-        localStorage.setItem(videoKey, document.getElementById('completedCheckbox').checked);
+    const [currentModIndex, currentVidIndex] = currentVideoIndex.split('-').map(Number);
+    const modulos = clientes[currentDominio].modulos;
+    
+    // Salvar estado do checkbox antes de navegar
+    const currentVideo = modulos[currentModIndex].videos[currentVidIndex];
+    const videoKey = `completed_${currentVideo.id}`;
+    localStorage.setItem(videoKey, document.getElementById('completedCheckbox').checked);
+    
+    let newModIndex = currentModIndex;
+    let newVidIndex = currentVidIndex;
+    
+    if (direcao === 'anterior') {
+        if (currentVidIndex > 0) {
+            newVidIndex--;
+        } else if (currentModIndex > 0) {
+            newModIndex--;
+            newVidIndex = modulos[newModIndex].videos.length - 1;
+        }
+    } else if (direcao === 'proximo') {
+        if (currentVidIndex < modulos[currentModIndex].videos.length - 1) {
+            newVidIndex++;
+        } else if (currentModIndex < modulos.length - 1) {
+            newModIndex++;
+            newVidIndex = 0;
+        }
     }
     
-    if (direcao === 'anterior' && currentVideoIndex > 0) {
-        currentVideoIndex--;
-    } else if (direcao === 'proximo' && currentVideoIndex < currentVideos.length - 1) {
-        currentVideoIndex++;
+    if (newModIndex !== currentModIndex || newVidIndex !== currentVidIndex) {
+        abrirVideo(`${newModIndex}-${newVidIndex}`);
+    }
+}
+
+function navegarVideoAdmin(direcao) {
+    let newIndex = parseInt(currentVideoIndex);
+    
+    if (direcao === 'anterior' && newIndex > 0) {
+        newIndex--;
+    } else if (direcao === 'proximo' && newIndex < currentVideos.length - 1) {
+        newIndex++;
     }
     
-    abrirVideo(currentVideoIndex);
+    if (newIndex !== parseInt(currentVideoIndex)) {
+        abrirVideoAdmin(newIndex);
+    }
 }
 
 function filtrarVideos() {
@@ -1098,13 +1350,13 @@ function filtrarVideosAdmin() {
 function voltarInicio() {
     document.getElementById('videoArea').style.display = 'none';
     document.getElementById('adminArea').style.display = 'none';
-    document.getElementById('videoPage').style.display = 'none';
     document.getElementById('loginArea').style.display = 'block';
     
     document.getElementById('domainInput').value = "";
     document.getElementById('searchInput').value = "";
     document.getElementById('adminSearchInput').value = "";
     document.getElementById('currentVideo').src = '';
+    document.getElementById('adminCurrentVideo').src = '';
     
     document.getElementById('errorMsg').style.display = 'none';
     document.getElementById('adminErrorMsg').style.display = 'none';
@@ -1112,6 +1364,8 @@ function voltarInicio() {
     // Resetar o toggle para usuário
     document.getElementById('accessToggle').checked = false;
     alternarTipoAcesso();
+    
+    currentVideoIndex = -1;
 }
 
 // Funções do Administrador
@@ -1121,6 +1375,7 @@ function abrirModalAdicionar() {
     document.getElementById('videoId').value = '';
     document.getElementById('videoTitulo').value = '';
     document.getElementById('videoDuracao').value = '';
+    document.getElementById('videoModulo').value = '';
     document.getElementById('modalConfirmBtn').textContent = 'Adicionar';
     document.getElementById('modalConfirmBtn').onclick = confirmarVideo;
     
@@ -1143,6 +1398,7 @@ function abrirModalEditar(index) {
     document.getElementById('videoId').value = video.id;
     document.getElementById('videoTitulo').value = video.titulo;
     document.getElementById('videoDuracao').value = video.duracao || '';
+    document.getElementById('videoModulo').value = video.modulo || '';
     document.getElementById('modalConfirmBtn').textContent = 'Salvar';
     document.getElementById('modalConfirmBtn').onclick = confirmarVideo;
     
@@ -1161,10 +1417,11 @@ function confirmarVideo() {
     const id = document.getElementById('videoId').value.trim();
     const titulo = document.getElementById('videoTitulo').value.trim();
     const duracao = document.getElementById('videoDuracao').value.trim();
+    const modulo = document.getElementById('videoModulo').value.trim();
     const dominio = document.getElementById('videoDominio').value.trim();
 
-    if (!id || !titulo) {
-        alert('ID e Título são obrigatórios!');
+    if (!id || !titulo || !modulo) {
+        alert('ID, Título e Módulo são obrigatórios!');
         return;
     }
 
@@ -1172,6 +1429,7 @@ function confirmarVideo() {
         id: id,
         titulo: titulo,
         duracao: duracao || '0:00',
+        modulo: modulo,
         dominio: dominio || currentDominio || 'admin'
     };
 
@@ -1182,9 +1440,20 @@ function confirmarVideo() {
         // Atualizar também no cliente específico
         if (clientes[novoVideo.dominio]) {
             const cliente = clientes[novoVideo.dominio];
-            const videoIndex = cliente.videos.findIndex(v => v.id === id);
+            let moduloEncontrado = cliente.modulos.find(m => m.nome === novoVideo.modulo);
+            
+            if (!moduloEncontrado) {
+                // Se o módulo não existe, criar um novo
+                moduloEncontrado = { nome: novoVideo.modulo, videos: [] };
+                cliente.modulos.push(moduloEncontrado);
+            }
+            
+            // Atualizar ou adicionar o vídeo no módulo
+            const videoIndex = moduloEncontrado.videos.findIndex(v => v.id === id);
             if (videoIndex >= 0) {
-                cliente.videos[videoIndex] = novoVideo;
+                moduloEncontrado.videos[videoIndex] = novoVideo;
+            } else {
+                moduloEncontrado.videos.push(novoVideo);
             }
         }
     } else {
@@ -1193,18 +1462,25 @@ function confirmarVideo() {
         
         // Adicionar também ao cliente específico
         if (clientes[novoVideo.dominio]) {
-            clientes[novoVideo.dominio].videos.push(novoVideo);
-        } else if (currentDominio && clientes[currentDominio]) {
-            // Se estiver adicionando de um domínio específico
-            clientes[currentDominio].videos.push(novoVideo);
+            const cliente = clientes[novoVideo.dominio];
+            let moduloEncontrado = cliente.modulos.find(m => m.nome === novoVideo.modulo);
+            
+            if (!moduloEncontrado) {
+                // Se o módulo não existe, criar um novo
+                moduloEncontrado = { nome: novoVideo.modulo, videos: [] };
+                cliente.modulos.push(moduloEncontrado);
+            }
+            
+            // Adicionar o vídeo ao módulo
+            moduloEncontrado.videos.push(novoVideo);
         }
     }
 
     // Atualizar a exibição
     if (isAdmin) {
         renderVideosAdmin();
-    } else {
-        renderVideos(clientes[currentDominio].videos);
+    } else if (currentDominio) {
+        renderVideos(clientes[currentDominio].modulos);
     }
 
     fecharModal();
@@ -1227,10 +1503,28 @@ function excluirVideo(index, event) {
         // Remover também do cliente específico se existir
         if (video.dominio && clientes[video.dominio]) {
             const cliente = clientes[video.dominio];
-            const videoIndex = cliente.videos.findIndex(v => v.id === video.id);
-            if (videoIndex >= 0) {
-                cliente.videos.splice(videoIndex, 1);
+            const moduloIndex = cliente.modulos.findIndex(m => m.nome === video.modulo);
+            
+            if (moduloIndex >= 0) {
+                const modulo = cliente.modulos[moduloIndex];
+                const videoIndex = modulo.videos.findIndex(v => v.id === video.id && v.titulo === video.titulo);
+                
+                if (videoIndex >= 0) {
+                    modulo.videos.splice(videoIndex, 1);
+                    
+                    // Se o módulo ficar vazio, removê-lo
+                    if (modulo.videos.length === 0) {
+                        cliente.modulos.splice(moduloIndex, 1);
+                    }
+                }
             }
+        }
+        
+        // Se o vídeo excluído era o que estava sendo exibido, limpar o player
+        if (currentVideoIndex === index.toString()) {
+            document.getElementById('adminCurrentVideo').src = '';
+            document.getElementById('adminVideoPageTitle').textContent = 'Selecione um vídeo para assistir';
+            currentVideoIndex = -1;
         }
         
         renderVideosAdmin();
@@ -1265,9 +1559,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Salvar estado do checkbox quando marcado
 document.getElementById('completedCheckbox').addEventListener('change', function() {
-    const currentVideo = currentVideos[currentVideoIndex];
-    const videoKey = `completed_${currentVideo.id}`;
-    localStorage.setItem(videoKey, this.checked);
+    if (currentVideoIndex && currentDominio) {
+        const [modIndex, vidIndex] = currentVideoIndex.split('-').map(Number);
+        const video = clientes[currentDominio].modulos[modIndex].videos[vidIndex];
+        const videoKey = `completed_${video.id}`;
+        localStorage.setItem(videoKey, this.checked);
+    }
 });
 </script>
 </body>
