@@ -2398,7 +2398,7 @@
                 }
             },
             {
-                id: 10,
+                id: 1,
                 nome: "Grupo Duzani",
                 dominio: "grupoduzani",
                 contato: "João Silva",
@@ -3193,7 +3193,7 @@
             document.getElementById('currentVideo').style.display = 'block';
 
             // Atualizar o player de vídeo
-            document.getElementById('currentVideo').src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
+            document.getElementById('currentVideo').src = `https://www.youtube.com/embed/${video.id}?autoplay=0`;
             document.getElementById('videoPageTitle').textContent = video.titulo;
 
             // Mostrar e atualizar estatísticas
@@ -3223,7 +3223,7 @@
             const video = currentVideos[index];
 
             // Atualizar o player de vídeo
-            document.getElementById('adminCurrentVideo').src = `https://www.youtube.com/embed/${video.id}?autoplay=1`;
+            document.getElementById('adminCurrentVideo').src = `https://www.youtube.com/embed/${video.id}?autoplay=0`;
             document.getElementById('adminVideoPageTitle').textContent = `${video.titulo} (${video.dominio})`;
 
             // Verificar se há vídeos anterior/próximo
