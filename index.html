@@ -88,12 +88,12 @@
 
         <!-- Área de Vídeos (Usuário) -->
         <div id="videoArea" style="display:none; width: 100%;">
-            <button class="back-btn" onclick="voltarInicio()">
-                <i class="fas fa-arrow-left"></i>
-                Voltar
-            </button>
             <div class="video-content">
                 <div class="video-list-container">
+                    <button class="back-btn" onclick="voltarInicio()">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar
+                    </button>
                     <div class="search-box">
                         <input type="text" id="searchInput" placeholder="Buscar vídeo..." oninput="filtrarVideos()">
                     </div>
@@ -165,17 +165,18 @@
 
             <!-- Seção de Vídeos (Admin) -->
             <div id="adminVideosSection" class="admin-section active">
-                <div class="admin-actions">
-                    <button class="admin-btn add" onclick="abrirModalAdicionar()">
-                        <i class="fas fa-plus"></i>
-                        Adicionar Vídeo
-                    </button>
-                </div>
                 <div class="video-content">
                     <div class="video-list-container">
+                        <div class="admin-actions" style="margin-bottom: 16px;">
+                            <button class="admin-btn add" onclick="abrirModalAdicionar()">
+                                <i class="fas fa-plus"></i>
+                                Adicionar Vídeo
+                            </button>
+                        </div>
                         <div class="search-box">
                             <input type="text" id="adminSearchInput" placeholder="Buscar vídeo..." oninput="filtrarVideosAdmin()">
                         </div>
+
                         <div class="video-list" id="adminVideoList"></div>
                     </div>
                     <div class="video-player-container">
@@ -467,10 +468,10 @@
             </div>
         </div>
     </div>
-  <footer>
-    <img id="logoFooter" src="images-removebg-preview.png" alt="Logo" />
-  </footer>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="biblioteca.js"></script>
+    <footer>
+        <img id="logoFooter" src="images-removebg-preview.png" alt="Logo" />
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="biblioteca.js"></script>
 </body>
 </html>
