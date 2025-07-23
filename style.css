@@ -44,10 +44,10 @@
         }
 
         .light-theme {
-            --bg-primary: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-            --bg-secondary: rgba(255, 255, 255, 0.85);
-            --bg-tertiary: rgba(255, 255, 255, 0.95);
-            --bg-quaternary: rgba(248, 250, 252, 0.95);
+            --bg-primary: linear-gradient(135deg, #c4c4c5 0%, #f1f5f9 50%, #e2e8f0 100%);
+            --bg-secondary: rgba(245, 241, 241, 0.85);
+            --bg-tertiary: rgba(232, 229, 229, 0.95);
+            --bg-quaternary: rgba(225, 227, 228, 0.95);
             --text-primary: #1e293b;
             --text-secondary: #334155;
             --text-tertiary: #64748b;
@@ -400,10 +400,11 @@
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: var(--border-radius-lg);
-            padding: var(--spacing-lg);
+            padding: 30px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            margin-top: -80px;
         }
 
         /* Módulos de Vídeos Modernizados */
