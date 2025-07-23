@@ -399,6 +399,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            
         }
 
         .video-player-container {
@@ -411,6 +412,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+           
         }
 
         /* Módulos de Vídeos Modernizados */
@@ -1456,13 +1458,14 @@
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-top: 1px solid var(--glass-border);
+            margin-bottom: 0px;
         }
 
         footer img {
             height: 60px;
         }
 
-        /* Scrum Board Styles */
+        /* Scrum Board Styles / Kanban */
         .scrum-board {
             display: flex;
             gap: var(--spacing-lg);
@@ -1683,105 +1686,231 @@
         }
 
         /* Responsividade */
-        @media (max-width: 1024px) {
-            .video-content {
-                grid-template-columns: 350px 1fr;
-                gap: var(--spacing-lg);
-            }
-        }
-
+        
         @media (max-width: 768px) {
-            :root {
-                --spacing-xl: 24px;
-                --spacing-2xl: 32px;
-            }
+    /* Ajustes gerais */
+    :root {
+        --spacing-xs: 3px;
+        --spacing-sm: 6px;
+        --spacing-md: 12px;
+        --spacing-lg: 18px;
+        --spacing-xl: 24px;
+        --spacing-2xl: 30px;
+    }
 
-            header {
-                padding: var(--spacing-md) var(--spacing-lg);
-            }
+    /* Header mais compacto */
+    header {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+    
+    .logo img {
+        height: 40px;
+    }
 
-            .container {
-                padding: var(--spacing-lg);
-            }
+    /* Container principal */
+    .container {
+        padding: var(--spacing-md);
+        min-height: calc(100vh - 120px);
+    }
 
-            .login-box {
-                padding: var(--spacing-xl);
-            }
+    /* Login box mais compacto */
+    .login-box {
+        padding: var(--spacing-xl) var(--spacing-lg);
+    }
 
-            .login-header h2 {
-                font-size: 1.75rem;
-            }
+    /* Layout de vídeos em coluna única */
+    .video-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        gap: var(--spacing-md);
+        height: auto;
+    }
 
-            .video-content {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr;
-                height: auto;
-                gap: var(--spacing-lg);
-                margin-top: var(--spacing-md);
-            }
+    .video-list-container {
+        max-height: 40vh;
+        order: 1;
+    }
 
-            .video-list-container {
-                max-height: 300px;
-                order: 1; /* Garante que a lista fique em cima em mobile */
-            }
+    .video-player-container {
+        order: 2;
+        height: auto;
+    }
 
-            .video-player-container {
-                order: 2; /* Garante que o player fique embaixo em mobile */
-            }
+    /* Player de vídeo responsivo */
+    .video-container {
+        padding-top: 56.25%; /* Mantém proporção 16:9 */
+    }
 
-            .video-item {
-                padding: var(--spacing-sm);
-            }
+    /* Módulos mais compactos */
+    .module-header {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.9rem;
+    }
 
-            .video-thumb {
-                width: 100px;
-                min-width: 100px;
-                height: 56px;
-            }
+    /* Itens de vídeo mais compactos */
+    .video-item {
+        padding: var(--spacing-sm);
+        flex-direction: row;
+        align-items: center;
+    }
 
-            .video-actions {
-                grid-template-columns: 1fr;
-                gap: var(--spacing-sm);
-            }
+    .video-info {
+        padding: 0 var(--spacing-sm);
+    }
 
-            .modal-content {
-                padding: var(--spacing-lg);
-                margin: var(--spacing-lg);
-            }
+    /* Ações de vídeo em coluna */
+    .video-actions {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
 
-            .scrum-board {
-                flex-direction: column;
-            }
+    /* Dashboard BI em coluna única */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
 
-            .scrum-column {
-                min-width: 100%;
-            }
-        }
+    /* Grid de empresas em coluna única */
+    .empresas-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
 
-        @media (max-width: 480px) {
-            .video-content {
-                grid-template-columns: 1fr;
-            }
+    /* Cards de empresa mais compactos */
+    .empresa-card {
+        padding: var(--spacing-md);
+    }
 
-            .video-list-container {
-                max-height: 250px;
-            }
+    /* Temas em grid mais compacto */
+    .temas-grid {
+        grid-template-columns: 1fr 1fr;
+    }
 
-            .video-item {
-                flex-direction: column;
-                text-align: center;
-                gap: var(--spacing-sm);
-            }
+    /* Navegação do admin em coluna */
+    .admin-nav {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
 
-            .video-thumb {
-                width: 100%;
-                max-width: 200px;
-                height: 112px;
-            }
+    .nav-btn {
+        justify-content: center;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
 
-            .completed-status {
-                margin: 0;
-                align-self: flex-end;
-            }
-        }
+    /* Modal mais ajustado */
+    .modal-content {
+        width: 95%;
+        padding: var(--spacing-lg);
+        margin: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustes mais extremos para telas pequenas */
+    :root {
+        --spacing-xs: 2px;
+        --spacing-sm: 4px;
+        --spacing-md: 8px;
+        --spacing-lg: 12px;
+        --spacing-xl: 16px;
+        --spacing-2xl: 20px;
+    }
+
+    /* Login box mais compacto */
+    .login-box {
+        padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    /* Toggle switch menor */
+    .toggle-switch {
+        width: 52px;
+        height: 28px;
+    }
+
+    .toggle-slider:before {
+        height: 20px;
+        width: 20px;
+    }
+
+    input:checked + .toggle-slider:before {
+        transform: translateX(24px);
+    }
+
+    /* Formulários mais compactos */
+    .input-group {
+        margin-bottom: var(--spacing-md);
+    }
+
+    /* Lista de vídeos mais compacta */
+    .video-list-container {
+        max-height: 35vh;
+    }
+
+    /* Itens de vídeo em coluna */
+    .video-item {
+        flex-direction: column;
+        text-align: left;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm);
+    }
+
+    .video-info {
+        padding: 0;
+        width: 100%;
+    }
+
+    /* Temas em coluna única */
+    .temas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Cards de tarefa mais compactos */
+    .tarefa-card {
+        padding: var(--spacing-sm);
+    }
+
+    .tarefa-header, .tarefa-footer {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        align-items: flex-start;
+    }
+
+    /* Modal mais compacto */
+    .modal-body .input-group {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+}
+
+/* Ajustes para telas médias/grandes */
+@media (min-width: 769px) {
+    /* Grid de empresas com tamanho mais adequado */
+    .empresas-grid {
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    }
+
+    /* Player de vídeo com altura fixa */
+    .video-player-container {
+        height: 70vh;
+    }
+
+    /* Navegação do admin alinhada */
+    .admin-nav {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    /* Dashboard com colunas mais equilibradas */
+    .dashboard-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    }
+
+    /* Cards de KPI mais compactos */
+    .kpi-card {
+        padding: var(--spacing-md);
+    }
+}
    
