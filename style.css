@@ -1173,7 +1173,7 @@ input:checked + .toggle-slider:before {
 .alura-footer {
     background: var(--bg-secondary);
     border-top: 1px solid var(--border-primary);
-    padding: var(--spacing-xl) var(--spacing-lg);
+    padding: 8px;
     margin-top: auto;
 }
 
@@ -3082,4 +3082,3 @@ input:checked + .toggle-slider:before {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--alura-primary);
 }
-
