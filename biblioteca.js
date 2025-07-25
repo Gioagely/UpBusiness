@@ -1,116 +1,6 @@
 // ===== DADOS E CONFIGURAÇÕES =====
-let clientes = {
-    "grupoduzani": {
-        nome: "Grupo Duzani",
-        cor: "#00D4AA",
-        logo: "images-removebg-preview.png",
-        modulos: [
-            {
-                nome: "Vendas",
-                icone: "fas fa-chart-line",
-                videos: [
-                    { id: "JiEhrPTtHI0", titulo: "Lançamento de Pré Venda", duracao: "7:45", descricao: "Aprenda a criar pré-vendas eficientes" },
-                    { id: "JiEhrPTtHI0", titulo: "Vendas Diretas", duracao: "4:12", descricao: "Técnicas de vendas diretas" },
-                    { id: "JiEhrPTtHI0", titulo: "Vitrine", duracao: "3:55", descricao: "Como organizar sua vitrine" }
-                ]
-            },
-            {
-                nome: "Cadastros",
-                icone: "fas fa-database",
-                videos: [
-                    { id: "JiEhrPTtHI0", titulo: "Cadastro de Produto Simplificado", duracao: "5:23", descricao: "Cadastre produtos de forma rápida" },
-                    { id: "JiEhrPTtHI0", titulo: "Cadastro de Pessoa", duracao: "4:35", descricao: "Gerencie clientes e fornecedores" }
-                ]
-            },
-            {
-                nome: "Financeiro",
-                icone: "fas fa-dollar-sign",
-                videos: [
-                    { id: "JiEhrPTtHI0", titulo: "Contas a Pagar", duracao: "5:45", descricao: "Controle suas despesas" },
-                    { id: "JiEhrPTtHI0", titulo: "Contas a Receber", duracao: "6:10", descricao: "Gerencie recebimentos" },
-                    { id: "JiEhrPTtHI0", titulo: "Caixa", duracao: "7:15", descricao: "Controle de fluxo de caixa" }
-                ]
-            },
-            {
-                nome: "Operações",
-                icone: "fas fa-cogs",
-                videos: [
-                    { id: "JiEhrPTtHI0", titulo: "Manufatura", duracao: "6:30", descricao: "Processos de produção" },
-                    { id: "JiEhrPTtHI0", titulo: "Emissão de Nota Fiscal", duracao: "8:20", descricao: "Como emitir notas fiscais" }
-                ]
-            }
-        ]
-    },
-    "becker": {
-        nome: "Becker Sistemas",
-        cor: "#6C5CE7",
-        logo: "images-removebg-preview.png",
-        modulos: [
-            {
-                nome: "Vendas",
-                icone: "fas fa-chart-line",
-                videos: [
-                    { id: "JiEhrPTtHI0", titulo: "Vendas Básicas", duracao: "6:20", descricao: "Fundamentos de vendas" },
-                    { id: "JiEhrPTtHI0", titulo: "Promoções", duracao: "4:45", descricao: "Como criar promoções eficazes" }
-                ]
-            },
-            {
-                nome: "Estoque",
-                icone: "fas fa-boxes",
-                videos: [
-                    { id: "JiEhrPTtHI0", titulo: "Controle de Estoque", duracao: "5:30", descricao: "Gerencie seu estoque" },
-                    { id: "JiEhrPTtHI0", titulo: "Inventário", duracao: "7:15", descricao: "Realize inventários precisos" }
-                ]
-            }
-        ]
-    }
-};
-
-// Dados de implantação
-let empresas = [
-    {
-        id: 1,
-        nome: "Grupo Duzani",
-        dominio: "grupoduzani",
-        dataInicio: "2025-01-15",
-        dataPrevisao: "2025-03-30",
-        responsavel: "João Silva",
-        status: "em-andamento",
-        modulos: {
-            "cadastro-produto": { nome: "Cadastro de Produto", concluido: true },
-            "cadastro-pessoa": { nome: "Cadastro de Pessoa", concluido: true },
-            "vendas": { nome: "Vendas", concluido: false },
-            "financeiro": { nome: "Financeiro", concluido: false },
-            "fiscal": { nome: "Fiscal", concluido: false },
-            "manufatura": { nome: "Manufatura", concluido: false },
-            "pedido-venda": { nome: "Pedido de Venda", concluido: false },
-            "vitrine": { nome: "Vitrine", concluido: false },
-            "etiqueta": { nome: "Etiqueta", concluido: false },
-            "importacao": { nome: "Importação", concluido: false }
-        }
-    },
-    {
-        id: 2,
-        nome: "Becker Sistemas",
-        dominio: "becker",
-        dataInicio: "2024-11-01",
-        dataPrevisao: "2024-12-20",
-        responsavel: "Maria Santos",
-        status: "concluido",
-        modulos: {
-            "cadastro-produto": { nome: "Cadastro de Produto", concluido: true },
-            "cadastro-pessoa": { nome: "Cadastro de Pessoa", concluido: true },
-            "vendas": { nome: "Vendas", concluido: true },
-            "financeiro": { nome: "Financeiro", concluido: true },
-            "fiscal": { nome: "Fiscal", concluido: true },
-            "manufatura": { nome: "Manufatura", concluido: true },
-            "pedido-venda": { nome: "Pedido de Venda", concluido: true },
-            "vitrine": { nome: "Vitrine", concluido: true },
-            "etiqueta": { nome: "Etiqueta", concluido: true },
-            "importacao": { nome: "Importação", concluido: true }
-        }
-    }
-];
+let clientes = {};
+let empresas = [];
 
 // Variáveis globais
 let currentClient = null;
@@ -122,7 +12,8 @@ let editandoEmpresa = null;
 let charts = {};
 
 // ===== INICIALIZAÇÃO =====
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", async function() {
+    await loadData();
     initializeTheme();
     setupEventListeners();
     showLoginArea();
@@ -2069,4 +1960,17 @@ window.excluirTarefaKanban = excluirTarefaKanban;
 window.dragStart = dragStart;
 window.allowDrop = allowDrop;
 window.dropTask = dropTask;
+
+
+
+async function loadData() {
+    try {
+        const response = await fetch("data.json");
+        const data = await response.json();
+        clientes = data.clientes;
+        empresas = data.empresas;
+    } catch (error) {
+        console.error("Erro ao carregar dados do JSON:", error);
+    }
+}
 
