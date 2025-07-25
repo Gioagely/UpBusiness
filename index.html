@@ -38,7 +38,7 @@
                 <button class="theme-toggle" onclick="alternarTema()">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="header-btn" id="loginBtn" onclick="mostrarLogin()">
+                <button class="header-btn" id="loginBtn" onclick="irParaLogin()">
                     <i class="fas fa-sign-in-alt"></i>
                     Entrar
                 </button>
@@ -273,10 +273,10 @@
                     <div class="video-navigation" id="videoNavigation" style="display: none;">
                         <button class="nav-btn prev" id="prevVideoBtn" onclick="navegarVideo('anterior')">
                             <i class="fas fa-chevron-left"></i>
-                            Curso Anterior
+                            Vídeo Anterior
                         </button>
                         <button class="nav-btn next" id="nextVideoBtn" onclick="navegarVideo('proximo')">
-                            Próximo Curso
+                            Próximo Vídeo
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
@@ -401,6 +401,60 @@
             <div class="modal-footer">
                 <button class="btn-secondary" onclick="fecharModal()">Cancelar</button>
                 <button class="btn-primary" onclick="salvarEmpresa()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Adicionar/Editar Tarefa Kanban -->
+    <div id="kanbanModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitleKanban">Adicionar Nova Tarefa</h3>
+                <button class="close-modal" onclick="fecharModalKanban()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="tarefaTitulo">Título da Tarefa</label>
+                    <input type="text" id="tarefaTitulo" placeholder="Digite o título da tarefa">
+                </div>
+                <div class="form-group">
+                    <label for="tarefaDescricao">Descrição</label>
+                    <textarea id="tarefaDescricao" placeholder="Descreva a tarefa..." rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="tarefaPrioridade">Prioridade</label>
+                    <select id="tarefaPrioridade">
+                        <option value="low">Baixa</option>
+                        <option value="medium" selected>Média</option>
+                        <option value="high">Alta</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tarefaResponsavel">Responsável</label>
+                    <input type="text" id="tarefaResponsavel" placeholder="Nome do responsável">
+                </div>
+                <div class="form-group">
+                    <label for="tarefaEstimativa">Estimativa</label>
+                    <input type="text" id="tarefaEstimativa" placeholder="ex: 8h, 2d, 1w">
+                </div>
+                <div class="form-group">
+                    <label for="tarefaEstagio">Estágio Inicial</label>
+                    <select id="tarefaEstagio">
+                        <option value="backlog" selected>Backlog</option>
+                        <option value="analysis">Análise</option>
+                        <option value="development">Desenvolvimento</option>
+                        <option value="testing">Testes</option>
+                        <option value="deploy">Deploy</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tarefaProgresso">Progresso (%)</label>
+                    <input type="number" id="tarefaProgresso" min="0" max="100" value="0" placeholder="0">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="fecharModalKanban()">Cancelar</button>
+                <button class="btn-primary" id="modalConfirmBtnKanban" onclick="salvarTarefaKanban()">Adicionar Tarefa</button>
             </div>
         </div>
     </div>
