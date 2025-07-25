@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupEventListeners();
     showLoginArea();
     carregarDados();
+    carregarDadosKanban();
 });
 
 function initializeTheme() {
@@ -305,6 +306,22 @@ function voltarInicio() {
 
 function mostrarLogin() {
     showLoginArea();
+}
+
+function irParaLogin() {
+    // Se já estiver na área de login, rolar para o topo
+    if (document.getElementById('loginArea').style.display !== 'none') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+    }
+    
+    // Caso contrário, mostrar a área de login
+    showLoginArea();
+    
+    // Rolar para o topo após um pequeno delay para garantir que a área foi mostrada
+    setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
 }
 
 function mostrarPerfil() {
@@ -1413,6 +1430,17 @@ function carregarDados() {
     }
 }
 
+function salvarDadosKanban() {
+    localStorage.setItem('kanban_tasks', JSON.stringify(kanbanTasks));
+}
+
+function carregarDadosKanban() {
+    const dadosSalvos = localStorage.getItem('kanban_tasks');
+    if (dadosSalvos) {
+        kanbanTasks = JSON.parse(dadosSalvos);
+    }
+}
+
 function abrirModalVideo() {
     const modal = document.getElementById('videoModal');
     if (modal) {
@@ -1572,27 +1600,119 @@ let kanbanTasks = [
 ];
 
 let draggedTask = null;
+let editandoTarefa = null;
 
 function abrirModalKanban() {
-    // Lógica para abrir modal de Kanban
-    alert("Abrir modal de Adicionar Tarefa Kanban");
+    editandoTarefa = null;
+    document.getElementById('modalTitleKanban').textContent = 'Adicionar Nova Tarefa';
+    document.getElementById('modalConfirmBtnKanban').textContent = 'Adicionar Tarefa';
+    
+    // Limpar formulário
+    document.getElementById('tarefaTitulo').value = '';
+    document.getElementById('tarefaDescricao').value = '';
+    document.getElementById('tarefaPrioridade').value = 'medium';
+    document.getElementById('tarefaResponsavel').value = '';
+    document.getElementById('tarefaEstimativa').value = '';
+    document.getElementById('tarefaEstagio').value = 'backlog';
+    document.getElementById('tarefaProgresso').value = '0';
+    
+    document.getElementById('kanbanModal').style.display = 'flex';
+}
+
+function fecharModalKanban() {
+    document.getElementById('kanbanModal').style.display = 'none';
+    editandoTarefa = null;
+}
+
+function salvarTarefaKanban() {
+    const titulo = document.getElementById('tarefaTitulo').value.trim();
+    const descricao = document.getElementById('tarefaDescricao').value.trim();
+    const prioridade = document.getElementById('tarefaPrioridade').value;
+    const responsavel = document.getElementById('tarefaResponsavel').value.trim();
+    const estimativa = document.getElementById('tarefaEstimativa').value.trim();
+    const estagio = document.getElementById('tarefaEstagio').value;
+    const progresso = parseInt(document.getElementById('tarefaProgresso').value) || 0;
+    
+    if (!titulo || !descricao || !responsavel || !estimativa) {
+        alert('Por favor, preencha todos os campos obrigatórios');
+        return;
+    }
+    
+    if (editandoTarefa) {
+        // Editar tarefa existente
+        editandoTarefa.title = titulo;
+        editandoTarefa.description = descricao;
+        editandoTarefa.priority = prioridade;
+        editandoTarefa.assignee = responsavel;
+        editandoTarefa.estimate = estimativa;
+        editandoTarefa.stage = estagio;
+        editandoTarefa.progress = progresso;
+        
+        showNotification(`Tarefa "${titulo}" atualizada com sucesso!`, 'success');
+    } else {
+        // Adicionar nova tarefa
+        const novaTarefa = {
+            id: Math.max(...kanbanTasks.map(t => t.id)) + 1,
+            title: titulo,
+            description: descricao,
+            priority: prioridade,
+            assignee: responsavel,
+            estimate: estimativa,
+            stage: estagio,
+            progress: progresso
+        };
+        
+        kanbanTasks.push(novaTarefa);
+        showNotification(`Tarefa "${titulo}" adicionada com sucesso!`, 'success');
+    }
+    
+    // Atualizar display do Kanban
+    updateKanbanDisplay();
+    
+    // Fechar modal
+    fecharModalKanban();
+    
+    // Salvar no localStorage
+    salvarDadosKanban();
+}
+
+function editarTarefaKanban(taskId) {
+    const tarefa = kanbanTasks.find(t => t.id === taskId);
+    if (!tarefa) return;
+    
+    editandoTarefa = tarefa;
+    document.getElementById('modalTitleKanban').textContent = 'Editar Tarefa';
+    document.getElementById('modalConfirmBtnKanban').textContent = 'Salvar Alterações';
+    
+    // Preencher formulário
+    document.getElementById('tarefaTitulo').value = tarefa.title;
+    document.getElementById('tarefaDescricao').value = tarefa.description;
+    document.getElementById('tarefaPrioridade').value = tarefa.priority;
+    document.getElementById('tarefaResponsavel').value = tarefa.assignee;
+    document.getElementById('tarefaEstimativa').value = tarefa.estimate;
+    document.getElementById('tarefaEstagio').value = tarefa.stage;
+    document.getElementById('tarefaProgresso').value = tarefa.progress;
+    
+    document.getElementById('kanbanModal').style.display = 'flex';
+}
+
+function excluirTarefaKanban(taskId) {
+    const tarefa = kanbanTasks.find(t => t.id === taskId);
+    if (!tarefa) return;
+    
+    if (!confirm(`Tem certeza que deseja excluir a tarefa "${tarefa.title}"?`)) return;
+    
+    kanbanTasks = kanbanTasks.filter(t => t.id !== taskId);
+    updateKanbanDisplay();
+    salvarDadosKanban();
+    
+    showNotification(`Tarefa "${tarefa.title}" excluída com sucesso!`, 'success');
 }
 
 function adicionarTarefaStage(stage) {
-    // Lógica para adicionar tarefa em um estágio específico
-    const stageNames = {
-        'backlog': 'Backlog',
-        'analysis': 'Análise',
-        'development': 'Desenvolvimento',
-        'testing': 'Testes',
-        'deploy': 'Deploy'
-    };
-    
-    const stageName = stageNames[stage] || stage;
-    alert(`Adicionar nova tarefa no estágio: ${stageName}`);
-    
-    // Aqui você pode implementar a lógica para abrir um modal específico
-    // ou adicionar uma tarefa diretamente no estágio
+    // Abrir modal com estágio pré-selecionado
+    abrirModalKanban();
+    document.getElementById('tarefaEstagio').value = stage;
 }
 
 function renderKanbanBoard() {
@@ -1677,6 +1797,14 @@ function renderStageTasks(tasks) {
                 <div class="card-header">
                     <div class="card-priority">${task.priority === 'high' ? 'Alta' : task.priority === 'medium' ? 'Média' : 'Baixa'}</div>
                     <div class="card-id">#${task.id.toString().padStart(3, '0')}</div>
+                </div>
+                <div class="card-actions">
+                    <button class="card-action-btn edit" onclick="editarTarefaKanban(${task.id})" title="Editar tarefa">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="card-action-btn delete" onclick="excluirTarefaKanban(${task.id})" title="Excluir tarefa">
+                        <i class="fas fa-trash"></i>
+                    </button>
                 </div>
                 <h4>${task.title}</h4>
                 <p>${task.description}</p>
@@ -1904,6 +2032,7 @@ window.validarAdmin = validarAdmin;
 window.alternarTema = alternarTema;
 window.voltarInicio = voltarInicio;
 window.mostrarLogin = mostrarLogin;
+window.irParaLogin = irParaLogin;
 window.mostrarPerfil = mostrarPerfil;
 window.playVideo = playVideo;
 window.navegarVideo = navegarVideo;
@@ -1931,4 +2060,13 @@ window.toggleModuloAdmin = toggleModuloAdmin;
 window.filtrarEmpresasAdmin = filtrarEmpresasAdmin;
 window.exportarRelatorio = exportarRelatorio;
 window.atualizarDadosBI = atualizarDadosBI;
+
+// Funções do Kanban
+window.fecharModalKanban = fecharModalKanban;
+window.salvarTarefaKanban = salvarTarefaKanban;
+window.editarTarefaKanban = editarTarefaKanban;
+window.excluirTarefaKanban = excluirTarefaKanban;
+window.dragStart = dragStart;
+window.allowDrop = allowDrop;
+window.dropTask = dropTask;
 
