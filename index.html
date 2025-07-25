@@ -1,384 +1,337 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tutoriais</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-  <script>
-    (function() {
-      const temaSalvo = localStorage.getItem('tema') || 'dark';
-      document.documentElement.classList.add(temaSalvo === 'light' ? 'light-theme' : 'dark-theme');
-    })();
-  </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biblioteca de Treinamentos - Up Business</title>
+    <link rel="stylesheet" href="style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script>
+        (function() {
+            const temaSalvo = localStorage.getItem('tema') || 'dark';
+            document.documentElement.classList.add(temaSalvo === 'light' ? 'light-theme' : 'dark-theme');
+        })();
+    </script>
 </head>
 <body>
-  <body>
-    <header>
-        <div class="logo">
-            <img id="logoHeader" src="images-removebg-preview.png" alt="Logo">
-            <span class="logo-text"></span>
+    <!-- Header Alura Style -->
+    <header class="alura-header">
+        <div class="header-container">
+            <div class="header-left">
+                <div class="logo">
+                    <img id="logoHeader" src="images-removebg-preview.png" alt="Logo Up Business">
+                    <span class="logo-text"></span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="search-container" id="headerSearch" style="display: none;">
+                    <input type="text" placeholder="O que você quer aprender?" id="globalSearch">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="theme-toggle" onclick="alternarTema()">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="header-btn" id="loginBtn" onclick="mostrarLogin()">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Entrar
+                </button>
+                <button class="header-btn primary" id="userBtn" onclick="mostrarPerfil()" style="display: none;">
+                    <i class="fas fa-user"></i>
+                    <span id="userName"></span>
+                </button>
+            </div>
         </div>
-        <button class="theme-toggle" onclick="alternarTema()">
-            <i class="fas fa-moon"></i>
-        </button>
     </header>
 
-    <div class="container">
-        <!-- Tela de Login com Toggle Switch -->
-        <div id="loginArea" class="login-box">
-            <div class="login-header">
-                <h2>Biblioteca de Treinamentos</h2>
-                <p>Bem vindo(a) a nossa Biblioteca de Treinamentos Up Business</p>
-            </div>
-
-            <!-- Toggle Switch para Usuário/Admin -->
-            <div class="toggle-container">
-                <label class="toggle-switch">
-                    <input type="checkbox" id="accessToggle" onchange="alternarTipoAcesso()">
-                    <span class="toggle-slider"></span>
-                </label>
-                <div class="toggle-text">
-                    <span id="clienteText" class="active">Cliente</span>
-                    <span id="adminText">Admin</span>
-                </div>
-            </div>
-
-            <!-- Formulário de Usuário -->
-            <div id="userForm" class="login-form active">
-                <div class="input-group">
-                    <label for="domainInput">Domínio</label>
-                    <div class="input-field">
-                        <i class="fas fa-building"></i>
-                        <input type="text" id="domainInput" placeholder="ex: upbusiness" oninput="formatarDominio(this)">
-                    </div>
-                </div>
-                <button class="login-btn" onclick="validarDominio()">
-                    <i class="fas fa-sign-in-alt"></i>
-                    Entrar
+    <!-- Navigation Tabs (Alura Style) -->
+    <nav class="alura-nav" id="mainNav" style="display: none;">
+        <div class="nav-container">
+            <div class="nav-tabs">
+                <button class="nav-tab active" data-category="todos">
+                    <i class="fas fa-th-large"></i>
+                    Todos os Cursos
                 </button>
-                <div class="error" id="errorMsg">Domínio não encontrado!</div>
+                <button class="nav-tab" data-category="vendas">
+                    <i class="fas fa-chart-line"></i>
+                    Vendas
+                </button>
+                <button class="nav-tab" data-category="cadastros">
+                    <i class="fas fa-database"></i>
+                    Cadastros
+                </button>
+                <button class="nav-tab" data-category="financeiro">
+                    <i class="fas fa-dollar-sign"></i>
+                    Financeiro
+                </button>
+                <button class="nav-tab" data-category="operacoes">
+                    <i class="fas fa-cogs"></i>
+                    Operações
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-container">
+        <!-- Tela de Login Alura Style -->
+        <div id="loginArea" class="login-area">
+            <div class="login-hero">
+                <div class="hero-content">
+                    <h1>Domine o <span class="highlight">ERP Upbusiness</span> com Excelência!</h1>
+                    <p>Transforme sua equipe em especialistas no sistema ERP mais completo do mercado. Nossa biblioteca de treinamentos oferece capacitação completa em todas as funcionalidades do Upbusiness, desde cadastros básicos até relatórios avançados.</p>
+                </div>
+                <div class="hero-visual">
+                    <div class="floating-elements">
+                        <div class="floating-card">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <div class="floating-card">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="floating-card">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Formulário de Administrador -->
-            <div id="adminForm" class="login-form">
-                <div class="input-group">
-                    <label for="adminUser">Login</label>
-                    <div class="input-field">
-                        <i class="fas fa-user"></i>
-                        <input type="text" id="adminUser" placeholder="Digite seu login">
+            <div class="login-section">
+                <div class="login-card">
+                    <div class="login-header">
+                        <h2>Acesse sua Biblioteca</h2>
+                        <p>Entre com suas credenciais para começar</p>
+                    </div>
+
+                    <!-- Toggle Switch para Usuário/Admin -->
+                    <div class="access-toggle">
+                        <div class="toggle-container">
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="accessToggle" onchange="alternarTipoAcesso()">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <div class="toggle-labels">
+                                <span id="clienteText" class="toggle-label active">Cliente</span>
+                                <span id="adminText" class="toggle-label">Admin</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulário de Usuário -->
+                    <div id="userForm" class="login-form active">
+                        <div class="form-group">
+                            <label for="domainInput">Domínio da Empresa</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-building"></i>
+                                <input type="text" id="domainInput" placeholder="ex: upbusiness" oninput="formatarDominio(this)">
+                            </div>
+                        </div>
+                        <button class="btn-primary" onclick="validarDominio()">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Acessar Biblioteca
+                        </button>
+                        <div class="error-message" id="errorMsg">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Domínio não encontrado!
+                        </div>
+                    </div>
+
+                    <!-- Formulário de Administrador -->
+                    <div id="adminForm" class="login-form">
+                        <div class="form-group">
+                            <label for="adminUser">Login</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="adminUser" placeholder="Digite seu login">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="adminPass">Senha</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="adminPass" placeholder="Digite sua senha">
+                            </div>
+                        </div>
+                        <button class="btn-primary admin" onclick="validarAdmin()">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Entrar como Admin
+                        </button>
+                        <div class="error-message" id="adminErrorMsg">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Credenciais incorretas!
+                        </div>
                     </div>
                 </div>
-                <div class="input-group">
-                    <label for="adminPass">Senha</label>
-                    <div class="input-field">
-                        <i class="fas fa-lock"></i>
-                        <input type="password" id="adminPass" placeholder="Digite sua senha">
-                    </div>
-                </div>
-                <button class="login-btn admin" onclick="validarAdmin()">
-                    <i class="fas fa-sign-in-alt"></i>
-                    Entrar
-                </button>
-                <div class="error" id="adminErrorMsg">Credenciais incorretas!</div>
             </div>
         </div>
 
-        <!-- Área de Vídeos (Usuário) -->
-        <div id="videoArea" style="display:none; width: 100%;">
-            <div class="video-content">
-                <div class="video-list-container">
-                    <button class="back-btn" onclick="voltarInicio()">
-                        <i class="fas fa-arrow-left"></i>
-                        Voltar
-                    </button>
-                    <div class="search-box">
-                        <input type="text" id="searchInput" placeholder="Buscar vídeo..." oninput="filtrarVideos()">
-                    </div>
-                    <div class="video-list" id="videoList"></div>
+        <!-- Área de Vídeos (Usuário) - Estilo Alura -->
+        <div id="videoArea" class="video-area" style="display:none;">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <button class="breadcrumb-btn" onclick="voltarInicio()">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar ao Início
+                </button>
+                <div class="breadcrumb-path">
+                    <span>Biblioteca</span>
+                    <i class="fas fa-chevron-right"></i>
+                    <span id="currentModule">Todos os Cursos</span>
                 </div>
-                <div class="video-player-container">
-                    <div class="video-player">
-                        <div class="video-container">
-                            <div id="videoPlaceholder" class="video-placeholder">
-                                <i class="fas fa-play-circle"></i>
-                                <p>Selecione um vídeo para começar</p>
-                            </div>
-                            <iframe id="currentVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="video-info-page">
-                            <h2 id="videoPageTitle">Bem-vindo!</h2>
-                            <div id="videoStats" class="video-stats" style="display: none;">
-                                <div class="stat-item">
-                                    <i class="fas fa-clock"></i>
-                                    <span id="videoDurationStat">--:--</span>
-                                </div>
-                                <div class="stat-item">
-                                    <i class="fas fa-layer-group"></i>
-                                    <span id="videoModuleStat">Módulo</span>
-                                </div>
-                            </div>
-                            <div class="completed-checkbox" style="display: none;">
-                                <input type="checkbox" id="completedCheckbox">
-                                <label for="completedCheckbox">Marcar como concluído</label>
-                            </div>
-                        </div>
-                        <div class="video-actions">
-                            <button id="prevVideoBtn" onclick="navegarVideo('anterior')">
-                                <i class="fas fa-chevron-left"></i>
-                                Vídeo Anterior
-                            </button>
-                            <button id="nextVideoBtn" onclick="navegarVideo('proximo')">
-                                Próximo Vídeo
-                                <i class="fas fa-chevron-right"></i>
-                            </button>
+            </div>
+
+            <!-- Main Content -->
+            <div class="video-layout">
+                <!-- Sidebar com Lista de Vídeos -->
+                <aside class="video-sidebar">
+                    <div class="sidebar-header">
+                        <h3>Cursos Disponíveis</h3>
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Buscar curso..." oninput="filtrarVideos()">
                         </div>
                     </div>
-                </div>
+                    
+                    <div class="course-list" id="videoList">
+                        <!-- Cursos serão carregados aqui -->
+                    </div>
+                </aside>
+
+                <!-- Player Principal -->
+                <main class="video-main">
+                    <div class="video-player-section">
+                        <div class="player-container">
+                            <div class="video-placeholder" id="videoPlaceholder">
+                                <div class="placeholder-content">
+                                    <i class="fas fa-play-circle"></i>
+                                    <h3>Selecione um curso para começar</h3>
+                                    <p>Escolha um curso na lista ao lado para iniciar seus estudos</p>
+                                </div>
+                            </div>
+                            <iframe id="currentVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
+                        </div>
+                        
+                        <div class="video-info">
+                            <div class="video-header">
+                                <h1 id="videoTitle">Bem-vindo à Biblioteca de Treinamentos</h1>
+                                <div class="video-meta" id="videoMeta" style="display: none;">
+                                    <div class="meta-item">
+                                        <i class="fas fa-clock"></i>
+                                        <span id="videoDuration">--:--</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-layer-group"></i>
+                                        <span id="videoModule">Módulo</span>
+                                    </div>
+                                    <div class="meta-item">
+                                        <i class="fas fa-star"></i>
+                                        <span>9.5</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-section" id="progressSection" style="display: none;">
+                                <div class="progress-header">
+                                    <span class="progress-label">Progresso do Curso</span>
+                                    <span class="progress-percentage" id="progressPercentage">0%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="completion-section" id="completionSection" style="display: none;">
+                                <label class="completion-checkbox">
+                                    <input type="checkbox" id="completedCheckbox">
+                                    <span class="checkmark"></span>
+                                    <span class="checkbox-label">Marcar como concluído</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Transcrição -->
+                    <div class="transcription-section" id="transcriptionSection" style="display: none;">
+                        <div class="section-header">
+                            <h3><i class="fas fa-file-alt"></i> Transcrição</h3>
+                            <button class="copy-btn" onclick="copiarTranscricao()">
+                                <i class="fas fa-copy"></i>
+                                Copiar
+                            </button>
+                        </div>
+                        <div class="transcription-content" id="transcriptionContent">
+                            <!-- Conteúdo da transcrição -->
+                        </div>
+                    </div>
+                    
+                    <!-- Navegação de Vídeos -->
+                    <div class="video-navigation" id="videoNavigation" style="display: none;">
+                        <button class="nav-btn prev" id="prevVideoBtn" onclick="navegarVideo('anterior')">
+                            <i class="fas fa-chevron-left"></i>
+                            Curso Anterior
+                        </button>
+                        <button class="nav-btn next" id="nextVideoBtn" onclick="navegarVideo('proximo')">
+                            Próximo Curso
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </main>
             </div>
         </div>
 
-        <!-- Área de Vídeos (Admin) -->
-        <div id="adminArea" style="display:none; width: 100%;">
-            <button class="back-btn" onclick="voltarInicio()">
-                <i class="fas fa-arrow-left"></i>
-                Voltar
-            </button>
-
-            <!-- Navegação do Admin -->
-            <div class="admin-nav">
-                <button class="nav-btn active" onclick="mostrarSecaoAdmin('videos')">
+        <!-- Área de Admin (com controle de implantação integrado) -->
+        <div id="adminArea" class="admin-area" style="display:none;">
+            <!-- Conteúdo do admin será mantido similar -->
+            <div class="admin-header">
+                <button class="breadcrumb-btn" onclick="voltarInicio()">
+                    <i class="fas fa-arrow-left"></i>
+                    Voltar ao Início
+                </button>
+                <h1>Painel Administrativo</h1>
+            </div>
+            
+            <!-- Admin Navigation -->
+            <nav class="admin-nav">
+                <button class="admin-nav-btn active" onclick="mostrarSecaoAdmin('videos')">
                     <i class="fas fa-video"></i>
                     Gerenciar Vídeos
                 </button>
-                <button class="nav-btn" onclick="mostrarSecaoAdmin('implantacoes')">
-                    <i class="fas fa-chart-line"></i>
+                <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('implantacoes')">
+                    <i class="fas fa-building"></i>
                     Implantações
                 </button>
-                <button class="nav-btn" onclick="mostrarSecaoAdmin('scrum')">
+                <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('BI')">
+                    <i class="fas fa-chart-pie"></i>
+                    Business Intelligence
+                </button>
+                <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('scrum')">
                     <i class="fas fa-tasks"></i>
                     Kanban
                 </button>
-            </div>
-
-            <!-- Seção de Vídeos (Admin) -->
-            <div id="adminVideosSection" class="admin-section active">
-                <div class="video-content">
-                    <div class="video-list-container">
-                        <div class="admin-actions" style="margin-bottom: 16px;">
-                            <button class="admin-btn add" onclick="abrirModalAdicionar()">
-                                <i class="fas fa-plus"></i>
-                                Adicionar Vídeo
-                            </button>
-                        </div>
-                        <div class="search-box">
-                            <input type="text" id="adminSearchInput" placeholder="Buscar vídeo..." oninput="filtrarVideosAdmin()">
-                        </div>
-
-                        <div class="video-list" id="adminVideoList"></div>
-                    </div>
-                    <div class="video-player-container">
-                        <div class="video-player">
-                            <div class="video-container">
-                                <iframe id="adminCurrentVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                            </div>
-                            <div class="video-info-page">
-                                <h2 id="adminVideoPageTitle">Selecione um vídeo para assistir</h2>
-                            </div>
-                            <div class="video-actions">
-                                <button id="adminPrevVideoBtn" onclick="navegarVideoAdmin('anterior')">
-                                    <i class="fas fa-chevron-left"></i>
-                                    Vídeo Anterior
-                                </button>
-                                <button id="adminNextVideoBtn" onclick="navegarVideoAdmin('proximo')">
-                                    Próximo Vídeo
-                                    <i class="fas fa-chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Seção de Implantações -->
-            <div id="adminImplantacoesSection" class="admin-section">
-                <div class="implantacoes-header">
-                    <h2>Gerenciamento de Implantações</h2>
-                    <div class="header-actions">
-                        <button class="admin-btn" onclick="mostrarDashboard()" style="background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: white;">
-                            <i class="fas fa-chart-bar"></i>
-                            Dashboard BI
-                        </button>
-                        <button class="admin-btn add" onclick="abrirModalEmpresa()">
-                            <i class="fas fa-plus"></i>
-                            Nova Empresa
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Dashboard de BI -->
-                <div id="dashboardBI" class="dashboard-container" style="display: none;">
-                    <div class="dashboard-header">
-                        <h3>Dashboard de Business Intelligence</h3>
-                        <button class="admin-btn" onclick="ocultarDashboard()" style="background: var(--border-primary); color: var(--text-secondary);">
-                            <i class="fas fa-times"></i>
-                            Fechar
-                        </button>
-                    </div>
-                    <div class="dashboard-grid">
-                        <div class="chart-container">
-                            <h4>Progresso Geral das Implantações</h4>
-                            <canvas id="progressoGeralChart"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <h4>Status por Tema</h4>
-                            <canvas id="statusTemasChart"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <h4>Empresas por Nível de Conclusão</h4>
-                            <canvas id="empresasConclusaoChart"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <h4>Timeline de Implantações</h4>
-                            <canvas id="timelineChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="kpis-grid">
-                        <div class="kpi-card">
-                            <div class="kpi-icon">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <div class="kpi-content">
-                                <div class="kpi-value" id="totalEmpresas">0</div>
-                                <div class="kpi-label">Total de Empresas</div>
-                            </div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="kpi-icon">
-                                <i class="fas fa-check-circle"></i>
-                            </div>
-                            <div class="kpi-content">
-                                <div class="kpi-value" id="temasCompletos">0</div>
-                                <div class="kpi-label">Temas Completos</div>
-                            </div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="kpi-icon">
-                                <i class="fas fa-percentage"></i>
-                            </div>
-                            <div class="kpi-content">
-                                <div class="kpi-value" id="mediaProgresso">0%</div>
-                                <div class="kpi-label">Média de Progresso</div>
-                            </div>
-                        </div>
-                        <div class="kpi-card">
-                            <div class="kpi-icon">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="kpi-content">
-                                <div class="kpi-value" id="empresasCompletas">0</div>
-                                <div class="kpi-label">Implantações Completas</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="implantacoes-content">
-                    <div class="empresas-grid" id="empresasGrid">
-                        <!-- Empresas serão carregadas aqui -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- Seção do Scrum Board -->
-            <div id="adminScrumSection" class="admin-section">
-                <div class="implantacoes-header">
-                    <h2>Kanban - Gerenciamento de Implantações</h2>
-                    <div class="header-actions">
-                        <button class="admin-btn add" onclick="abrirModalTarefa()">
-                            <i class="fas fa-plus"></i>
-                            Nova Tarefa
-                        </button>
-                    </div>
-                </div>
-
-                <div class="scrum-board">
-                    <div class="scrum-column">
-                        <div class="column-header">
-                            <h3>A Fazer</h3>
-                            <span class="badge" id="todoCount">0</span>
-                        </div>
-                        <div class="column-content" id="todoTasks" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <!-- Tarefas serão adicionadas aqui -->
-                        </div>
-                    </div>
-
-                    <div class="scrum-column">
-                        <div class="column-header">
-                            <h3>Em Progresso</h3>
-                            <span class="badge" id="progressCount">0</span>
-                        </div>
-                        <div class="column-content" id="progressTasks" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <!-- Tarefas serão adicionadas aqui -->
-                        </div>
-                    </div>
-
-                    <div class="scrum-column">
-                        <div class="column-header">
-                            <h3>Em Revisão</h3>
-                            <span class="badge" id="reviewCount">0</span>
-                        </div>
-                        <div class="column-content" id="reviewTasks" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <!-- Tarefas serão adicionadas aqui -->
-                        </div>
-                    </div>
-
-                    <div class="scrum-column">
-                        <div class="column-header">
-                            <h3>Concluído</h3>
-                            <span class="badge" id="doneCount">0</span>
-                        </div>
-                        <div class="column-content" id="doneTasks" ondrop="drop(event)" ondragover="allowDrop(event)">
-                            <!-- Tarefas serão adicionadas aqui -->
-                        </div>
-                    </div>
-                </div>
+            </nav>
+            
+            <!-- Admin Content será preenchido dinamicamente -->
+            <div class="admin-content">
+                <!-- Conteúdo será gerado pelo JavaScript -->
             </div>
         </div>
     </div>
 
-    <!-- Modal para Adicionar/Editar Empresa -->
-    <div id="empresaModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 id="empresaModalTitle">Nova Empresa</h3>
-                <button class="close-modal" onclick="fecharModalEmpresa()">&times;</button>
+    <!-- Footer -->
+    <footer class="alura-footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img id="logoFooter" src="images-removebg-preview.png" alt="Logo" />
+                <span></span>
             </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <label for="empresaNome">Nome da Empresa</label>
-                    <input type="text" id="empresaNome" placeholder="Digite o nome da empresa">
-                </div>
-                <div class="input-group">
-                    <label for="empresaDominio">Domínio</label>
-                    <input type="text" id="empresaDominio" placeholder="Ex: grupoduzani">
-                </div>
-                <div class="input-group">
-                    <label for="empresaContato">Contato</label>
-                    <input type="text" id="empresaContato" placeholder="Nome do responsável">
-                </div>
-                <div class="input-group">
-                    <label for="empresaEmail">Email</label>
-                    <input type="email" id="empresaEmail" placeholder="email@empresa.com">
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="admin-btn delete" onclick="fecharModalEmpresa()">Cancelar</button>
-                <button class="admin-btn add" id="empresaConfirmBtn" onclick="confirmarEmpresa()">Confirmar</button>
-            </div>
+            <p>&copy; 2025 - Todos os direitos reservados</p>
         </div>
-    </div>
+    </footer>
 
     <!-- Modal para Adicionar/Editar Vídeo -->
     <div id="videoModal" class="modal">
@@ -388,90 +341,72 @@
                 <button class="close-modal" onclick="fecharModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="input-group">
+                <div class="form-group">
                     <label for="videoId">ID do Vídeo (YouTube)</label>
                     <input type="text" id="videoId" placeholder="Ex: JiEhrPTtHI0">
                 </div>
-                <div class="input-group">
+                <div class="form-group">
                     <label for="videoTitulo">Título do Vídeo</label>
                     <input type="text" id="videoTitulo" placeholder="Digite o título do vídeo">
                 </div>
-                <div class="input-group">
+                <div class="form-group">
                     <label for="videoDuracao">Duração (opcional)</label>
                     <input type="text" id="videoDuracao" placeholder="Ex: 5:23">
                 </div>
-                <div class="input-group">
+                <div class="form-group">
                     <label for="videoModulo">Módulo/Categoria</label>
                     <input type="text" id="videoModulo" placeholder="Ex: Vendas">
                 </div>
-                <div class="input-group" id="dominioGroup" style="display: none;">
+                <div class="form-group" id="dominioGroup" style="display: none;">
                     <label for="videoDominio">Domínio</label>
                     <input type="text" id="videoDominio" placeholder="Ex: upbusiness">
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="admin-btn delete" onclick="fecharModal()">Cancelar</button>
-                <button class="admin-btn add" id="modalConfirmBtn" onclick="confirmarVideo()">Confirmar</button>
+                <button class="btn-secondary" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-primary" id="modalConfirmBtn" onclick="confirmarVideo()">Confirmar</button>
             </div>
         </div>
     </div>
 
-    <!-- Modal para Adicionar/Editar Tarefa -->
-    <div id="tarefaModal" class="modal">
+    <!-- Modal para Adicionar/Editar Empresa -->
+    <div id="empresaModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="tarefaModalTitle">Nova Tarefa</h3>
-                <button class="close-modal" onclick="fecharModalTarefa()">&times;</button>
+                <h3 id="modalTitleEmpresa">Adicionar Nova Empresa</h3>
+                <button class="close-modal" onclick="fecharModal()">&times;</button>
             </div>
             <div class="modal-body">
-                <div class="input-group">
-                    <label for="tarefaTitulo">Título da Tarefa</label>
-                    <input type="text" id="tarefaTitulo" placeholder="Digite o título da tarefa">
+                <div class="form-group">
+                    <label for="nomeEmpresa">Nome da Empresa</label>
+                    <input type="text" id="nomeEmpresa" placeholder="Digite o nome da empresa">
                 </div>
-                <div class="input-group">
-                    <label for="tarefaDescricao">Descrição</label>
-                    <textarea id="tarefaDescricao" placeholder="Descreva a tarefa em detalhes"></textarea>
+                <div class="form-group">
+                    <label for="dominioEmpresa">Domínio</label>
+                    <input type="text" id="dominioEmpresa" placeholder="ex: upbusiness">
                 </div>
-                <div class="input-group">
-                    <label for="tarefaResponsavel">Responsável</label>
-                    <select id="tarefaResponsavel">
-                        <option value="">Selecione...</option>
-                        <option value="João Silva">João Silva</option>
-                        <option value="Maria Santos">Maria Santos</option>
-                        <option value="Carlos Oliveira">Carlos Oliveira</option>
-                    </select>
+                <div class="form-group">
+                    <label for="dataInicio">Data de Início</label>
+                    <input type="date" id="dataInicio">
                 </div>
-                <div class="input-group">
-                    <label for="tarefaPrioridade">Prioridade</label>
-                    <select id="tarefaPrioridade">
-                        <option value="Baixa">Baixa</option>
-                        <option value="Média">Média</option>
-                        <option value="Alta">Alta</option>
-                        <option value="Crítica">Crítica</option>
-                    </select>
+                <div class="form-group">
+                    <label for="dataPrevisao">Previsão de Conclusão</label>
+                    <input type="date" id="dataPrevisao">
                 </div>
-                <div class="input-group">
-                    <label for="tarefaEmpresa">Empresa Relacionada</label>
-                    <select id="tarefaEmpresa">
-                        <option value="">Selecione...</option>
-                        <!-- Opções serão preenchidas dinamicamente -->
-                    </select>
-                </div>
-                <div class="input-group">
-                    <label for="tarefaPrazo">Prazo</label>
-                    <input type="date" id="tarefaPrazo">
+                <div class="form-group">
+                    <label for="responsavel">Responsável</label>
+                    <input type="text" id="responsavel" placeholder="Nome do responsável">
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="admin-btn delete" onclick="fecharModalTarefa()">Cancelar</button>
-                <button class="admin-btn add" id="tarefaConfirmBtn" onclick="confirmarTarefa()">Confirmar</button>
+                <button class="btn-secondary" onclick="fecharModal()">Cancelar</button>
+                <button class="btn-primary" onclick="salvarEmpresa()">Salvar</button>
             </div>
         </div>
     </div>
-    <footer>
-        <img id="logoFooter" src="images-removebg-preview.png" alt="Logo" />
-    </footer>
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="biblioteca.js"></script>
 </body>
 </html>
+
