@@ -90,6 +90,32 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    text-align: center;
+}
+
+
+/* Container para centralizar o conteúdo */
+.container {
+    text-align: center;
+}
+
+/* Estilo do botão */
+.update-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Efeito ao passar o mouse */
+.update-button:hover {
+    background-color: #45a049;
 }
 
 /* ===== HEADER ALURA STYLE ===== */
