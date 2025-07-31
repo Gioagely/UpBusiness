@@ -1961,6 +1961,36 @@ window.dragStart = dragStart;
 window.allowDrop = allowDrop;
 window.dropTask = dropTask;
 
+async function atualizarJson() {
+    const response = await fetch('/.netlify/functions/updateGitHubJson', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            // Envie o conteúdo do JSON atualizado aqui
+            clientes: {
+                grupoduzani: {
+                    nome: "Novo Nome",
+                    cor: "#FF5733",
+                    logo: "nova_imagem.png",
+                    modulos: [
+                        // dados dos módulos
+                    ]
+                }
+            }
+        }),
+    });
+
+    const result = await response.json();
+    if (response.status === 200) {
+        alert('Arquivo JSON atualizado com sucesso!');
+    } else {
+        alert('Falha ao atualizar o arquivo JSON');
+    }
+}
+
+
 
 
 async function loadData() {
