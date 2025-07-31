@@ -7,6 +7,13 @@
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <style>
+        /* Adicionado para ajustar o scroll */
+        .scroll-target {
+            position: relative;
+            top: 560px; /* Ajuste fino da posição */
+        }
+    </style>
     <script>
         async function atualizarJson() {
             const response = await fetch('/.netlify/functions/updateGitHubJson', {
@@ -36,12 +43,27 @@
                 alert('Falha ao atualizar o arquivo JSON');
             }
         }
+
+        // Função ajustada para rolar até o ponto correto
+        function rolarParaLogin() {
+            const target = document.getElementById('scrollTarget');
+            if (target) {
+                const headerHeight = document.querySelector('.alura-header').offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 30; // Ajuste fino
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
     </script>
 </head>
 <body>
     <div class="container">
         <button class="update-button" onclick="atualizarJson()">Atualizar JSON</button>
     </div>
+    
     <!-- Header Alura Style -->
     <header class="alura-header">
         <div class="header-container">
@@ -65,7 +87,7 @@
                 <button class="theme-toggle" onclick="alternarTema()">
                     <i class="fas fa-moon"></i>
                 </button>
-                <button class="header-btn" id="loginBtn" onclick="irParaLogin()">
+                <button class="header-btn" id="loginBtn" onclick="rolarParaLogin()">
                     <i class="fas fa-sign-in-alt"></i>
                     Entrar
                 </button>
@@ -106,6 +128,9 @@
     </nav>
 
     <div class="main-container">
+        <!-- Ponto de destino para o scroll (adicionado) -->
+        <div id="scrollTarget" class="scroll-target"></div>
+        
         <!-- Tela de Login Alura Style -->
         <div id="loginArea" class="login-area">
             <div class="login-hero">
@@ -490,4 +515,3 @@
     <script src="biblioteca.js"></script>
 </body>
 </html>
-
