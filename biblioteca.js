@@ -1990,25 +1990,6 @@ async function atualizarJson() {
     }
 }
 
-// Método 1: Fetch API (recomendado)
-fetch('data.json')
-  .then(response => response.json())
-  .then(data => {
-    console.log('Dados carregados:', data);
-    // Use seus dados aqui
-  });
-
-// Método 2: XMLHttpRequest
-const xhr = new XMLHttpRequest();
-xhr.open('GET', 'data.json', true);
-xhr.onload = function() {
-  if (this.status === 200) {
-    const data = JSON.parse(this.responseText);
-    console.log('Dados carregados:', data);
-  }
-};
-xhr.send();
-
 
 
 
