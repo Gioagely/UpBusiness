@@ -7,7 +7,7 @@ exports.handler = async function(event, context) {
     const GITHUB_TOKEN = process.env.GITHUB_TOKEN; // Pega o token da variável de ambiente
     const REPO_OWNER = 'Gioagely'; // Seu nome de usuário no GitHub
     const REPO_NAME = 'UpBusiness'; // Nome do seu repositório no GitHub
-    const FILE_PATH = 'UpBusiness/data.json'; // Caminho para o arquivo JSON no seu repositório
+    const FILE_PATH = 'Gioagely/UpBusiness/data.json'; // Caminho para o arquivo JSON no seu repositório
     const COMMIT_MESSAGE = 'Atualização do arquivo JSON';
 
     const url = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}/contents/${FILE_PATH}`;
