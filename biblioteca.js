@@ -1990,6 +1990,33 @@ async function atualizarJson() {
     }
 }
 
+const updateButton = document.querySelector('.update-button');
+
+updateButton.addEventListener('click', async () => {
+    const updatedData = {
+        clientes: {
+            grupoduzani: {
+                nome: "Novo Nome",
+                cor: "#FF5733",
+                logo: "nova_imagem.png",
+                modulos: [
+                    { "nome": "Vendas", "videos": ["Video 1", "Video 2"] }
+                ]
+            }
+        }
+    };
+
+    const response = await fetch('/.netlify/functions/updateGitHubJson', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedData)
+    });
+
+    const result = await response.json();
+    console.log(result);
+});
 
 
 

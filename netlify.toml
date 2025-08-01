@@ -1,5 +1,6 @@
 [build]
-  functions = "netlify-functions"
+  functions = "netlify-functions"  # Definir o diretório de funções
+
 
 [dev]
   port = 5555
