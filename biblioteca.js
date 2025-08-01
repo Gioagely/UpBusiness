@@ -1991,61 +1991,35 @@ async function atualizarJson() {
 }
 
 // Método 1: Fetch API (recomendado)
-// Substitua o fetch antigo por este:
-async function getAppData() {
-  try {
-    const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-      headers: {
-        'X-Master-Key': ACCESS_KEY,
-        'Cache-Control': 'no-cache' // Evita cache
-      }
-    });
+fetch('data.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Dados carregados:', data);
+    // Use seus dados aqui
+  });
 
-    const { record: data } = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Falha ao carregar dados:", error);
-    return null;
+// Método 2: XMLHttpRequest
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'data.json', true);
+xhr.onload = function() {
+  if (this.status === 200) {
+    const data = JSON.parse(this.responseText);
+    console.log('Dados carregados:', data);
   }
+};
+xhr.send();
+
+
+
+
+async function loadData() {
+    try {
+        const response = await fetch("data.json");
+        const data = await response.json();
+        clientes = data.clientes;
+        empresas = data.empresas;
+    } catch (error) {
+        console.error("Erro ao carregar dados do JSON:", error);
+    }
 }
-
-// Exemplo de uso:
-document.addEventListener('DOMContentLoaded', async () => {
-  const appData = await getAppData();
-  
-  if (appData) {
-    // Use seus dados normalmente
-    console.log("Dados da aplicação:", appData);
-    renderProducts(appData.products); // Exemplo hipotético
-  }
-
-  // Adicione no final do script
-jsonTextarea.addEventListener('keydown', function(e) {
-  if (e.key === 'Tab') {
-    e.preventDefault();
-    const start = this.selectionStart;
-    const end = this.selectionEnd;
-    
-    this.value = this.value.substring(0, start) + 
-                '  ' + 
-                this.value.substring(end);
-    
-    this.selectionStart = this.selectionEnd = start + 2;
-  }
-});
-// Verificar atualizações a cada 5 minutos
-setInterval(async () => {
-  const data = await loadData();
-  jsonTextarea.value = JSON.stringify(data, null, 2);
-}, 300000);
-// Adicione um botão de download
-document.getElementById('download-btn').addEventListener('click', () => {
-  const dataStr = "data:text/json;charset=utf-8," + 
-                encodeURIComponent(jsonTextarea.value);
-  const a = document.createElement('a');
-  a.href = dataStr;
-  a.download = 'data-backup.json';
-  a.click();
-});
-});
 

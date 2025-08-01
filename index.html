@@ -15,23 +15,6 @@
         }
     </style>
     <script>
-        document.getElementById('data-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-        const newData = document.getElementById('json-input').value;
-    
-        // Envia para um serviço externo
-        const response = await fetch('https://api.jsonbin.io/v3/b/SEU-BIN-ID', {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Master-Key': 'SUA-CHAVE'
-      },
-        body: newData
-    });
-
-        alert('Dados atualizados com sucesso!');
-  });
         async function atualizarJson() {
             const response = await fetch('/.netlify/functions/updateGitHubJson', {
                 method: 'POST',
@@ -396,94 +379,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Adicione esta estrutura no seu HTML -->
-<section id="json-editor">
-  <h2>Editor de Dados</h2>
-  <textarea id="json-data" rows="15" cols="50"></textarea>
-  <button id="update-btn">Atualizar Dados</button>
-  <p id="message"></p>
-</section>
-
-<script>
-  // Configurações
-  const BIN_ID = "SEU_BIN_ID_AQUI"; // Substitua pelo seu Bin ID
-  const ACCESS_KEY = "SUA_ACCESS_KEY_AQUI"; // Substitua pela sua chave
-
-  // Elementos DOM
-  const jsonTextarea = document.getElementById('json-data');
-  const updateBtn = document.getElementById('update-btn');
-  const messageEl = document.getElementById('message');
-
-  // Função para carregar dados do JSONBin
-  async function loadData() {
-    try {
-      const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-        headers: {
-          'X-Master-Key': ACCESS_KEY
-        }
-      });
-
-      if (!response.ok) throw new Error('Erro ao carregar dados');
-      
-      const data = await response.json();
-      return data.record;
-    } catch (error) {
-      messageEl.textContent = `Erro: ${error.message}`;
-      return null;
-    }
-  }
-
-  // Função para salvar dados no JSONBin
-  async function saveData(newData) {
-    try {
-      const response = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-Master-Key': ACCESS_KEY
-        },
-        body: JSON.stringify(newData)
-      });
-
-      if (!response.ok) throw new Error('Erro ao salvar dados');
-      
-      const result = await response.json();
-      return result;
-    } catch (error) {
-      messageEl.textContent = `Erro: ${error.message}`;
-      return null;
-    }
-  }
-
-  // Interface: Carregar e exibir dados ao iniciar
-  window.addEventListener('DOMContentLoaded', async () => {
-    const data = await loadData();
-    if (data) {
-      jsonTextarea.value = JSON.stringify(data, null, 2);
-      messageEl.textContent = "Dados carregados com sucesso!";
-    }
-  });
-
-  // Atualizar dados quando clicar no botão
-  updateBtn.addEventListener('click', async () => {
-    try {
-      const newData = JSON.parse(jsonTextarea.value);
-      const result = await saveData(newData);
-      
-      if (result) {
-        messageEl.textContent = "Dados atualizados com sucesso!";
-        messageEl.style.color = "green";
-        
-        // Atualize sua aplicação com os novos dados
-        console.log("Novos dados:", newData);
-      }
-    } catch (error) {
-      messageEl.textContent = "JSON inválido! Verifique a formatação.";
-      messageEl.style.color = "red";
-    }
-  });
-</script>
 
     <!-- Footer -->
     <footer class="alura-footer">
