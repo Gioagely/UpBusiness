@@ -1105,7 +1105,7 @@ input:checked + .toggle-slider:before {
 
 .admin-header h1 {
     font-size:medium;
-    font-weight: 700;
+    font-weight: 600;
     color: var(--text-primary);
 }
 
