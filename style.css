@@ -1,10 +1,10 @@
 /* ===== VARIÁVEIS CSS ALURA STYLE ===== */
 :root {
-    --alura-primary: #00ff11;
-    --alura-primary-dark: #00ff11;
-    --alura-primary-light: hsl(130, 86%, 48%);
-    --alura-secondary: #00ff11;
-    --alura-accent: #00ff11;
+    --alura-primary: #0acf17;
+    --alura-primary-dark: #0acf17;
+    --alura-primary-light: hsl(130, 93%, 40%);
+    --alura-secondary: #0acf17;
+    --alura-accent: #0acf17;
     
     /* Tema Escuro */
     --bg-primary: #0F1419;
@@ -656,17 +656,18 @@ input:checked + .toggle-slider:before {
 .video-area { 
     min-height: calc(100vh - 70px); 
     background: var(--bg-primary); 
-    padding-top: 20px; 
+    padding-top: 0px; 
+    margin-top: 0px;
 }
 
-.breadcrumb {
-    background: var(--bg-secondary);
+/* Breadcrumb integrado na sidebar */
+.breadcrumb-sidebar {
+    background: var(--bg-tertiary);
     border-bottom: 1px solid var(--border-primary);
-    padding: var(--spacing-lg) var(--spacing-lg);
+    padding: var(--spacing-lg);
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 10px;
+    flex-direction: column;
+    gap: var(--spacing-md);
 }
 
 .breadcrumb-btn {
@@ -674,7 +675,7 @@ input:checked + .toggle-slider:before {
     border: 1px solid var(--border-primary);
     color: var(--text-secondary);
     padding: var(--spacing-md) var(--spacing-lg);
-    border-radius: var(--radius-md);
+    border-radius: 4px; /* Bordas mais quadradas */
     cursor: pointer;
     transition: var(--transition-normal);
     display: flex;
@@ -682,8 +683,8 @@ input:checked + .toggle-slider:before {
     gap: var(--spacing-sm);
     font-size: var(--font-size-base);
     font-weight: 500;
-    z-index: 1001;
-    position: relative;
+    width: 100%;
+    justify-content: flex-start;
 }
 
 .breadcrumb-btn:hover { 
@@ -699,6 +700,7 @@ input:checked + .toggle-slider:before {
     gap: var(--spacing-sm); 
     color: var(--text-tertiary); 
     font-size: var(--font-size-sm); 
+    padding-left: var(--spacing-sm);
 }
 
 .breadcrumb-path i { 
@@ -751,7 +753,7 @@ input:checked + .toggle-slider:before {
     padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 45px;
     background: var(--bg-quaternary);
     border: 1px solid var(--border-primary);
-    border-radius: var(--radius-lg);
+    border-radius: 4px; /* Bordas quadradas estilo Alura */
     color: var(--text-primary);
     font-size: var(--font-size-base);
     transition: var(--transition-normal);
@@ -778,7 +780,7 @@ input:checked + .toggle-slider:before {
     background: var(--gradient-card);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
-    border-radius: var(--radius-lg);
+    border-radius: 4px; /* Bordas quadradas estilo Alura */
     display: flex;
     align-items: center;
     gap: var(--spacing-md);
@@ -795,7 +797,7 @@ input:checked + .toggle-slider:before {
 .course-item {
     background: var(--bg-tertiary);
     border: 1px solid var(--border-secondary);
-    border-radius: var(--radius-lg);
+    border-radius: 4px; /* Bordas quadradas estilo Alura */
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
     cursor: pointer;
@@ -824,7 +826,7 @@ input:checked + .toggle-slider:before {
     width: 80px;
     height: 60px;
     background: var(--gradient-primary);
-    border-radius: var(--radius-md);
+    border-radius: 4px; /* Bordas quadradas estilo Alura */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -896,7 +898,7 @@ input:checked + .toggle-slider:before {
     width: 100%;
     aspect-ratio: 16/9;
     background: var(--bg-tertiary);
-    border-radius: var(--radius-xl);
+    border-radius: 4px; /* Bordas quadradas estilo Alura */
     overflow: hidden;
     box-shadow: var(--shadow-xl);
     margin-bottom: var(--spacing-xl);
@@ -942,7 +944,7 @@ input:checked + .toggle-slider:before {
 
 .video-info {
     background: var(--bg-secondary);
-    border-radius: var(--radius-xl);
+    border-radius: 4px; /* Bordas quadradas estilo Alura */
     padding: var(--spacing-2xl);
     border: 1px solid var(--border-primary);
 }
