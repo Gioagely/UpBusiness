@@ -1104,7 +1104,7 @@ input:checked + .toggle-slider:before {
 }
 
 .admin-header h1 {
-    font-size: var(--font-size-3xl);
+    font-size:medium;
     font-weight: 700;
     color: var(--text-primary);
 }
