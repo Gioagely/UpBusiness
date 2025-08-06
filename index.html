@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" class="dark-theme">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,91 +7,48 @@
     <link rel="stylesheet" href="style.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <style>
-        /* Adicionado para ajustar o scroll */
-        .scroll-target {
-            position: relative;
-            top: -80px; /* Ajuste para o header fixo */
-        }
-    </style>
 </head>
-<body class="dark-theme">
-    <!-- Header Alura Style -->
+<body>
+    <!-- Header -->
     <header class="alura-header">
         <div class="header-container">
             <div class="header-left">
                 <div class="logo">
-                    <!-- CORRIJA O SRC AQUI -->
                     <img id="logoHeader" src="images-removebg-preview.png" alt="Logo Up Business">
-                    <span class="logo-text"></span>
                 </div>
             </div>
-            
             <div class="header-center">
                 <div class="search-container" id="headerSearch" style="display: none;">
                     <input type="text" placeholder="O que você quer aprender?" id="globalSearch">
-                    <button class="search-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
                 </div>
             </div>
-            
             <div class="header-right">
-                <button class="theme-toggle" onclick="alternarTema( )">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="header-btn" id="loginBtn" onclick="irParaLogin()">
-                    <i class="fas fa-sign-in-alt"></i>
-                    Entrar
-                </button>
+                <button class="theme-toggle" onclick="alternarTema()"><i class="fas fa-moon"></i></button>
+                <button class="header-btn" id="loginBtn" onclick="irParaLogin()"><i class="fas fa-sign-in-alt"></i> Entrar</button>
                 <button class="header-btn primary" id="userBtn" onclick="mostrarPerfil()" style="display: none;">
-                    <i class="fas fa-user"></i>
-                    <span id="userName"></span>
+                    <i class="fas fa-user"></i> <span id="userName"></span>
                 </button>
             </div>
         </div>
     </header>
 
-    
+    <!-- Navegação Principal -->
     <nav class="alura-nav" id="mainNav" style="display: none;">
         <div class="nav-container">
             <div class="nav-tabs">
-                <button class="nav-tab active" data-category="todos">
-                    <i class="fas fa-th-large"></i>
-                    Todos os Cursos
-                </button>
-                <button class="nav-tab" data-category="vendas">
-                    <i class="fas fa-chart-line"></i>
-                    Vendas
-                </button>
-                <button class="nav-tab" data-category="cadastro-de-produtos">
-                    <i class="fas fa-box-open"></i>
-                    Cadastro de Produtos
-                </button>
-                <button class="nav-tab" data-category="cadastro-de-pessoas">
-                    <i class="fas fa-user-friends"></i>
-                    Cadastro de Pessoas
-                </button>
-                <button class="nav-tab" data-category="financeiro">
-                    <i class="fas fa-dollar-sign"></i>
-                    Financeiro
-                </button>
-                 <button class="nav-tab" data-category="fiscal">
-                    <i class="fas fa-file-invoice"></i>
-                    Fiscal
-                </button>
-                 <button class="nav-tab" data-category="manufatura">
-                    <i class="fas fa-industry"></i>
-                    Manufatura
-                </button>
+                <button class="nav-tab active" data-category="todos"><i class="fas fa-th-large"></i> Todos os Cursos</button>
+                <button class="nav-tab" data-category="vendas"><i class="fas fa-chart-line"></i> Vendas</button>
+                <button class="nav-tab" data-category="cadastro-de-produtos"><i class="fas fa-box-open"></i> Cadastro de Produtos</button>
+                <button class="nav-tab" data-category="cadastro-de-pessoas"><i class="fas fa-user-friends"></i> Cadastro de Pessoas</button>
+                <button class="nav-tab" data-category="financeiro"><i class="fas fa-dollar-sign"></i> Financeiro</button>
+                <button class="nav-tab" data-category="fiscal"><i class="fas fa-file-invoice"></i> Fiscal</button>
+                <button class="nav-tab" data-category="manufatura"><i class="fas fa-industry"></i> Manufatura</button>
             </div>
         </div>
     </nav>
 
     <div class="main-container">
-        <!-- Ponto de destino para o scroll -->
-        <div id="scrollTarget" class="scroll-target"></div>
-        
         <!-- Tela de Login -->
         <div id="loginArea" class="login-area">
             <div class="login-hero">
@@ -114,11 +71,10 @@
                         <h2>Acesse sua Biblioteca</h2>
                         <p>Entre com suas credenciais para começar</p>
                     </div>
-
                     <div class="access-toggle">
                         <div class="toggle-container">
                             <label class="toggle-switch">
-                                <input type="checkbox" id="accessToggle" onchange="alternarTipoAcesso()">
+                                <input type="checkbox" id="accessToggle">
                                 <span class="toggle-slider"></span>
                             </label>
                             <div class="toggle-labels">
@@ -127,24 +83,17 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Formulário de Usuário -->
                     <div id="userForm" class="login-form active">
                         <div class="form-group">
                             <label for="domainInput">Domínio da Empresa</label>
                             <div class="input-wrapper">
                                 <i class="fas fa-building"></i>
-                                <input type="text" id="domainInput" placeholder="ex: upbusiness" oninput="formatarDominio(this)">
+                                <input type="text" id="domainInput" placeholder="ex: grupoduzani" oninput="formatarDominio(this)">
                             </div>
                         </div>
-                        <button class="btn-primary" onclick="validarDominio()">
-                            <i class="fas fa-sign-in-alt"></i>
-                            Acessar Biblioteca
-                        </button>
+                        <button class="btn-primary"><i class="fas fa-sign-in-alt"></i> Acessar Biblioteca</button>
                         <div class="error-message" id="errorMsg" style="display:none;"></div>
                     </div>
-
-                    <!-- Formulário de Administrador -->
                     <div id="adminForm" class="login-form">
                         <div class="form-group">
                             <label for="adminUser">Login</label>
@@ -160,30 +109,21 @@
                                 <input type="password" id="adminPass" placeholder="Digite sua senha">
                             </div>
                         </div>
-                        <button class="btn-primary admin" onclick="validarAdmin()">
-                            <i class="fas fa-sign-in-alt"></i>
-                            Entrar como Admin
-                        </button>
+                        <button class="btn-primary admin"><i class="fas fa-sign-in-alt"></i> Entrar como Admin</button>
                         <div class="error-message" id="adminErrorMsg" style="display:none;"></div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Área de Vídeos (Usuário) -->
+        <!-- Área de Vídeos (Usuário) - Estilo Alura -->
         <div id="videoArea" class="video-area" style="display:none;">
             <div class="breadcrumb">
-                <button class="breadcrumb-btn" onclick="voltarInicio()">
-                    <i class="fas fa-arrow-left"></i>
-                    Voltar ao Início
-                </button>
+                <button class="breadcrumb-btn" onclick="voltarInicio()"><i class="fas fa-arrow-left"></i> Voltar ao Início</button>
                 <div class="breadcrumb-path">
-                    <span>Biblioteca</span>
-                    <i class="fas fa-chevron-right"></i>
-                    <span id="currentModule">Todos os Cursos</span>
+                    <span>Biblioteca</span> <i class="fas fa-chevron-right"></i> <span id="currentModule">Todos os Cursos</span>
                 </div>
             </div>
-
             <div class="video-layout">
                 <aside class="video-sidebar">
                     <div class="sidebar-header">
@@ -195,7 +135,6 @@
                     </div>
                     <div class="course-list" id="videoList"></div>
                 </aside>
-
                 <main class="video-main">
                     <div class="video-player-section">
                         <div class="player-container">
@@ -208,7 +147,6 @@
                             </div>
                             <iframe id="currentVideo" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display: none;"></iframe>
                         </div>
-                        
                         <div class="video-info">
                             <div class="video-header">
                                 <h1 id="videoTitle">Bem-vindo à Biblioteca de Treinamentos</h1>
@@ -218,7 +156,6 @@
                                     <div class="meta-item"><i class="fas fa-star"></i><span>9.5</span></div>
                                 </div>
                             </div>
-                            
                             <div class="progress-section" id="progressSection" style="display: none;">
                                 <div class="progress-header">
                                     <span class="progress-label">Progresso do Curso</span>
@@ -226,7 +163,6 @@
                                 </div>
                                 <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
                             </div>
-                            
                             <div class="completion-section" id="completionSection" style="display: none;">
                                 <label class="completion-checkbox">
                                     <input type="checkbox" id="completedCheckbox">
@@ -236,15 +172,15 @@
                             </div>
                         </div>
                     </div>
-                    
                     <div class="transcription-section" id="transcriptionSection" style="display: none;">
                         <div class="section-header">
                             <h3><i class="fas fa-file-alt"></i> Transcrição</h3>
                             <button class="copy-btn" onclick="copiarTranscricao()"><i class="fas fa-copy"></i> Copiar</button>
                         </div>
-                        <div class="transcription-content" id="transcriptionContent"></div>
+                        <div class="transcription-content" id="transcriptionContent">
+                            Esta é uma transcrição de exemplo do vídeo selecionado. O conteúdo real seria carregado dinamicamente baseado no vídeo escolhido.
+                        </div>
                     </div>
-                    
                     <div class="video-navigation" id="videoNavigation" style="display: none;">
                         <button class="nav-btn prev" id="prevVideoBtn" onclick="navegarVideo('anterior')"><i class="fas fa-chevron-left"></i> Vídeo Anterior</button>
                         <button class="nav-btn next" id="nextVideoBtn" onclick="navegarVideo('proximo')">Próximo Vídeo <i class="fas fa-chevron-right"></i></button>
@@ -253,21 +189,21 @@
             </div>
         </div>
 
-        <!-- Área de Admin -->
+        <!-- Área de Admin - Lista Simples -->
         <div id="adminArea" class="admin-area" style="display:none;">
             <div class="admin-header">
                 <button class="breadcrumb-btn" onclick="voltarInicio()"><i class="fas fa-arrow-left"></i> Voltar ao Início</button>
                 <h1>Painel Administrativo</h1>
             </div>
-            
             <nav class="admin-nav">
-                <button class="admin-nav-btn active" onclick="mostrarSecaoAdmin('videos')"><i class="fas fa-video"></i> Gerenciar Vídeos</button>
-                <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('implantacoes')"><i class="fas fa-building"></i> Implantações</button>
+                <button class="admin-nav-btn active" onclick="mostrarSecaoAdmin('Videos')"><i class="fas fa-video"></i> Gerenciar Vídeos</button>
+                <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('Implantacoes')"><i class="fas fa-building"></i> Implantações</button>
                 <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('BI')"><i class="fas fa-chart-pie"></i> Business Intelligence</button>
-                <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('scrum')"><i class="fas fa-tasks"></i> Kanban</button>
+                <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('Kanban')"><i class="fas fa-tasks"></i> Kanban</button>
             </nav>
-            
-            <div class="admin-content"></div>
+            <div class="admin-content">
+                <!-- Conteúdo renderizado pelo JavaScript -->
+            </div>
         </div>
     </div>
 
@@ -275,44 +211,115 @@
     <footer class="alura-footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <!-- E CORRIJA O SRC AQUI TAMBÉM -->
-                <img id="logoFooter" src="images-removebg-preview.png" alt="Logo">
-                <span></span>
+                <img id="logoFooter" src="images-removebg-preview.png" alt="Logo Up Business">
             </div>
             <p>&copy; 2025 - Todos os direitos reservados</p>
         </div>
     </footer>
 
-    <!-- Modal ÚNICO para Adicionar Vídeo (CORRIGIDO) -->
+    <!-- Modal para Adicionar/Editar Vídeo -->
     <div id="modalAdicionarVideo" class="modal-overlay" style="display:none;">
         <div class="modal-content">
             <span class="close-btn" id="closeModalVideo">&times;</span>
             <h2>Adicionar Novo Vídeo</h2>
-
-            <!-- IDs dos inputs foram alterados para serem únicos -->
             <div class="form-group">
                 <label for="videoTituloInput">Título do Vídeo</label>
-                <input type="text" id="videoTituloInput" placeholder="Digite o título">
+                <div class="input-wrapper">
+                    <i class="fas fa-video"></i>
+                    <input type="text" id="videoTituloInput" placeholder="Digite o título">
+                </div>
             </div>
-
             <div class="form-group">
                 <label for="videoIdInput">ID do Vídeo (YouTube)</label>
-                <input type="text" id="videoIdInput" placeholder="Ex: dQw4w9WgXcQ">
+                <div class="input-wrapper">
+                    <i class="fas fa-youtube"></i>
+                    <input type="text" id="videoIdInput" placeholder="Ex: dQw4w9WgXcQ">
+                </div>
             </div>
-
             <div class="form-group">
                 <label for="videoModuloSelect">Módulo</label>
-                <select id="videoModuloSelect"></select>
+                <select id="videoModuloSelect">
+                    <option value="vendas">Vendas</option>
+                    <option value="cadastro-de-produtos">Cadastro de Produtos</option>
+                    <option value="cadastro-de-pessoas">Cadastro de Pessoas</option>
+                    <option value="financeiro">Financeiro</option>
+                    <option value="fiscal">Fiscal</option>
+                    <option value="manufatura">Manufatura</option>
+                </select>
             </div>
-
             <div class="modal-actions">
                 <button class="btn-secondary" id="cancelarModalVideo">Cancelar</button>
                 <button class="btn-primary" id="btnAdicionarVideo">Adicionar Vídeo</button>
             </div>
         </div>
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Modal para Nova Implantação -->
+    <div id="modalNovaImplantacao" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModalImplantacao()">&times;</span>
+            <h2>Nova Implantação</h2>
+            <div class="form-group">
+                <label for="empresaNomeInput">Nome da Empresa</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-building"></i>
+                    <input type="text" id="empresaNomeInput" placeholder="Digite o nome da empresa">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="empresaResponsavelInput">Responsável</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="empresaResponsavelInput" placeholder="Digite o nome do responsável">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="empresaStatusSelect">Status Inicial</label>
+                <select id="empresaStatusSelect">
+                    <option value="iniciado">Iniciado</option>
+                    <option value="em-andamento">Em Andamento</option>
+                    <option value="concluido">Concluído</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="fecharModalImplantacao()">Cancelar</button>
+                <button class="btn-primary" onclick="adicionarImplantacao()">Criar Implantação</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Nova Tarefa Kanban -->
+    <div id="modalNovaTarefa" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModalKanban()">&times;</span>
+            <h2>Nova Tarefa</h2>
+            <div class="form-group">
+                <label for="tarefaTituloInput">Título da Tarefa</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-tasks"></i>
+                    <input type="text" id="tarefaTituloInput" placeholder="Digite o título da tarefa">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="tarefaDescInput">Descrição</label>
+                <textarea id="tarefaDescInput" placeholder="Digite a descrição da tarefa"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="tarefaStatusSelect">Status</label>
+                <select id="tarefaStatusSelect">
+                    <option value="a-fazer">A Fazer</option>
+                    <option value="em-andamento">Em Andamento</option>
+                    <option value="concluido">Concluído</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="fecharModalKanban()">Cancelar</button>
+                <button class="btn-primary" onclick="adicionarTarefa()">Criar Tarefa</button>
+            </div>
+        </div>
+    </div>
+
     <script src="biblioteca.js"></script>
 </body>
 </html>
+
