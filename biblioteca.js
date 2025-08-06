@@ -156,6 +156,33 @@ let kanbanTasks = {
     ]
 };
 
+let dadosAnotacoes = [
+    {
+        id: 1,
+        titulo: "Reunião com Empresa Alpha",
+        conteudo: "Discutir implementação do módulo fiscal. Cliente tem dúvidas sobre integração com SEFAZ.",
+        cor: "amarelo",
+        empresa: "Empresa Alpha",
+        dataCreacao: "2025-01-15"
+    },
+    {
+        id: 2,
+        titulo: "Bug no módulo de vendas",
+        conteudo: "Relatado problema na geração de relatórios. Verificar query de performance.",
+        cor: "rosa",
+        empresa: "",
+        dataCreacao: "2025-01-14"
+    },
+    {
+        id: 3,
+        titulo: "Treinamento agendado",
+        conteudo: "Empresa Beta solicitou treinamento adicional para equipe de vendas na próxima semana.",
+        cor: "verde",
+        empresa: "Empresa Beta",
+        dataCreacao: "2025-01-13"
+    }
+];
+
 // Variáveis globais
 let currentClient = null;
 let currentVideos = [];
@@ -165,6 +192,7 @@ let isAdmin = false;
 let charts = {};
 let draggedTask = null;
 let editingVideoId = null;
+let editingAnotacaoId = null;
 
 // ===== INICIALIZAÇÃO E EVENTOS =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -603,6 +631,9 @@ function mostrarSecaoAdmin(secao) {
             break;
         case 'Kanban':
             renderKanbanAdmin();
+            break;
+        case 'Anotacoes':
+            renderAnotacoesAdmin();
             break;
     }
 }
@@ -1403,37 +1434,47 @@ function animateBars() {
 // Função para inicializar drag and drop do Kanban
 function initializeKanbanDragDrop() {
     const tasks = document.querySelectorAll('.kanban-task-modern');
-    const columns = document.querySelectorAll('.kanban-tasks-grid');
+    const columns = document.querySelectorAll('.kanban-column-modern');
     
     tasks.forEach(task => {
         task.addEventListener('dragstart', (e) => {
             draggedTask = e.target;
             e.target.style.opacity = '0.5';
+            e.target.classList.add('dragging');
         });
         
         task.addEventListener('dragend', (e) => {
             e.target.style.opacity = '1';
+            e.target.classList.remove('dragging');
             draggedTask = null;
+            
+            // Remover feedback visual de todas as colunas
+            columns.forEach(col => {
+                col.classList.remove('drag-over');
+            });
         });
     });
     
     columns.forEach(column => {
         column.addEventListener('dragover', (e) => {
             e.preventDefault();
-            column.style.background = 'rgba(100, 116, 139, 0.1)';
+            column.classList.add('drag-over');
         });
         
         column.addEventListener('dragleave', (e) => {
-            column.style.background = '';
+            // Só remove o feedback se realmente saiu da coluna
+            if (!column.contains(e.relatedTarget)) {
+                column.classList.remove('drag-over');
+            }
         });
         
         column.addEventListener('drop', (e) => {
             e.preventDefault();
-            column.style.background = '';
+            column.classList.remove('drag-over');
             
             if (draggedTask) {
                 const taskId = parseInt(draggedTask.dataset.taskId);
-                const newStatus = column.parentElement.dataset.status;
+                const newStatus = column.dataset.status;
                 moveTask(taskId, newStatus);
             }
         });
@@ -1461,5 +1502,193 @@ function moveTask(taskId, newStatus) {
         kanbanTasks[newStatus].push(task);
         renderKanbanAdmin(); // Re-renderizar o kanban
     }
+}
+
+
+// ===== FUNÇÕES DE ANOTAÇÕES =====
+function renderAnotacoesAdmin() {
+    const adminContent = document.querySelector('.admin-content');
+    if (!adminContent) return;
+    
+    // Atualizar select de empresas no modal
+    atualizarSelectEmpresas();
+    
+    let html = `
+        <div class="anotacoes-container">
+            <div class="anotacoes-header">
+                <h2><i class="fas fa-sticky-note"></i> Anotações</h2>
+                <button class="btn-add-anotacao" onclick="abrirModalAnotacao()">
+                    <i class="fas fa-plus"></i> Nova Anotação
+                </button>
+            </div>`;
+    
+    if (dadosAnotacoes.length === 0) {
+        html += `
+            <div class="anotacoes-empty">
+                <i class="fas fa-sticky-note"></i>
+                <h3>Nenhuma anotação encontrada</h3>
+                <p>Crie sua primeira anotação para começar a organizar suas informações</p>
+                <button class="btn-add-anotacao" onclick="abrirModalAnotacao()">
+                    <i class="fas fa-plus"></i> Criar Primeira Anotação
+                </button>
+            </div>`;
+    } else {
+        html += `<div class="post-its-grid">`;
+        
+        dadosAnotacoes.forEach(anotacao => {
+            const dataFormatada = formatarDataBR(anotacao.dataCreacao);
+            const empresaTag = anotacao.empresa ? `<span class="post-it-empresa">${anotacao.empresa}</span>` : '';
+            
+            html += `
+                <div class="post-it ${anotacao.cor}" data-id="${anotacao.id}">
+                    <div class="post-it-header">
+                        <h3 class="post-it-titulo">${anotacao.titulo}</h3>
+                        <div class="post-it-acoes">
+                            <button class="post-it-btn edit" onclick="editarAnotacao(${anotacao.id})" title="Editar">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="post-it-btn delete" onclick="excluirAnotacao(${anotacao.id})" title="Excluir">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="post-it-conteudo">${anotacao.conteudo}</div>
+                    <div class="post-it-footer">
+                        <span class="post-it-data">${dataFormatada}</span>
+                        ${empresaTag}
+                    </div>
+                </div>`;
+        });
+        
+        html += `</div>`;
+    }
+    
+    html += `</div>`;
+    adminContent.innerHTML = html;
+}
+
+function abrirModalAnotacao(anotacaoId = null) {
+    const modal = document.getElementById('modalNovaAnotacao');
+    const titulo = document.getElementById('modalAnotacaoTitulo');
+    const btnSalvar = document.getElementById('btnSalvarAnotacao');
+    
+    if (anotacaoId) {
+        // Modo edição
+        const anotacao = dadosAnotacoes.find(a => a.id === anotacaoId);
+        if (anotacao) {
+            editingAnotacaoId = anotacaoId;
+            titulo.textContent = 'Editar Anotação';
+            btnSalvar.textContent = 'Salvar Alterações';
+            
+            document.getElementById('anotacaoTituloInput').value = anotacao.titulo;
+            document.getElementById('anotacaoConteudoInput').value = anotacao.conteudo;
+            document.getElementById('anotacaoCorSelect').value = anotacao.cor;
+            document.getElementById('anotacaoEmpresaSelect').value = anotacao.empresa || '';
+        }
+    } else {
+        // Modo criação
+        editingAnotacaoId = null;
+        titulo.textContent = 'Nova Anotação';
+        btnSalvar.textContent = 'Criar Anotação';
+        
+        document.getElementById('anotacaoTituloInput').value = '';
+        document.getElementById('anotacaoConteudoInput').value = '';
+        document.getElementById('anotacaoCorSelect').value = 'amarelo';
+        document.getElementById('anotacaoEmpresaSelect').value = '';
+    }
+    
+    if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.add('show');
+        
+        // Focar no campo título
+        setTimeout(() => {
+            document.getElementById('anotacaoTituloInput').focus();
+        }, 100);
+    }
+}
+
+function fecharModalAnotacao() {
+    const modal = document.getElementById('modalNovaAnotacao');
+    if (modal) {
+        modal.classList.remove('show');
+        setTimeout(() => modal.style.display = 'none', 300);
+    }
+    editingAnotacaoId = null;
+}
+
+function salvarAnotacao() {
+    const titulo = document.getElementById('anotacaoTituloInput').value.trim();
+    const conteudo = document.getElementById('anotacaoConteudoInput').value.trim();
+    const cor = document.getElementById('anotacaoCorSelect').value;
+    const empresa = document.getElementById('anotacaoEmpresaSelect').value;
+    
+    if (!titulo || !conteudo) {
+        alert('Por favor, preencha o título e o conteúdo da anotação.');
+        return;
+    }
+    
+    if (editingAnotacaoId) {
+        // Modo edição
+        const anotacao = dadosAnotacoes.find(a => a.id === editingAnotacaoId);
+        if (anotacao) {
+            anotacao.titulo = titulo;
+            anotacao.conteudo = conteudo;
+            anotacao.cor = cor;
+            anotacao.empresa = empresa;
+        }
+    } else {
+        // Modo criação
+        const novaAnotacao = {
+            id: Math.max(...dadosAnotacoes.map(a => a.id), 0) + 1,
+            titulo: titulo,
+            conteudo: conteudo,
+            cor: cor,
+            empresa: empresa,
+            dataCreacao: new Date().toISOString().split('T')[0]
+        };
+        
+        dadosAnotacoes.push(novaAnotacao);
+    }
+    
+    fecharModalAnotacao();
+    renderAnotacoesAdmin();
+}
+
+function editarAnotacao(anotacaoId) {
+    abrirModalAnotacao(anotacaoId);
+}
+
+function excluirAnotacao(anotacaoId) {
+    if (confirm('Tem certeza que deseja excluir esta anotação?')) {
+        const index = dadosAnotacoes.findIndex(a => a.id === anotacaoId);
+        if (index !== -1) {
+            dadosAnotacoes.splice(index, 1);
+            renderAnotacoesAdmin();
+        }
+    }
+}
+
+function atualizarSelectEmpresas() {
+    const select = document.getElementById('anotacaoEmpresaSelect');
+    if (!select) return;
+    
+    // Limpar opções existentes (exceto a primeira)
+    while (select.children.length > 1) {
+        select.removeChild(select.lastChild);
+    }
+    
+    // Adicionar empresas dos dados de implantação
+    dadosImplantacao.forEach(empresa => {
+        const option = document.createElement('option');
+        option.value = empresa.nome;
+        option.textContent = empresa.nome;
+        select.appendChild(option);
+    });
+}
+
+function formatarDataBR(dataString) {
+    const data = new Date(dataString);
+    return data.toLocaleDateString('pt-BR');
 }
 

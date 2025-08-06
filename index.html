@@ -200,6 +200,7 @@
                 <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('Implantacoes')"><i class="fas fa-building"></i> Implantações</button>
                 <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('BI')"><i class="fas fa-chart-pie"></i> Business Intelligence</button>
                 <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('Kanban')"><i class="fas fa-tasks"></i> Kanban</button>
+                <button class="admin-nav-btn" onclick="mostrarSecaoAdmin('Anotacoes')"><i class="fas fa-sticky-note"></i> Anotações</button>
             </nav>
             <div class="admin-content">
                 <!-- Conteúdo renderizado pelo JavaScript -->
@@ -315,6 +316,45 @@
             <div class="modal-actions">
                 <button class="btn-secondary" onclick="fecharModalKanban()">Cancelar</button>
                 <button class="btn-primary" onclick="adicionarTarefa()">Criar Tarefa</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Nova Anotação -->
+    <div id="modalNovaAnotacao" class="modal-overlay" style="display:none;">
+        <div class="modal-content">
+            <span class="close-btn" onclick="fecharModalAnotacao()">&times;</span>
+            <h2 id="modalAnotacaoTitulo">Nova Anotação</h2>
+            <div class="form-group">
+                <label for="anotacaoTituloInput">Título da Anotação</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-sticky-note"></i>
+                    <input type="text" id="anotacaoTituloInput" placeholder="Digite o título da anotação">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="anotacaoConteudoInput">Conteúdo</label>
+                <textarea id="anotacaoConteudoInput" placeholder="Digite o conteúdo da anotação" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="anotacaoCorSelect">Cor do Post-it</label>
+                <select id="anotacaoCorSelect">
+                    <option value="amarelo">🟡 Amarelo</option>
+                    <option value="azul">🔵 Azul</option>
+                    <option value="verde">🟢 Verde</option>
+                    <option value="rosa">🌸 Rosa</option>
+                    <option value="laranja">🟠 Laranja</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="anotacaoEmpresaSelect">Empresa (Opcional)</label>
+                <select id="anotacaoEmpresaSelect">
+                    <option value="">Selecione uma empresa</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="fecharModalAnotacao()">Cancelar</button>
+                <button class="btn-primary" id="btnSalvarAnotacao" onclick="salvarAnotacao()">Criar Anotação</button>
             </div>
         </div>
     </div>
