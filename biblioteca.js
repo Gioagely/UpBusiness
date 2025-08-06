@@ -1180,8 +1180,11 @@ function renderKanbanAdmin() {
     html += `</div>`;
     adminContent.innerHTML = html;
     
-    // Adicionar funcionalidade de drag and drop
-    initializeKanbanDragDrop();
+    // Adicionar funcionalidade de drag and drop com delay para garantir que DOM esteja pronto
+    setTimeout(() => {
+        initializeKanbanDragDrop();
+        console.log('Kanban drag and drop inicializado');
+    }, 100);
 }
 
 // ===== FUNÇÕES DE MODAL E CRUD =====
@@ -1436,17 +1439,21 @@ function initializeKanbanDragDrop() {
     const tasks = document.querySelectorAll('.kanban-task-modern');
     const columns = document.querySelectorAll('.kanban-column-modern');
     
-    tasks.forEach(task => {
+    console.log(`Inicializando drag and drop: ${tasks.length} tasks, ${columns.length} columns`);
+    
+    tasks.forEach((task, index) => {
         task.addEventListener('dragstart', (e) => {
             draggedTask = e.target;
             e.target.style.opacity = '0.5';
             e.target.classList.add('dragging');
+            console.log(`Drag iniciado: task ${e.target.dataset.taskId}`);
         });
         
         task.addEventListener('dragend', (e) => {
             e.target.style.opacity = '1';
             e.target.classList.remove('dragging');
             draggedTask = null;
+            console.log('Drag finalizado');
             
             // Remover feedback visual de todas as colunas
             columns.forEach(col => {
@@ -1455,30 +1462,38 @@ function initializeKanbanDragDrop() {
         });
     });
     
-    columns.forEach(column => {
+    columns.forEach((column, index) => {
+        console.log(`Adicionando listeners à coluna ${index}: ${column.dataset.status}`);
+        
         column.addEventListener('dragover', (e) => {
             e.preventDefault();
             column.classList.add('drag-over');
+            console.log(`Dragover na coluna: ${column.dataset.status}`);
         });
         
         column.addEventListener('dragleave', (e) => {
             // Só remove o feedback se realmente saiu da coluna
             if (!column.contains(e.relatedTarget)) {
                 column.classList.remove('drag-over');
+                console.log(`Dragleave da coluna: ${column.dataset.status}`);
             }
         });
         
         column.addEventListener('drop', (e) => {
             e.preventDefault();
             column.classList.remove('drag-over');
+            console.log(`Drop na coluna: ${column.dataset.status}`);
             
             if (draggedTask) {
                 const taskId = parseInt(draggedTask.dataset.taskId);
                 const newStatus = column.dataset.status;
+                console.log(`Movendo task ${taskId} para ${newStatus}`);
                 moveTask(taskId, newStatus);
             }
         });
     });
+    
+    console.log('Drag and drop inicializado com sucesso');
 }
 
 // Função para mover tarefa entre colunas
