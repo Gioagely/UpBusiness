@@ -50,7 +50,61 @@ let clientes = {
             }
         ]
     }
-};
+}
+clientes.becker = {
+        nome: "Becker",
+        cor: "#FF5733",
+        logo: "https://via.placeholder.com/150x50?text=Becker",
+        modulos: [
+            {
+                nome: "Vendas",
+                icone: "fas fa-chart-line",
+                videos: [
+                    { id: "dQw4w9WgXcQ", titulo: "Introdução às Vendas", duracao: "05:00", descricao: "Aprenda os conceitos básicos do módulo de vendas." },
+                    { id: "hY7m5jjJ9mM", titulo: "Gestão de Pipeline", duracao: "07:30", descricao: "Como gerenciar oportunidades de vendas no sistema." }
+                ]
+            },
+            {
+                nome: "Cadastro de Produtos",
+                icone: "fas fa-box-open",
+                videos: [
+                    { id: "kXYiU_JCYtU", titulo: "Cadastrando Novos Produtos", duracao: "06:45", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
+                ]
+            },
+            {
+                nome: "Cadastro de Pessoas",
+                icone: "fas fa-user-friends",
+                videos: [
+                    { id: "Zi_XLOBDo_Y", titulo: "Gerenciamento de Clientes e Fornecedores", duracao: "08:10", descricao: "Entenda como gerenciar pessoas no sistema." }
+                ]
+            },
+            {
+                nome: "Financeiro",
+                icone: "fas fa-dollar-sign",
+                videos: [
+                    { id: "RgKAFK5djSk", titulo: "Fluxo de Caixa", duracao: "09:00", descricao: "Aprenda a controlar o fluxo de caixa da sua empresa." }
+                ]
+            },
+            {
+                nome: "Fiscal",
+                icone: "fas fa-file-invoice",
+                videos: [
+                    { id: "3JZ_D3ELwOQ", titulo: "Notas Fiscais Eletrônicas", duracao: "07:20", descricao: "Como emitir e gerenciar NF-es." }
+                ]
+            },
+            {
+                nome: "Manufatura",
+                icone: "fas fa-industry",
+                videos: [
+                    { id: "tAGnKpE4NCI", titulo: "Ordens de Produção", duracao: "10:15", descricao: "Gestão de ordens de produção dentro do ERP." }
+                ]
+            }
+        ]
+    };
+
+   
+
+
 
 // DADOS PARA AS NOVAS FUNCIONALIDADES
 let dadosImplantacao = [
@@ -314,7 +368,7 @@ function validarAdmin() {
     }
     if (usuario === 'upvendas' && senha === '123') {
         isAdmin = true;
-        currentClient = clientes['grupoduzani'];
+        currentClient = clientes['grupoduzani', 'becker'];
         showAdminArea();
     } else {
         showErrorMessage('adminErrorMsg', 'Credenciais incorretas!');
