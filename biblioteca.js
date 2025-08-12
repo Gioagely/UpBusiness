@@ -529,26 +529,21 @@ function renderVideoList() {
     Object.keys(moduleGroups).forEach(moduleName => {
         const videos = moduleGroups[moduleName];
         const moduleIcon = videos[0].icone;
+        const moduleId = moduleName.toLowerCase().replace(/\s+/g, '-');
         html += `<div class="module-group">
-            <div class="module-header">
+            <div class="module-header" onclick="toggleModule('${moduleId}')">
                 <i class="${moduleIcon}"></i>
                 <span>${moduleName}</span>
+                <i class="fas fa-chevron-down module-toggle" id="toggle-${moduleId}"></i>
             </div>
-            <div class="module-videos">`;
+            <div class="module-videos" id="videos-${moduleId}" style="display: none;">`;
         
         videos.forEach((video) => {
             const globalIndex = currentVideos.indexOf(video);
             const isActive = globalIndex === currentVideoIndex ? 'active' : '';
             html += `<div class="course-item ${isActive}" onclick="playVideo(${globalIndex})">
-                <div class="course-thumbnail">
-                    <i class="fas fa-play"></i>
-                </div>
                 <div class="course-info">
                     <h4>${video.titulo}</h4>
-                    <div class="course-meta">
-                        <span class="module"><i class="${video.icone}"></i> ${video.modulo}</span>
-                        <span class="duration">${video.duracao}</span>
-                    </div>
                     <p class="course-description">${video.descricao}</p>
                 </div>
             </div>`;
@@ -619,18 +614,67 @@ function filterByCategory(category) {
 
 function filtrarVideos() {
     const searchTerm = document.getElementById("searchInput").value.toLowerCase();
-    const courseItems = document.querySelectorAll(".course-item");
     
-    courseItems.forEach(item => {
-        const title = item.querySelector("h4").textContent.toLowerCase();
-        const description = item.querySelector(".course-description").textContent.toLowerCase();
-        
-        if (title.includes(searchTerm) || description.includes(searchTerm)) {
-            item.style.display = "flex";
-        } else {
-            item.style.display = "none";
-        }
+    if (!searchTerm) {
+        // Se não há termo de busca, renderizar lista normal
+        renderVideoList();
+        return;
+    }
+    
+    // Filtrar vídeos baseado no termo de busca
+    const filteredVideos = currentVideos.filter(video => {
+        const title = video.titulo.toLowerCase();
+        const description = video.descricao.toLowerCase();
+        return title.includes(searchTerm) || description.includes(searchTerm);
     });
+    
+    // Renderizar lista filtrada
+    const videoList = document.getElementById("videoList");
+    if (!videoList) return;
+    
+    let html = '';
+    const moduleGroups = {};
+    
+    // Agrupar vídeos filtrados por módulo
+    filteredVideos.forEach(video => {
+        if (!moduleGroups[video.modulo]) moduleGroups[video.modulo] = [];
+        moduleGroups[video.modulo].push(video);
+    });
+    
+    if (Object.keys(moduleGroups).length === 0) {
+        html = `<div class="no-results">
+            <i class="fas fa-search"></i>
+            <h3>Nenhum resultado encontrado</h3>
+            <p>Tente usar outros termos de busca</p>
+        </div>`;
+    } else {
+        Object.keys(moduleGroups).forEach(moduleName => {
+            const videos = moduleGroups[moduleName];
+            const moduleIcon = videos[0].icone;
+            const moduleId = moduleName.toLowerCase().replace(/\s+/g, '-');
+            html += `<div class="module-group">
+                <div class="module-header" onclick="toggleModule('${moduleId}')">
+                    <i class="${moduleIcon}"></i>
+                    <span>${moduleName}</span>
+                    <i class="fas fa-chevron-down module-toggle" id="toggle-${moduleId}"></i>
+                </div>
+                <div class="module-videos" id="videos-${moduleId}" style="display: block;">`;
+            
+            videos.forEach((video) => {
+                const globalIndex = currentVideos.indexOf(video);
+                const isActive = globalIndex === currentVideoIndex ? 'active' : '';
+                html += `<div class="course-item ${isActive}" onclick="playVideo(${globalIndex})">
+                    <div class="course-info">
+                        <h4>${video.titulo}</h4>
+                        <p class="course-description">${video.descricao}</p>
+                    </div>
+                </div>`;
+            });
+            html += `</div></div>`;
+        });
+    }
+    
+    videoList.innerHTML = html;
 }
 
 function updateVideoProgress() {
@@ -1759,5 +1803,25 @@ function atualizarSelectEmpresas() {
 function formatarDataBR(dataString) {
     const data = new Date(dataString);
     return data.toLocaleDateString('pt-BR');
+}
+
+
+
+// Função para alternar visibilidade dos módulos
+function toggleModule(moduleId) {
+    const moduleVideos = document.getElementById(`videos-${moduleId}`);
+    const toggleIcon = document.getElementById(`toggle-${moduleId}`);
+    
+    if (moduleVideos && toggleIcon) {
+        if (moduleVideos.style.display === 'none') {
+            moduleVideos.style.display = 'block';
+            toggleIcon.classList.remove('fa-chevron-down');
+            toggleIcon.classList.add('fa-chevron-up');
+        } else {
+            moduleVideos.style.display = 'none';
+            toggleIcon.classList.remove('fa-chevron-up');
+            toggleIcon.classList.add('fa-chevron-down');
+        }
+    }
 }
 
