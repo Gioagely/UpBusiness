@@ -777,7 +777,7 @@ input:checked + .toggle-slider:before {
 }
 
 .module-header {
-    background: var(--gradient-card);
+    background:var(--bg-tertiary);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
     border-radius: 4px; /* Bordas quadradas estilo Alura */

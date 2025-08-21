@@ -6,14 +6,14 @@ let clientes = {
         logo: "https://via.placeholder.com/150x50?text=Duzani",
         modulos: [
             {
-                nome: "Vendas",
-                icone: "fas fa-chart-line",
+                nome: "Cadastro de Pessoas",
+                icone: "fas fa-user-friends",
                 videos: [
-                    { id: "dQw4w9WgXcQ", titulo: "Introdução às Vendas", duracao: "05:00", descricao: "Aprenda os conceitos básicos do módulo de vendas." },
-                    { id: "hY7m5jjJ9mM", titulo: "Gestão de Pipeline", duracao: "07:30", descricao: "Como gerenciar oportunidades de vendas no sistema." }
+                    { id: "Zi_XLOBDo_Y", titulo: "Gerenciamento de Clientes e Fornecedores", duracao: "08:10", descricao: "Entenda como gerenciar pessoas no sistema." }
                 ]
             },
-            {
+            
+             {
                 nome: "Cadastro de Produtos",
                 icone: "fas fa-box-open",
                 videos: [
@@ -21,24 +21,27 @@ let clientes = {
                 ]
             },
             {
-                nome: "Cadastro de Pessoas",
-                icone: "fas fa-user-friends",
+                nome: "Vendas",
+                icone: "fas fa-chart-line",
                 videos: [
-                    { id: "Zi_XLOBDo_Y", titulo: "Gerenciamento de Clientes e Fornecedores", duracao: "08:10", descricao: "Entenda como gerenciar pessoas no sistema." }
+                    { id: "dQw4w9WgXcQ", titulo: "Introdução às Vendas", duracao: "05:00", descricao: "Aprenda os conceitos básicos do módulo de vendas." },
+                    { id: "hY7m5jjJ9mM", titulo: "Gestão de Pipeline", duracao: "07:30", descricao: "Como gerenciar oportunidades de vendas no sistema." }
                 ]
             },
-            {
-                nome: "Financeiro",
-                icone: "fas fa-dollar-sign",
-                videos: [
-                    { id: "RgKAFK5djSk", titulo: "Fluxo de Caixa", duracao: "09:00", descricao: "Aprenda a controlar o fluxo de caixa da sua empresa." }
-                ]
-            },
+           
             {
                 nome: "Fiscal",
                 icone: "fas fa-file-invoice",
                 videos: [
                     { id: "3JZ_D3ELwOQ", titulo: "Notas Fiscais Eletrônicas", duracao: "07:20", descricao: "Como emitir e gerenciar NF-es." }
+                ]
+            },
+
+            {
+                nome: "Financeiro",
+                icone: "fas fa-dollar-sign",
+                videos: [
+                    { id: "RgKAFK5djSk", titulo: "Fluxo de Caixa", duracao: "09:00", descricao: "Aprenda a controlar o fluxo de caixa da sua empresa." }
                 ]
             },
             {
@@ -56,6 +59,21 @@ clientes.becker = {
         cor: "#FF5733",
         logo: "https://via.placeholder.com/150x50?text=Becker",
         modulos: [
+           {
+                nome: "Cadastro de Pessoas",
+                icone: "fas fa-user-friends",
+                videos: [
+                    { id: "Zi_XLOBDo_Y", titulo: "Gerenciamento de Clientes e Fornecedores", duracao: "08:10", descricao: "Entenda como gerenciar pessoas no sistema." }
+                ]
+            },
+            
+             {
+                nome: "Cadastro de Produtos",
+                icone: "fas fa-box-open",
+                videos: [
+                    { id: "kXYiU_JCYtU", titulo: "Cadastrando Novos Produtos", duracao: "06:45", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
+                ]
+            },
             {
                 nome: "Vendas",
                 icone: "fas fa-chart-line",
@@ -64,32 +82,20 @@ clientes.becker = {
                     { id: "hY7m5jjJ9mM", titulo: "Gestão de Pipeline", duracao: "07:30", descricao: "Como gerenciar oportunidades de vendas no sistema." }
                 ]
             },
-            {
-                nome: "Cadastro de Produtos",
-                icone: "fas fa-box-open",
-                videos: [
-                    { id: "kXYiU_JCYtU", titulo: "Cadastrando Novos Produtos", duracao: "06:45", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
-                ]
-            },
-            {
-                nome: "Cadastro de Pessoas",
-                icone: "fas fa-user-friends",
-                videos: [
-                    { id: "Zi_XLOBDo_Y", titulo: "Gerenciamento de Clientes e Fornecedores", duracao: "08:10", descricao: "Entenda como gerenciar pessoas no sistema." }
-                ]
-            },
-            {
-                nome: "Financeiro",
-                icone: "fas fa-dollar-sign",
-                videos: [
-                    { id: "RgKAFK5djSk", titulo: "Fluxo de Caixa", duracao: "09:00", descricao: "Aprenda a controlar o fluxo de caixa da sua empresa." }
-                ]
-            },
+           
             {
                 nome: "Fiscal",
                 icone: "fas fa-file-invoice",
                 videos: [
                     { id: "3JZ_D3ELwOQ", titulo: "Notas Fiscais Eletrônicas", duracao: "07:20", descricao: "Como emitir e gerenciar NF-es." }
+                ]
+            },
+
+            {
+                nome: "Financeiro",
+                icone: "fas fa-dollar-sign",
+                videos: [
+                    { id: "RgKAFK5djSk", titulo: "Fluxo de Caixa", duracao: "09:00", descricao: "Aprenda a controlar o fluxo de caixa da sua empresa." }
                 ]
             },
             {
@@ -100,10 +106,69 @@ clientes.becker = {
                 ]
             }
         ]
-    };
+    }
+    clientes.thaiscarvalhojoias = {
+        nome: "Thais Carvalho Joias",
+        cor: "#FF5733",
+        logo: "https://via.placeholder.com/150x50?text=thaiscarvalhojoias",
+        modulos: [
+           {
+                nome: "Cadastro de Pessoas",
+                icone: "fas fa-user-friends",
+                videos: [
+                    
+                ]
+            },
+            
+             {
+                nome: "Cadastro de Produtos",
+                icone: "fas fa-box-open",
+                videos: [
+                    { id: "HEZGPzA7QJY", titulo: "Cadastro de Produtos", duracao: "09:27", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
+                ]
+            },
+            {
+                nome: "Vendas",
+                icone: "fas fa-chart-line",
+                videos: [
+                    { id: "bqpirA5K2UQ", titulo: "Lançamento De Vendas Consignadas", duracao: "10:07", descricao: "Aprenda os conceitos básicos do módulo de vendas." },
+                    { id: "H5tEfnAw3T0", titulo: "Acerto Com Consultora, Fechamento de Venda Consignada", duracao: "08:46", descricao: "Como gerenciar oportunidades de vendas no sistema." }
+                ]
+            },
+           
+            {
+                nome: "Fiscal",
+                icone: "fas fa-file-invoice",
+                videos: [
+                   
+                ]
+            },
 
-   
+            {
+                nome: "Contabil",
+                icone: "fas fa-calculator",
+                videos: [
+                    
+                ]
+            },
 
+            {
+                nome: "Financeiro",
+                icone: "fas fa-dollar-sign",
+                videos: [
+                    
+                ]
+            },
+
+            {
+                nome: "Manufatura",
+                icone: "fas fa-industry",
+                videos: [
+                    
+                ]
+            }
+        ]
+    }
 
 
 // DADOS PARA AS NOVAS FUNCIONALIDADES
@@ -507,11 +572,11 @@ function renderVideoList() {
     let filteredVideos = currentVideos;
     if (currentModuleFilter !== 'todos') {
         const moduleMap = {
-            'vendas': 'Vendas',
-            'cadastro-de-produtos': 'Cadastro de Produtos',
             'cadastro-de-pessoas': 'Cadastro de Pessoas',
-            'financeiro': 'Financeiro',
+            'cadastro-de-produtos': 'Cadastro de Produtos',
+            'vendas': 'Vendas',
             'fiscal': 'Fiscal',
+            'financeiro': 'Financeiro',
             'manufatura': 'Manufatura'
         };
         const moduleName = moduleMap[currentModuleFilter];
@@ -1143,6 +1208,7 @@ function criarGraficoModulos() {
         { nome: 'Importação', concluidos: 8, total: 10, icon: 'fas fa-download' },
         { nome: 'Cadastro Produto', concluidos: 7, total: 10, icon: 'fas fa-box' },
         { nome: 'Vendas', concluidos: 6, total: 10, icon: 'fas fa-shopping-cart' },
+        { nome: 'Contabil', concluidos: 5, total: 10, icon: 'fas fa-calculator' },
         { nome: 'Financeiro', concluidos: 5, total: 10, icon: 'fas fa-dollar-sign' },
         { nome: 'Cadastro Pessoas', concluidos: 4, total: 10, icon: 'fas fa-users' },
         { nome: 'Fiscal', concluidos: 3, total: 10, icon: 'fas fa-file-invoice' },
@@ -1339,11 +1405,11 @@ function adicionarVideo() {
     }
     
     const moduleMap = {
-        'vendas': 'Vendas',
-        'cadastro-de-produtos': 'Cadastro de Produtos',
         'cadastro-de-pessoas': 'Cadastro de Pessoas',
-        'financeiro': 'Financeiro',
+        'cadastro-de-produtos': 'Cadastro de Produtos',
+        'vendas': 'Vendas',
         'fiscal': 'Fiscal',
+        'financeiro': 'Financeiro',
         'manufatura': 'Manufatura'
     };
     
