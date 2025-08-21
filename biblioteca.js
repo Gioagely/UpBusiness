@@ -140,7 +140,7 @@ clientes.becker = {
                 nome: "Fiscal",
                 icone: "fas fa-file-invoice",
                 videos: [
-                   
+                    { id: "YJTsNzqrr68", titulo: "Emissão De Notas Fiscais Eletrônicas", duracao: "10:57", descricao: "Como gerenciar oportunidades de vendas no sistema." }
                 ]
             },
 
