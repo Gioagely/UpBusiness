@@ -133,7 +133,7 @@ clientes.becker = {
                 nome: "Vendas",
                 icone: "fas fa-chart-line",
                 videos: [
-                    { id: "bqpirA5K2UQ", titulo: "Lançamento De Vendas Consignadas", duracao: "10:07", descricao: "Aprenda os conceitos básicos do módulo de vendas." },
+                    { id: "dMpOZxc1YlA", titulo: "Lançamento De Vendas Consignadas", duracao: "10:07", descricao: "Aprenda os conceitos básicos do módulo de vendas." },
                     { id: "H5tEfnAw3T0", titulo: "Acerto Com Consultora, Fechamento de Venda Consignada", duracao: "08:46", descricao: "Como gerenciar oportunidades de vendas no sistema." },
                     { id: "0QcELiIlhf0", titulo: "Faturamento de Pedido do App White Label", duracao: "12:21", descricao: "Como gerenciar oportunidades de vendas no sistema." }
                 ]
