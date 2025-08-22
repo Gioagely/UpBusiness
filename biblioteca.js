@@ -124,7 +124,9 @@ clientes.becker = {
                 nome: "Cadastro de Produtos",
                 icone: "fas fa-box-open",
                 videos: [
-                    { id: "HEZGPzA7QJY", titulo: "Cadastro de Produtos", duracao: "09:27", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
+                    { id: "HEZGPzA7QJY", titulo: "Cadastro de Produtos", duracao: "09:27", descricao: "Tutorial passo a passo sobre o cadastro de produtos." },
+                    { id: "0STKZHV1E1c", titulo: "Analise De Estoque e Inventário", duracao: "09:27", descricao: "Tutorial passo a passo sobre o cadastro de produtos." },
+                    { id: "R4W8zfZLV4A", titulo: "Vitrine", duracao: "09:36", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
                 ]
             },
             {
@@ -132,7 +134,8 @@ clientes.becker = {
                 icone: "fas fa-chart-line",
                 videos: [
                     { id: "bqpirA5K2UQ", titulo: "Lançamento De Vendas Consignadas", duracao: "10:07", descricao: "Aprenda os conceitos básicos do módulo de vendas." },
-                    { id: "H5tEfnAw3T0", titulo: "Acerto Com Consultora, Fechamento de Venda Consignada", duracao: "08:46", descricao: "Como gerenciar oportunidades de vendas no sistema." }
+                    { id: "H5tEfnAw3T0", titulo: "Acerto Com Consultora, Fechamento de Venda Consignada", duracao: "08:46", descricao: "Como gerenciar oportunidades de vendas no sistema." },
+                    { id: "0QcELiIlhf0", titulo: "Faturamento de Pedido do App White Label", duracao: "12:21", descricao: "Como gerenciar oportunidades de vendas no sistema." }
                 ]
             },
            
@@ -140,7 +143,7 @@ clientes.becker = {
                 nome: "Fiscal",
                 icone: "fas fa-file-invoice",
                 videos: [
-                    { id: "YJTsNzqrr68", titulo: "Emissão De Notas Fiscais Eletrônicas", duracao: "10:57", descricao: "Como gerenciar oportunidades de vendas no sistema." }
+                    
                 ]
             },
 
@@ -148,7 +151,8 @@ clientes.becker = {
                 nome: "Contabil",
                 icone: "fas fa-calculator",
                 videos: [
-                    
+                    { id: "PP_JoADlWTU", titulo: "Contábil e DRE", duracao: "11:41", descricao: "Como gerenciar oportunidades de vendas no sistema." }
+
                 ]
             },
 
@@ -156,7 +160,8 @@ clientes.becker = {
                 nome: "Financeiro",
                 icone: "fas fa-dollar-sign",
                 videos: [
-                    
+                    { id: "d4-3BtlKN4M", titulo: "Financeiro, Contas a Receber, Contas a Pagar e Movimento de Caixa", duracao: "17:51", descricao: "Como gerenciar oportunidades de vendas no sistema." }
+
                 ]
             },
 
