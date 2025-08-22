@@ -664,7 +664,7 @@ input:checked + .toggle-slider:before {
 .breadcrumb-sidebar {
     background: var(--bg-tertiary);
     border-bottom: 1px solid var(--border-primary);
-    padding: var(--spacing-lg);
+    padding: 10px;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-md);
@@ -674,7 +674,7 @@ input:checked + .toggle-slider:before {
     background: var(--bg-glass);
     border: 1px solid var(--border-primary);
     color: var(--text-secondary);
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: 10px;
     border-radius: 4px; /* Bordas mais quadradas */
     cursor: pointer;
     transition: var(--transition-normal);
@@ -683,7 +683,7 @@ input:checked + .toggle-slider:before {
     gap: var(--spacing-sm);
     font-size: var(--font-size-base);
     font-weight: 500;
-    width: 100%;
+    width: 40%;
     justify-content: flex-start;
 }
 
@@ -694,18 +694,7 @@ input:checked + .toggle-slider:before {
     box-shadow: var(--shadow-md);
 }
 
-.breadcrumb-path { 
-    display: flex; 
-    align-items: center; 
-    gap: var(--spacing-sm); 
-    color: var(--text-tertiary); 
-    font-size: var(--font-size-sm); 
-    padding-left: var(--spacing-sm);
-}
 
-.breadcrumb-path i { 
-    font-size: var(--font-size-xs); 
-}
 
 /* ===== LAYOUT DE VÍDEOS ESTILO ALURA ===== */
 .video-layout { 
@@ -724,13 +713,14 @@ input:checked + .toggle-slider:before {
 }
 
 .sidebar-header { 
-    padding: var(--spacing-xl); 
     border-bottom: 1px solid var(--border-primary); 
     background: var(--bg-tertiary);
+    
 }
 
 .sidebar-header h3 { 
-    font-size: var(--font-size-xl); 
+    text-align: center;
+    font-size: 20px; 
     font-weight: 700; 
     margin-bottom: var(--spacing-lg);
     color: var(--text-primary);
@@ -738,6 +728,7 @@ input:checked + .toggle-slider:before {
 
 .search-box { 
     position: relative; 
+
 }
 
 .search-box i { 
@@ -746,23 +737,27 @@ input:checked + .toggle-slider:before {
     top: 50%; 
     transform: translateY(-50%); 
     color: var(--text-tertiary); 
+    align-items: center;
 }
 
 .search-box input {
     width: 100%;
-    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) 45px;
+    padding: var(--spacing-md) var(--spacing-md) var(--spacing-md)  45px;
     background: var(--bg-quaternary);
     border: 1px solid var(--border-primary);
     border-radius: 4px; /* Bordas quadradas estilo Alura */
     color: var(--text-primary);
     font-size: var(--font-size-base);
     transition: var(--transition-normal);
+
+    
 }
 
 .search-box input:focus { 
     outline: none; 
     border-color: var(--alura-primary); 
     box-shadow: 0 0 0 3px rgba(3, 246, 68, 0.1);
+
 }
 
 /* ===== LISTA DE CURSOS ESTILO ALURA ===== */
@@ -773,21 +768,27 @@ input:checked + .toggle-slider:before {
 }
 
 .module-group { 
-    margin-bottom: var(--spacing-2xl); 
+    margin-bottom: 10px; 
+}
+
+.module-group :hover { 
+    border-color: var(--alura-primary); 
+    transform: translateY(-1px);
 }
 
 .module-header {
     background:var(--bg-tertiary);
-    padding: var(--spacing-lg);
+    padding: 15px;
     margin-bottom: var(--spacing-md);
     border-radius: 4px; /* Bordas quadradas estilo Alura */
     display: flex;
     align-items: center;
-    gap: var(--spacing-md);
+    gap: 2px;
     font-weight: 700;
     font-size: var(--font-size-lg);
     border: 1px solid rgba(3, 246, 68, 0.2);
 }
+
 
 .module-header i { 
     color: var(--alura-primary); 
@@ -886,11 +887,12 @@ input:checked + .toggle-slider:before {
 .video-main {
     background: var(--bg-primary);
     overflow-y: auto;
-    padding: var(--spacing-xl);
+    
 }
 
 .video-player-section {
-    margin-bottom: var(--spacing-2xl);
+   
+    
 }
 
 .player-container {
@@ -901,7 +903,8 @@ input:checked + .toggle-slider:before {
     border-radius: 4px; /* Bordas quadradas estilo Alura */
     overflow: hidden;
     box-shadow: var(--shadow-xl);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: 50px;
+    
 }
 
 .video-placeholder {
@@ -939,7 +942,7 @@ input:checked + .toggle-slider:before {
 #currentVideo {
     width: 100%;
     height: 100%;
-    border: none;
+    
 }
 
 .video-info {
@@ -1058,7 +1061,7 @@ input:checked + .toggle-slider:before {
     background: var(--bg-glass);
     border: 1px solid var(--border-primary);
     color: var(--text-secondary);
-    padding: var(--spacing-md) var(--spacing-xl);
+    padding: 10px;
     border-radius: var(--radius-lg);
     cursor: pointer;
     transition: var(--transition-normal);
@@ -1069,6 +1072,7 @@ input:checked + .toggle-slider:before {
     gap: var(--spacing-sm);
     flex: 1;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .nav-btn:hover {
