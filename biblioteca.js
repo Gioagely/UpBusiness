@@ -352,14 +352,7 @@ function initializeTheme() {
 }
 
 function setupEventListeners() {
-    document.querySelectorAll(".nav-tab").forEach(tab => {
-        tab.addEventListener("click", function() {
-            const category = this.dataset.category;
-            filterByCategory(category);
-            document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
-            this.classList.add("active");
-        });
-    });
+    // Removido os event listeners dos nav-tabs (menu de categorias)
 
     const globalSearch = document.getElementById("globalSearch");
     if (globalSearch) {
@@ -484,7 +477,6 @@ function showVideoArea() {
     document.getElementById('loginArea').style.display = 'none';
     document.getElementById('videoArea').style.display = 'block';
     document.getElementById('adminArea').style.display = 'none';
-    document.getElementById('mainNav').style.display = 'block';
     document.getElementById('headerSearch').style.display = 'block';
     document.getElementById('loginBtn').style.display = 'none';
     document.getElementById('userBtn').style.display = 'block';
@@ -718,10 +710,8 @@ function navegarVideo(direcao) {
 }
 
 function filterByCategory(category) {
-    currentModuleFilter = category;
-    document.getElementById("currentModule").textContent = 
-        category === 'todos' ? 'Todos os Cursos' : 
-        category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+    // Sempre mostra todos os vídeos, ignorando a categoria
+    currentModuleFilter = 'todos';
     renderVideoList();
 }
 
@@ -1402,11 +1392,21 @@ function renderKanbanAdmin() {
 // ===== FUNÇÕES DE MODAL E CRUD =====
 function abrirModalVideo(videoId = null, moduleName = null, videoIndex = null) {
     const modal = document.getElementById('modalAdicionarVideo');
+    const modalTitle = modal.querySelector('h2');
     const titulo = document.getElementById('videoTituloInput');
     const id = document.getElementById('videoIdInput');
     const modulo = document.getElementById('videoModuloSelect');
-    const modalTitle = modal.querySelector('h2');
+    const dominio = document.getElementById('videoDominioSelect');
     const btnAdicionar = document.getElementById('btnAdicionarVideo');
+    
+    // Popular o campo de domínio com os domínios disponíveis
+    dominio.innerHTML = '<option value="">Selecione um domínio</option>';
+    Object.keys(clientes).forEach(key => {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = clientes[key].nome;
+        dominio.appendChild(option);
+    });
     
     if (videoId && moduleName !== null && videoIndex !== null) {
         // Modo edição
@@ -1418,6 +1418,11 @@ function abrirModalVideo(videoId = null, moduleName = null, videoIndex = null) {
         titulo.value = video.titulo;
         id.value = video.id;
         modulo.value = moduleName.toLowerCase().replace(/\s+/g, '-');
+        // Definir o domínio atual se estiver editando
+        const currentDomain = Object.keys(clientes).find(key => clientes[key] === currentClient);
+        if (currentDomain) {
+            dominio.value = currentDomain;
+        }
     } else {
         // Modo criação
         editingVideoId = null;
@@ -1426,6 +1431,7 @@ function abrirModalVideo(videoId = null, moduleName = null, videoIndex = null) {
         titulo.value = '';
         id.value = '';
         modulo.value = 'vendas';
+        dominio.value = '';
     }
     
     modal.style.display = 'flex';
@@ -1446,8 +1452,9 @@ function adicionarVideo() {
     const titulo = document.getElementById('videoTituloInput').value.trim();
     const videoId = document.getElementById('videoIdInput').value.trim();
     const moduloSelecionado = document.getElementById('videoModuloSelect').value;
+    const dominioSelecionado = document.getElementById('videoDominioSelect').value;
     
-    if (!titulo || !videoId) {
+    if (!titulo || !videoId || !dominioSelecionado) {
         alert('Por favor, preencha todos os campos obrigatórios.');
         return;
     }
@@ -1462,10 +1469,18 @@ function adicionarVideo() {
     };
     
     const moduleName = moduleMap[moduloSelecionado];
-    const modulo = currentClient.modulos.find(m => m.nome === moduleName);
+    
+    // Buscar o cliente pelo domínio selecionado
+    const clienteSelecionado = clientes[dominioSelecionado];
+    if (!clienteSelecionado) {
+        alert('Domínio não encontrado.');
+        return;
+    }
+    
+    const modulo = clienteSelecionado.modulos.find(m => m.nome === moduleName);
     
     if (!modulo) {
-        alert('Módulo não encontrado.');
+        alert('Módulo não encontrado para este domínio.');
         return;
     }
     
@@ -1939,27 +1954,7 @@ function toggleModule(moduleId) {
     }
 }
 
-// Função para próxima atividade (botão estilo Alura)
-function proximaAtividade() {
-    const currentVideo = document.getElementById('currentVideo');
-    const videoList = document.querySelectorAll('.course-item');
-    let currentIndex = -1;
-    
-    // Encontrar o vídeo atual
-    videoList.forEach((item, index) => {
-        if (item.classList.contains('active')) {
-            currentIndex = index;
-        }
-    });
-    
-    // Ir para o próximo vídeo
-    if (currentIndex >= 0 && currentIndex < videoList.length - 1) {
-        videoList[currentIndex + 1].click();
-    } else {
-        // Se for o último vídeo, mostrar mensagem
-        alert('Parabéns! Você concluiu todos os vídeos deste módulo.');
-    }
-}
+
 
 // Função para atualizar progresso do curso
 function atualizarProgressoCurso() {
