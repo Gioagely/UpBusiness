@@ -33,21 +33,7 @@
         </div>
     </header>
 
-    <!-- Navegação Principal -->
-    <nav class="alura-nav" id="mainNav" style="display: none;">
-        <div class="nav-container">
-            <div class="nav-tabs">
-                <button class="nav-tab active" data-category="todos"><i class="fas fa-th-large"></i> Todos os Cursos</button>
-                <button class="nav-tab" data-category="cadastro-de-pessoas"><i class="fas fa-user-friends"></i> Cadastro de Pessoas</button>
-                <button class="nav-tab" data-category="cadastro-de-produtos"><i class="fas fa-box-open"></i> Cadastro de Produtos</button>
-                <button class="nav-tab" data-category="vendas"><i class="fas fa-chart-line"></i> Vendas</button>
-                <button class="nav-tab" data-category="fiscal"><i class="fas fa-file-invoice"></i> Fiscal</button>
-                <button class="nav-tab" data-category="contabil"><i class="fas fa-calculator"></i> Contabil</button>
-                <button class="nav-tab" data-category="financeiro"><i class="fas fa-dollar-sign"></i> Financeiro</button>
-                <button class="nav-tab" data-category="manufatura"><i class="fas fa-industry"></i> Manufatura</button>
-            </div>
-        </div>
-    </nav>
+
 
     <div class="main-container">
         <!-- Tela de Login -->
@@ -117,15 +103,29 @@
             </div>
         </div>
 
-        <!-- Área de Vídeos (Usuário) - Estilo Alura -->
+        <!-- Área de Vídeos (Usuário) - Estilo Alura Melhorado -->
         <div id="videoArea" class="video-area" style="display:none;">
             <div class="video-layout">
                 <aside class="video-sidebar">
                     <div class="breadcrumb-sidebar">
-                        <button class="breadcrumb-btn" onclick="voltarInicio()"><i class="fas fa-arrow-left"></i> Voltar ao Início</button>
+                        <button class="back-btn" onclick="voltarInicio()">
+                            <i class="fas fa-arrow-left"></i>
+                            <span>Voltar ao Início</span>
+                        </button>
                     </div>
+                    
+                    <!-- Progresso do Curso (Acima da Lista) -->
+                    <div class="course-progress-section">
+                        <div class="course-progress-header">
+                            <span class="course-progress-title">Biblioteca de treinamento - Progresso</span>
+                            <span class="course-progress-percentage">31%</span>
+                        </div>
+                        <div class="course-progress-bar">
+                            <div class="course-progress-fill"></div>
+                        </div>
+                    </div>
+                    
                     <div class="sidebar-header">
-                        <h3>Cursos Disponíveis</h3>
                         <div class="search-box">
                             <i class="fas fa-search"></i>
                             <input type="text" id="searchInput" placeholder="Buscar curso..." oninput="filtrarVideos()">
@@ -133,7 +133,24 @@
                     </div>
                     <div class="course-list" id="videoList"></div>
                 </aside>
+                
                 <main class="video-main">
+                    <!-- Botões de Navegação Acima do Vídeo com Nome do Vídeo -->
+                    <div class="video-navigation-top" id="videoNavigationTop" style="display: none;">
+                        <button class="nav-btn prev-btn" id="prevVideoBtn" onclick="navegarVideo('anterior')" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                            <span>Anterior</span>
+                        </button>
+                        <div class="current-video-name" id="currentVideoName">
+                            <span class="video-indicator">Assistindo:</span>
+                            <span class="video-title" id="navVideoTitle">Nome do Vídeo</span>
+                        </div>
+                        <button class="nav-btn next-btn" id="nextVideoBtn" onclick="navegarVideo('proximo')">
+                            <span>Próximo</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    
                     <div class="video-player-section">
                         <div class="player-container">
                             <div class="video-placeholder" id="videoPlaceholder">
@@ -154,35 +171,20 @@
                                     <div class="meta-item"><i class="fas fa-star"></i><span>9.5</span></div>
                                 </div>
                             </div>
-                            <div class="progress-section" id="progressSection" style="display: none;">
-                                <div class="progress-header">
-                                    <span class="progress-label">Progresso do Curso</span>
-                                    <span class="progress-percentage" id="progressPercentage">0%</span>
-                                </div>
-                                <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
-                            </div>
-                            <div class="completion-section" id="completionSection" style="display: none;">
-                                <label class="completion-checkbox">
-                                    <input type="checkbox" id="completedCheckbox">
-                                    <span class="checkmark"></span>
-                                    <span class="checkbox-label">Marcar como concluído</span>
-                                </label>
-                            </div>
                         </div>
                     </div>
+                    
+                    <!-- Seção de Transcrição Melhorada -->
                     <div class="transcription-section" id="transcriptionSection" style="display: none;">
                         <div class="section-header">
                             <h3><i class="fas fa-file-alt"></i> Transcrição</h3>
                             <button class="copy-btn" onclick="copiarTranscricao()"><i class="fas fa-copy"></i> Copiar</button>
                         </div>
                         <div class="transcription-content" id="transcriptionContent">
-                            Esta é uma transcrição de exemplo do vídeo selecionado. O conteúdo real seria carregado dinamicamente baseado no vídeo escolhido.
+                            Olá, estudante! Tudo bem? Na aula anterior, aprendemos sobre sinais e comandos. Agora vamos começar a utilizar esses comandos e sinais no Scratch. Vamos começar explorando os diferentes tipos de blocos disponíveis na plataforma e como eles podem ser combinados para criar projetos interativos e funcionais.
                         </div>
                     </div>
-                    <div class="video-navigation" id="videoNavigation" style="display: none;">
-                        <button class="nav-btn prev" id="prevVideoBtn" onclick="navegarVideo('anterior')"><i class="fas fa-chevron-left"></i> Vídeo Anterior</button>
-                        <button class="nav-btn next" id="nextVideoBtn" onclick="navegarVideo('proximo')">Próximo Vídeo <i class="fas fa-chevron-right"></i></button>
-                    </div>
+
                 </main>
             </div>
         </div>
@@ -360,4 +362,3 @@
     <script src="biblioteca.js"></script>
 </body>
 </html>
-

@@ -317,6 +317,7 @@ let charts = {};
 let draggedTask = null;
 let editingVideoId = null;
 let editingAnotacaoId = null;
+let completedVideos = []; // Array para rastrear vídeos completados
 
 // ===== INICIALIZAÇÃO E EVENTOS =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -590,38 +591,65 @@ function renderVideoList() {
         }
     }
     
-    // Agrupar por módulo
+    // Agrupar vídeos por módulo
     filteredVideos.forEach(video => {
-        if (!moduleGroups[video.modulo]) moduleGroups[video.modulo] = [];
+        if (!moduleGroups[video.modulo]) {
+            moduleGroups[video.modulo] = [];
+        }
         moduleGroups[video.modulo].push(video);
     });
     
+    // Renderizar grupos de módulos com expansão/colapso
     Object.keys(moduleGroups).forEach(moduleName => {
         const videos = moduleGroups[moduleName];
         const moduleIcon = videos[0].icone;
-        const moduleId = moduleName.toLowerCase().replace(/\s+/g, '-');
-        html += `<div class="module-group">
-            <div class="module-header" onclick="toggleModule('${moduleId}')">
-                <i class="${moduleIcon}"></i>
-                <span>${moduleName}</span>
-                <i class="fas fa-chevron-down module-toggle" id="toggle-${moduleId}"></i>
-            </div>
-            <div class="module-videos" id="videos-${moduleId}" style="display: none;">`;
+        const moduleId = moduleName.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
         
-        videos.forEach((video) => {
+        // Cabeçalho do módulo (sempre visível)
+        html += `
+            <div class="module-group">
+                <div class="module-header" onclick="toggleModule('${moduleId}')">
+                    <div class="module-header-content">
+                        <i class="${moduleIcon} module-icon"></i>
+                        <span class="module-title">${moduleName}</span>
+                        <span class="module-count">${videos.length} vídeo${videos.length > 1 ? 's' : ''}</span>
+                    </div>
+                    <i class="fas fa-chevron-down module-toggle" id="toggle-${moduleId}"></i>
+                </div>
+                <div class="module-videos" id="videos-${moduleId}" style="display: none;">
+        `;
+        
+        // Vídeos do módulo (inicialmente ocultos)
+        videos.forEach((video, index) => {
             const globalIndex = currentVideos.indexOf(video);
             const isActive = globalIndex === currentVideoIndex ? 'active' : '';
-            html += `<div class="course-item ${isActive}" onclick="playVideo(${globalIndex})">
-                <div class="course-info">
-                    <h4>${video.titulo}</h4>
-                    <p class="course-description">${video.descricao}</p>
+            const isCompleted = completedVideos.includes(globalIndex) ? 'completed' : '';
+            
+            html += `
+                <div class="course-item ${isActive} ${isCompleted}" onclick="playVideo(${globalIndex})">
+                    <div class="course-number">${index + 1}</div>
+                    <div class="course-info">
+                        <div class="course-title">${video.titulo}</div>
+                        <div class="course-duration">
+                            <i class="fas fa-play-circle"></i>
+                            ${video.duracao || "5:00"}
+                        </div>
+                    </div>
+                    <div class="course-status"></div>
                 </div>
-            </div>`;
+            `;
         });
-        html += `</div></div>`;
+        
+        html += `
+                </div>
+            </div>
+        `;
     });
     
     videoList.innerHTML = html;
+    
+    // Atualizar progresso do curso
+    atualizarProgressoCurso();
 }
 
 function playVideo(index) {
@@ -642,9 +670,24 @@ function playVideo(index) {
     document.getElementById("videoDuration").textContent = video.duracao || "--:--";
     document.getElementById("videoModule").textContent = video.modulo;
     document.getElementById("videoMeta").style.display = "flex";
-    document.getElementById("progressSection").style.display = "block";
-    document.getElementById("completionSection").style.display = "block";
-    document.getElementById("videoNavigation").style.display = "flex";
+    
+    // Atualizar nome do vídeo na barra de navegação
+    const navVideoTitle = document.getElementById("navVideoTitle");
+    if (navVideoTitle) {
+        navVideoTitle.textContent = video.titulo;
+    }
+    
+    // Mostrar seção de transcrição
+    const transcriptionSection = document.getElementById("transcriptionSection");
+    if (transcriptionSection) {
+        transcriptionSection.style.display = "flex";
+    }
+    
+    // Mostrar botões de navegação acima do vídeo
+    const videoNavigationTop = document.getElementById("videoNavigationTop");
+    if (videoNavigationTop) {
+        videoNavigationTop.style.display = "flex";
+    }
     
     // Atualizar navegação
     updateVideoNavigation();
@@ -1893,6 +1936,109 @@ function toggleModule(moduleId) {
             toggleIcon.classList.remove('fa-chevron-up');
             toggleIcon.classList.add('fa-chevron-down');
         }
+    }
+}
+
+// Função para próxima atividade (botão estilo Alura)
+function proximaAtividade() {
+    const currentVideo = document.getElementById('currentVideo');
+    const videoList = document.querySelectorAll('.course-item');
+    let currentIndex = -1;
+    
+    // Encontrar o vídeo atual
+    videoList.forEach((item, index) => {
+        if (item.classList.contains('active')) {
+            currentIndex = index;
+        }
+    });
+    
+    // Ir para o próximo vídeo
+    if (currentIndex >= 0 && currentIndex < videoList.length - 1) {
+        videoList[currentIndex + 1].click();
+    } else {
+        // Se for o último vídeo, mostrar mensagem
+        alert('Parabéns! Você concluiu todos os vídeos deste módulo.');
+    }
+}
+
+// Função para atualizar progresso do curso
+function atualizarProgressoCurso() {
+    const totalVideos = document.querySelectorAll('.course-item').length;
+    const videosAssistidos = document.querySelectorAll('.course-item.completed').length;
+    const porcentagem = totalVideos > 0 ? Math.round((videosAssistidos / totalVideos) * 100) : 0;
+    
+    const progressPercentage = document.querySelector('.course-progress-percentage');
+    const progressFill = document.querySelector('.course-progress-fill');
+    const progressStats = document.querySelector('.course-progress-stats');
+    
+    if (progressPercentage) {
+        progressPercentage.textContent = porcentagem + '%';
+    }
+    
+    if (progressFill) {
+        progressFill.style.width = porcentagem + '%';
+    }
+    
+    if (progressStats) {
+        const restantes = totalVideos - videosAssistidos;
+        const tempoRestante = restantes * 7; // Estimativa de 7 minutos por vídeo
+        const horas = Math.floor(tempoRestante / 60);
+        const minutos = tempoRestante % 60;
+        
+        progressStats.innerHTML = `
+            <span>${videosAssistidos} de ${totalVideos} atividades</span>
+            <span>${horas}h ${minutos}min restantes</span>
+        `;
+    }
+}
+
+
+
+// Função para alternar expansão/colapso dos módulos
+function toggleModule(moduleId) {
+    const moduleVideos = document.getElementById(`videos-${moduleId}`);
+    const toggleIcon = document.getElementById(`toggle-${moduleId}`);
+    
+    if (!moduleVideos || !toggleIcon) return;
+    
+    if (moduleVideos.style.display === 'none') {
+        // Expandir módulo
+        moduleVideos.style.display = 'block';
+        toggleIcon.classList.remove('fa-chevron-down');
+        toggleIcon.classList.add('fa-chevron-up');
+        
+        // Animação suave de expansão
+        moduleVideos.style.maxHeight = '0px';
+        moduleVideos.style.overflow = 'hidden';
+        moduleVideos.style.transition = 'max-height 0.3s ease-out';
+        
+        // Calcular altura necessária
+        const scrollHeight = moduleVideos.scrollHeight;
+        requestAnimationFrame(() => {
+            moduleVideos.style.maxHeight = scrollHeight + 'px';
+        });
+        
+        // Remover restrições após animação
+        setTimeout(() => {
+            moduleVideos.style.maxHeight = 'none';
+            moduleVideos.style.overflow = 'visible';
+        }, 300);
+        
+    } else {
+        // Colapsar módulo
+        moduleVideos.style.maxHeight = moduleVideos.scrollHeight + 'px';
+        moduleVideos.style.overflow = 'hidden';
+        moduleVideos.style.transition = 'max-height 0.3s ease-in';
+        
+        requestAnimationFrame(() => {
+            moduleVideos.style.maxHeight = '0px';
+        });
+        
+        setTimeout(() => {
+            moduleVideos.style.display = 'none';
+            toggleIcon.classList.remove('fa-chevron-up');
+            toggleIcon.classList.add('fa-chevron-down');
+        }, 300);
     }
 }
 
