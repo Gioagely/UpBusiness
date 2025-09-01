@@ -600,6 +600,47 @@ function showAdminArea() {
 }
 
 function voltarInicio() {
+    // Pausar o vídeo antes de voltar ao início
+    const iframe = document.getElementById("currentVideo");
+    const placeholder = document.getElementById("videoPlaceholder");
+    
+    if (iframe) {
+        // Limpar o src do iframe para parar o vídeo
+        iframe.src = "";
+        iframe.style.display = "none";
+    }
+    
+    if (placeholder) {
+        placeholder.style.display = "block";
+    }
+    
+    // Resetar variáveis de vídeo
+    currentVideoIndex = -1;
+    currentVideos = [];
+    
+    // Esconder seções relacionadas ao vídeo
+    const videoNavigationTop = document.getElementById("videoNavigationTop");
+    const transcriptionSection = document.getElementById("transcriptionSection");
+    const videoMeta = document.getElementById("videoMeta");
+    
+    if (videoNavigationTop) {
+        videoNavigationTop.style.display = "none";
+    }
+    
+    if (transcriptionSection) {
+        transcriptionSection.style.display = "none";
+    }
+    
+    if (videoMeta) {
+        videoMeta.style.display = "none";
+    }
+    
+    // Resetar título do vídeo
+    const videoTitle = document.getElementById("videoTitle");
+    if (videoTitle) {
+        videoTitle.textContent = "Bem-vindo à Biblioteca de Treinamentos";
+    }
+    
     currentClient = null;
     isAdmin = false;
     showLoginArea();
