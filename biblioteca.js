@@ -9,7 +9,13 @@ let clientes = {
                 nome: "Cadastro de Pessoas",
                 icone: "fas fa-user-friends",
                 videos: [
-                    { id: "Zi_XLOBDo_Y", titulo: "Gerenciamento de Clientes e Fornecedores", duracao: "08:10", descricao: "Entenda como gerenciar pessoas no sistema." }
+                    { 
+                        id: "Zi_XLOBDo_Y", 
+                        titulo: "Gerenciamento de Clientes e Fornecedores", 
+                        duracao: "08:10", 
+                        descricao: "Entenda como gerenciar pessoas no sistema.",
+                        transcricao: "Olá, bem-vindos ao treinamento de gerenciamento de clientes e fornecedores. Nesta aula, vamos aprender como cadastrar, editar e gerenciar pessoas no sistema ERP UpBusiness. Primeiro, vamos acessar o módulo de cadastro de pessoas..."
+                    }
                 ]
             },
             
@@ -17,7 +23,54 @@ let clientes = {
                 nome: "Cadastro de Produtos",
                 icone: "fas fa-box-open",
                 videos: [
-                    { id: "kXYiU_JCYtU", titulo: "Cadastrando Novos Produtos", duracao: "06:45", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
+                    { 
+                        id: "kXYiU_JCYtU", 
+                        titulo: "Cadastrando Novos Produtos", 
+                        duracao: "06:45", 
+                        descricao: "Tutorial passo a passo sobre o cadastro de produtos.",
+                        transcricao: `Tutorial: Cadastro de Produto no Sistema Up Business
+Bem-vindo ao vídeo tutorial de treinamento sobre o cadastro de produto no sistema Up Business. Neste tutorial, vamos te guiar passo a passo para cadastrar um produto de forma fácil e rápida, melhorando a sua rotina e os resultados do seu negócio.
+1. Introdução
+No vídeo de hoje, vamos aprender como cadastrar um produto no sistema Up Business, desde o acesso ao módulo de cadastro até a finalização do processo. A ideia é facilitar o processo de cadastro e garantir que todos os detalhes do produto sejam registrados corretamente.
+2. Acesso ao Cadastro de Produto
+1. No sistema Up Business, vá até o menu **Cadastros** e selecione a opção **Produtos**.
+2. Na tela de produtos, clique em **Cadastro Simplificado** para iniciar o processo de cadastro de um novo produto.
+3. Pesquisa de Produtos Existentes
+1. Se desejar pesquisar por produtos já cadastrados, clique na **lupa** na parte superior da tela.
+2. A pesquisa mostrará todos os produtos já cadastrados, inclusive com fotos, facilitando a visualização. Passe o mouse sobre a imagem para ampliá-la.
+4. Criando um Novo Produto
+1. Para criar um novo produto, clique no botão **'+'** localizado na parte superior direita da tela.
+2. A tela de cadastro abrirá com as seguintes opções já preenchidas: Unidade de Medida, Referência, e as duas tabelas padrões configuradas (Consignado e Varia).
+3. Selecione o tipo de produto: **Produto Acabado**, **Produto Ativo**, ou **Compartilhado**.
+4. O **Produto Compartilhado** é útil quando você possui mais de uma empresa no mesmo domínio (como franquias ou filiais). O produto será compartilhado entre as empresas, mas o estoque permanece independente.
+5. Detalhes do Produto
+1. Insira o **Nome do Produto**, por exemplo: 'Colar de Coração'.
+2. Coloque a **Marca** e a **Referência** do produto. A referência será preenchida automaticamente, mas você pode personalizá-la, como no exemplo 'CO de colar'.
+3. O **NCM** (Código Fiscal de Mercadorias) é necessário para empresas que emitem nota fiscal. Se for um produto teste, insira um NCM fictício para continuar o cadastro.
+4. Selecione a **Categoria de Vitrine** onde o produto será exibido no aplicativo White Label.
+6. Custos do Produto
+1. Insira o **Custo Bruto** do produto, ou seja, quanto você gastou para adquirir o colar.
+2. O **Custo de Insumo** refere-se ao custo com embalagem, etiquetas e outros materiais auxiliares.
+3. O custo do **Banho** (se aplicável), como banho de ouro, prata ou ródio, também deve ser registrado. O valor é calculado com base na quantidade de milésimos usados no processo de banho.
+7. Definição de Preço de Venda
+1. Após calcular o custo do produto, insira o valor de **markup** desejado. Por exemplo, para um **markup de 1000%**, o sistema calculará automaticamente o preço de venda.
+2. Caso deseje ajustar o preço manualmente, você pode alterar o valor gerado automaticamente. Ao alterar o preço, o sistema recalculará o lucro obtido e o percentual de lucro.
+8. Definição de Atributos (Grades)
+1. Para produtos com variações, como tipo de acabamento ou tamanho, clique em **Nova Grade** para adicionar atributos.
+2. Adicione as opções de **Cor** (exemplo: Ouro, Prata, Ródio) e **Tamanho** (se aplicável). Isso ajuda na organização e no envio correto dos dados para o aplicativo White Label.
+9. Upload de Fotos do Produto
+1. Para adicionar fotos do produto, clique no botão **'+'** logo abaixo da câmera.
+2. Selecione as imagens do produto a partir de sua pasta local e adicione-as ao sistema. Você pode selecionar várias imagens para cada produto.
+10. Salvar Produto e Atualizar Estoque
+1. Após inserir todas as informações, clique em **Salvar** para concluir o cadastro do produto.
+2. Para atualizar o estoque, vá até a aba de **Estoque**, clique com o botão direito sobre o produto e selecione **Corrigir Estoque**.
+3. Informe a quantidade de unidades a serem adicionadas ao estoque e clique em **Salvar**.
+11. Editar Produto
+1. Se precisar editar o produto após o cadastro, clique com o botão direito sobre o produto e selecione **Alterar**.
+2. Faça as alterações necessárias e clique em **Salvar** novamente para atualizar as informações do produto.
+Conclusão
+Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Business, desde o início até a finalização. Caso tenha dúvidas, entre em contato conosco, estamos sempre à disposição para ajudar.`
+                    }
                 ]
             },
             {
@@ -71,7 +124,54 @@ clientes.becker = {
                 nome: "Cadastro de Produtos",
                 icone: "fas fa-box-open",
                 videos: [
-                    { id: "kXYiU_JCYtU", titulo: "Cadastrando Novos Produtos", duracao: "06:45", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
+                    { 
+                        id: "kXYiU_JCYtU", 
+                        titulo: "Cadastrando Novos Produtos", 
+                        duracao: "06:45", 
+                        descricao: "Tutorial passo a passo sobre o cadastro de produtos.",
+                        transcricao: `Tutorial: Cadastro de Produto no Sistema Up Business
+Bem-vindo ao vídeo tutorial de treinamento sobre o cadastro de produto no sistema Up Business. Neste tutorial, vamos te guiar passo a passo para cadastrar um produto de forma fácil e rápida, melhorando a sua rotina e os resultados do seu negócio.
+1. Introdução
+No vídeo de hoje, vamos aprender como cadastrar um produto no sistema Up Business, desde o acesso ao módulo de cadastro até a finalização do processo. A ideia é facilitar o processo de cadastro e garantir que todos os detalhes do produto sejam registrados corretamente.
+2. Acesso ao Cadastro de Produto
+1. No sistema Up Business, vá até o menu **Cadastros** e selecione a opção **Produtos**.
+2. Na tela de produtos, clique em **Cadastro Simplificado** para iniciar o processo de cadastro de um novo produto.
+3. Pesquisa de Produtos Existentes
+1. Se desejar pesquisar por produtos já cadastrados, clique na **lupa** na parte superior da tela.
+2. A pesquisa mostrará todos os produtos já cadastrados, inclusive com fotos, facilitando a visualização. Passe o mouse sobre a imagem para ampliá-la.
+4. Criando um Novo Produto
+1. Para criar um novo produto, clique no botão **'+'** localizado na parte superior direita da tela.
+2. A tela de cadastro abrirá com as seguintes opções já preenchidas: Unidade de Medida, Referência, e as duas tabelas padrões configuradas (Consignado e Varia).
+3. Selecione o tipo de produto: **Produto Acabado**, **Produto Ativo**, ou **Compartilhado**.
+4. O **Produto Compartilhado** é útil quando você possui mais de uma empresa no mesmo domínio (como franquias ou filiais). O produto será compartilhado entre as empresas, mas o estoque permanece independente.
+5. Detalhes do Produto
+1. Insira o **Nome do Produto**, por exemplo: 'Colar de Coração'.
+2. Coloque a **Marca** e a **Referência** do produto. A referência será preenchida automaticamente, mas você pode personalizá-la, como no exemplo 'CO de colar'.
+3. O **NCM** (Código Fiscal de Mercadorias) é necessário para empresas que emitem nota fiscal. Se for um produto teste, insira um NCM fictício para continuar o cadastro.
+4. Selecione a **Categoria de Vitrine** onde o produto será exibido no aplicativo White Label.
+6. Custos do Produto
+1. Insira o **Custo Bruto** do produto, ou seja, quanto você gastou para adquirir o colar.
+2. O **Custo de Insumo** refere-se ao custo com embalagem, etiquetas e outros materiais auxiliares.
+3. O custo do **Banho** (se aplicável), como banho de ouro, prata ou ródio, também deve ser registrado. O valor é calculado com base na quantidade de milésimos usados no processo de banho.
+7. Definição de Preço de Venda
+1. Após calcular o custo do produto, insira o valor de **markup** desejado. Por exemplo, para um **markup de 1000%**, o sistema calculará automaticamente o preço de venda.
+2. Caso deseje ajustar o preço manualmente, você pode alterar o valor gerado automaticamente. Ao alterar o preço, o sistema recalculará o lucro obtido e o percentual de lucro.
+8. Definição de Atributos (Grades)
+1. Para produtos com variações, como tipo de acabamento ou tamanho, clique em **Nova Grade** para adicionar atributos.
+2. Adicione as opções de **Cor** (exemplo: Ouro, Prata, Ródio) e **Tamanho** (se aplicável). Isso ajuda na organização e no envio correto dos dados para o aplicativo White Label.
+9. Upload de Fotos do Produto
+1. Para adicionar fotos do produto, clique no botão **'+'** logo abaixo da câmera.
+2. Selecione as imagens do produto a partir de sua pasta local e adicione-as ao sistema. Você pode selecionar várias imagens para cada produto.
+10. Salvar Produto e Atualizar Estoque
+1. Após inserir todas as informações, clique em **Salvar** para concluir o cadastro do produto.
+2. Para atualizar o estoque, vá até a aba de **Estoque**, clique com o botão direito sobre o produto e selecione **Corrigir Estoque**.
+3. Informe a quantidade de unidades a serem adicionadas ao estoque e clique em **Salvar**.
+11. Editar Produto
+1. Se precisar editar o produto após o cadastro, clique com o botão direito sobre o produto e selecione **Alterar**.
+2. Faça as alterações necessárias e clique em **Salvar** novamente para atualizar as informações do produto.
+Conclusão
+Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Business, desde o início até a finalização. Caso tenha dúvidas, entre em contato conosco, estamos sempre à disposição para ajudar.`
+                    }
                 ]
             },
             {
@@ -669,10 +769,17 @@ function playVideo(index) {
         navVideoTitle.textContent = video.titulo;
     }
     
-    // Mostrar seção de transcrição
+    // Mostrar seção de transcrição e atualizar conteúdo
     const transcriptionSection = document.getElementById("transcriptionSection");
-    if (transcriptionSection) {
-        transcriptionSection.style.display = "flex";
+    const transcriptionContent = document.getElementById("transcriptionContent");
+    if (transcriptionSection && transcriptionContent) {
+        if (video.transcricao && video.transcricao.trim()) {
+            transcriptionContent.textContent = video.transcricao;
+            transcriptionSection.style.display = "block";
+        } else {
+            transcriptionContent.textContent = "Transcrição não disponível para este vídeo.";
+            transcriptionSection.style.display = "block";
+        }
     }
     
     // Mostrar botões de navegação acima do vídeo
@@ -1397,6 +1504,7 @@ function abrirModalVideo(videoId = null, moduleName = null, videoIndex = null) {
     const id = document.getElementById('videoIdInput');
     const modulo = document.getElementById('videoModuloSelect');
     const dominio = document.getElementById('videoDominioSelect');
+    const transcricao = document.getElementById('videoTranscricaoInput');
     const btnAdicionar = document.getElementById('btnAdicionarVideo');
     
     // Popular o campo de domínio com os domínios disponíveis
@@ -1418,6 +1526,7 @@ function abrirModalVideo(videoId = null, moduleName = null, videoIndex = null) {
         titulo.value = video.titulo;
         id.value = video.id;
         modulo.value = moduleName.toLowerCase().replace(/\s+/g, '-');
+        transcricao.value = video.transcricao || '';
         // Definir o domínio atual se estiver editando
         const currentDomain = Object.keys(clientes).find(key => clientes[key] === currentClient);
         if (currentDomain) {
@@ -1432,6 +1541,7 @@ function abrirModalVideo(videoId = null, moduleName = null, videoIndex = null) {
         id.value = '';
         modulo.value = 'vendas';
         dominio.value = '';
+        transcricao.value = '';
     }
     
     modal.style.display = 'flex';
@@ -1453,9 +1563,10 @@ function adicionarVideo() {
     const videoId = document.getElementById('videoIdInput').value.trim();
     const moduloSelecionado = document.getElementById('videoModuloSelect').value;
     const dominioSelecionado = document.getElementById('videoDominioSelect').value;
+    const transcricao = document.getElementById('videoTranscricaoInput').value.trim();
     
     if (!titulo || !videoId || !dominioSelecionado) {
-        alert('Por favor, preencha todos os campos obrigatórios.');
+        alert('Por favor, preencha todos os campos obrigatórios (Título, ID do Vídeo e Domínio).');
         return;
     }
     
@@ -1488,7 +1599,8 @@ function adicionarVideo() {
         id: videoId,
         titulo: titulo,
         duracao: "00:00",
-        descricao: "Novo vídeo adicionado"
+        descricao: "Novo vídeo adicionado",
+        transcricao: transcricao || ""
     };
     
     if (editingVideoId) {
@@ -2035,5 +2147,74 @@ function toggleModule(moduleId) {
             toggleIcon.classList.add('fa-chevron-down');
         }, 300);
     }
+}
+
+
+
+// Função para copiar a transcrição para a área de transferência
+function copiarTranscricao() {
+    const transcriptionContent = document.getElementById("transcriptionContent");
+    if (!transcriptionContent) return;
+    
+    const texto = transcriptionContent.textContent;
+    
+    // Usar a API moderna de clipboard se disponível
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(texto).then(() => {
+            mostrarNotificacao("Transcrição copiada para a área de transferência!", "success");
+        }).catch(() => {
+            copiarTextoFallback(texto);
+        });
+    } else {
+        copiarTextoFallback(texto);
+    }
+}
+
+// Função fallback para copiar texto em navegadores mais antigos
+function copiarTextoFallback(texto) {
+    const textArea = document.createElement("textarea");
+    textArea.value = texto;
+    textArea.style.position = "fixed";
+    textArea.style.left = "-999999px";
+    textArea.style.top = "-999999px";
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        mostrarNotificacao("Transcrição copiada para a área de transferência!", "success");
+    } catch (err) {
+        mostrarNotificacao("Erro ao copiar transcrição. Tente selecionar e copiar manualmente.", "error");
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+// Função para mostrar notificações
+function mostrarNotificacao(mensagem, tipo = "info") {
+    // Remover notificação existente se houver
+    const notificacaoExistente = document.querySelector('.notification');
+    if (notificacaoExistente) {
+        notificacaoExistente.remove();
+    }
+    
+    // Criar nova notificação
+    const notificacao = document.createElement('div');
+    notificacao.className = `notification notification-${tipo}`;
+    notificacao.innerHTML = `
+        <i class="fas fa-${tipo === 'success' ? 'check-circle' : tipo === 'error' ? 'exclamation-circle' : 'info-circle'}"></i>
+        <span>${mensagem}</span>
+    `;
+    
+    // Adicionar ao body
+    document.body.appendChild(notificacao);
+    
+    // Remover após 3 segundos
+    setTimeout(() => {
+        if (notificacao.parentNode) {
+            notificacao.remove();
+        }
+    }, 3000);
 }
 

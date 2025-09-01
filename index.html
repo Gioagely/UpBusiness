@@ -116,6 +116,10 @@
                     
                     <!-- Progresso do Curso (Acima da Lista) -->
                     <div class="course-progress-section">
+                        <button class="back-to-home-btn" onclick="voltarInicio()">
+                            <i class="fas fa-home"></i>
+                            <span>Voltar ao Início</span>
+                        </button>
                         <div class="course-progress-header">
                             <span class="course-progress-title">Biblioteca de treinamento - Progresso</span>
                             <span class="course-progress-percentage">31%</span>
@@ -181,7 +185,7 @@
                             <button class="copy-btn" onclick="copiarTranscricao()"><i class="fas fa-copy"></i> Copiar</button>
                         </div>
                         <div class="transcription-content" id="transcriptionContent">
-                            Olá, estudante! Tudo bem? Na aula anterior, aprendemos sobre sinais e comandos. Agora vamos começar a utilizar esses comandos e sinais no Scratch. Vamos começar explorando os diferentes tipos de blocos disponíveis na plataforma e como eles podem ser combinados para criar projetos interativos e funcionais.
+                            Transcrição não disponível para este vídeo.
                         </div>
                     </div>
 
@@ -253,6 +257,10 @@
                     <option value="financeiro">Financeiro</option>
                     <option value="manufatura">Manufatura</option>
                 </select>
+            </div>
+            <div class="form-group">
+                <label for="videoTranscricaoInput">Transcrição</label>
+                <textarea id="videoTranscricaoInput" placeholder="Digite a transcrição do vídeo..." rows="4" style="width: 100%; padding: 12px; border: 1px solid #333; border-radius: 8px; background: #2a2a2a; color: #fff; font-family: inherit; resize: vertical; min-height: 100px;"></textarea>
             </div>
             <div class="modal-actions">
                 <button class="btn-secondary" id="cancelarModalVideo">Cancelar</button>
