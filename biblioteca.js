@@ -28,48 +28,7 @@ let clientes = {
                         titulo: "Cadastrando Novos Produtos", 
                         duracao: "06:45", 
                         descricao: "Tutorial passo a passo sobre o cadastro de produtos.",
-                        transcricao: `Tutorial: Cadastro de Produto no Sistema Up Business
-Bem-vindo ao vídeo tutorial de treinamento sobre o cadastro de produto no sistema Up Business. Neste tutorial, vamos te guiar passo a passo para cadastrar um produto de forma fácil e rápida, melhorando a sua rotina e os resultados do seu negócio.
-1. Introdução
-No vídeo de hoje, vamos aprender como cadastrar um produto no sistema Up Business, desde o acesso ao módulo de cadastro até a finalização do processo. A ideia é facilitar o processo de cadastro e garantir que todos os detalhes do produto sejam registrados corretamente.
-2. Acesso ao Cadastro de Produto
-1. No sistema Up Business, vá até o menu **Cadastros** e selecione a opção **Produtos**.
-2. Na tela de produtos, clique em **Cadastro Simplificado** para iniciar o processo de cadastro de um novo produto.
-3. Pesquisa de Produtos Existentes
-1. Se desejar pesquisar por produtos já cadastrados, clique na **lupa** na parte superior da tela.
-2. A pesquisa mostrará todos os produtos já cadastrados, inclusive com fotos, facilitando a visualização. Passe o mouse sobre a imagem para ampliá-la.
-4. Criando um Novo Produto
-1. Para criar um novo produto, clique no botão **'+'** localizado na parte superior direita da tela.
-2. A tela de cadastro abrirá com as seguintes opções já preenchidas: Unidade de Medida, Referência, e as duas tabelas padrões configuradas (Consignado e Varia).
-3. Selecione o tipo de produto: **Produto Acabado**, **Produto Ativo**, ou **Compartilhado**.
-4. O **Produto Compartilhado** é útil quando você possui mais de uma empresa no mesmo domínio (como franquias ou filiais). O produto será compartilhado entre as empresas, mas o estoque permanece independente.
-5. Detalhes do Produto
-1. Insira o **Nome do Produto**, por exemplo: 'Colar de Coração'.
-2. Coloque a **Marca** e a **Referência** do produto. A referência será preenchida automaticamente, mas você pode personalizá-la, como no exemplo 'CO de colar'.
-3. O **NCM** (Código Fiscal de Mercadorias) é necessário para empresas que emitem nota fiscal. Se for um produto teste, insira um NCM fictício para continuar o cadastro.
-4. Selecione a **Categoria de Vitrine** onde o produto será exibido no aplicativo White Label.
-6. Custos do Produto
-1. Insira o **Custo Bruto** do produto, ou seja, quanto você gastou para adquirir o colar.
-2. O **Custo de Insumo** refere-se ao custo com embalagem, etiquetas e outros materiais auxiliares.
-3. O custo do **Banho** (se aplicável), como banho de ouro, prata ou ródio, também deve ser registrado. O valor é calculado com base na quantidade de milésimos usados no processo de banho.
-7. Definição de Preço de Venda
-1. Após calcular o custo do produto, insira o valor de **markup** desejado. Por exemplo, para um **markup de 1000%**, o sistema calculará automaticamente o preço de venda.
-2. Caso deseje ajustar o preço manualmente, você pode alterar o valor gerado automaticamente. Ao alterar o preço, o sistema recalculará o lucro obtido e o percentual de lucro.
-8. Definição de Atributos (Grades)
-1. Para produtos com variações, como tipo de acabamento ou tamanho, clique em **Nova Grade** para adicionar atributos.
-2. Adicione as opções de **Cor** (exemplo: Ouro, Prata, Ródio) e **Tamanho** (se aplicável). Isso ajuda na organização e no envio correto dos dados para o aplicativo White Label.
-9. Upload de Fotos do Produto
-1. Para adicionar fotos do produto, clique no botão **'+'** logo abaixo da câmera.
-2. Selecione as imagens do produto a partir de sua pasta local e adicione-as ao sistema. Você pode selecionar várias imagens para cada produto.
-10. Salvar Produto e Atualizar Estoque
-1. Após inserir todas as informações, clique em **Salvar** para concluir o cadastro do produto.
-2. Para atualizar o estoque, vá até a aba de **Estoque**, clique com o botão direito sobre o produto e selecione **Corrigir Estoque**.
-3. Informe a quantidade de unidades a serem adicionadas ao estoque e clique em **Salvar**.
-11. Editar Produto
-1. Se precisar editar o produto após o cadastro, clique com o botão direito sobre o produto e selecione **Alterar**.
-2. Faça as alterações necessárias e clique em **Salvar** novamente para atualizar as informações do produto.
-Conclusão
-Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Business, desde o início até a finalização. Caso tenha dúvidas, entre em contato conosco, estamos sempre à disposição para ajudar.`
+                        transcricao: ``
                     }
                 ]
             },
@@ -226,7 +185,8 @@ Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Busines
                 videos: [
                     { id: "HEZGPzA7QJY", titulo: "Cadastro de Produtos", duracao: "09:27", descricao: "Tutorial passo a passo sobre o cadastro de produtos." },
                     { id: "0STKZHV1E1c", titulo: "Analise De Estoque e Inventário", duracao: "09:27", descricao: "Tutorial passo a passo sobre o cadastro de produtos." },
-                    { id: "R4W8zfZLV4A", titulo: "Vitrine", duracao: "09:36", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
+                    { id: "R4W8zfZLV4A", titulo: "Vitrine", duracao: "09:36", descricao: "Tutorial passo a passo sobre o cadastro de produtos." },
+                    { id: "PuzDAlS3q8k", titulo: "Impressão de Etiqueta", duracao: "05:10", descricao: "Tutorial passo a passo sobre o cadastro de produtos." }
                 ]
             },
             {
