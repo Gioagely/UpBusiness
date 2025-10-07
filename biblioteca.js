@@ -1,6 +1,6 @@
 // ===== DADOS E CONFIGURAÇÕES =====
-let clientes = {
-    grupoduzani: {
+const clientes = {}
+    clientes["grupoduzani"] = {
         nome: "Grupo Duzani",
         cor: "#FF5733",
         logo: "https://via.placeholder.com/150x50?text=Duzani",
@@ -65,8 +65,8 @@ let clientes = {
             }
         ]
     }
-}
-clientes.becker = {
+
+clientes["becker"] = {
         nome: "Becker",
         cor: "#FF5733",
         logo: "https://via.placeholder.com/150x50?text=Becker",
@@ -166,7 +166,7 @@ Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Busines
             }
         ]
     }
-    clientes.thaiscarvalhojoias = {
+    clientes["thaiscarvalhojoias"] = {
         nome: "Thais Carvalho Joias",
         cor: "#FF5733",
         logo: "https://via.placeholder.com/150x50?text=thaiscarvalhojoias",
@@ -236,7 +236,7 @@ Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Busines
     }
 
 
-    clientes.bagnara = {
+    clientes["bagnara"] = {
         nome: "Bagnara",
         cor: "#33ffb1ff",
         logo: "https://via.placeholder.com/150x50?text=thaiscarvalhojoias",
@@ -306,7 +306,7 @@ Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Busines
     }
 
 
-    clientes.maksemijoias = {
+    clientes["maksemijoias"] = {
         nome: "Mak Semijoias",
         cor: "#8fff33ff",
         logo: "https://via.placeholder.com/150x50?text=thaiscarvalhojoias",
@@ -376,7 +376,7 @@ Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Busines
     }
 
 
-    clientes.mucci = {
+    clientes["mucci"] = {
         nome: "Mucci Semijoias",
         cor: "#8fff33ff",
         logo: "https://via.placeholder.com/150x50?text=thaiscarvalhojoias",
@@ -446,7 +446,7 @@ Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Busines
     }
 
 
-    clientes.alexa = {
+    clientes["alexa"] = {
         nome: "Alexa",
         cor: "#8fff33ff",
         logo: "https://via.placeholder.com/150x50?text=thaiscarvalhojoias",
@@ -516,7 +516,7 @@ Parabéns, agora você sabe como cadastrar um novo produto no sistema Up Busines
     }
 
     const clientes = {}
-    clientes.c20ksemijoias = {
+    clientes["20ksemijoias"] = {
         nome: "20K Semijoias",
         cor: "#8fff33ff",
         logo: "https://via.placeholder.com/150x50?text=thaiscarvalhojoias",
