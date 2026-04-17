@@ -1304,7 +1304,7 @@ function alternarTema() {
 
 // ===== FUNÇÕES DE CLIENTE E VÍDEOS =====
 function updateClientBranding() {
-    const logoPath = "images-removebg-preview.png";
+    const logoPath = "Logo escrita.png";
     const logoHeader = document.getElementById('logoHeader');
     const logoFooter = document.getElementById('logoFooter');
     if (logoHeader) { logoHeader.src = logoPath; logoHeader.alt = "Logo Up Business"; }
