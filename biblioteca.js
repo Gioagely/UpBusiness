@@ -1305,10 +1305,11 @@ function alternarTema() {
 // ===== FUNÇÕES DE CLIENTE E VÍDEOS =====
 function updateClientBranding() {
     const logoPath = "Logo escrita.png";
+    const logoPath2 = "Logo completa.png";
     const logoHeader = document.getElementById('logoHeader');
     const logoFooter = document.getElementById('logoFooter');
-    if (logoHeader) { logoHeader.src = logoPath; logoHeader.alt = "Logo Up Business"; }
-    if (logoFooter) { logoFooter.src = logoPath; logoFooter.alt = "Logo Up Business"; }
+    if (logoHeader) { logoHeader.src = logoPath; logoHeader.alt = "Logo Biblioteca Treinamento"; }
+    if (logoFooter) { logoFooter.src = logoPath2; logoFooter.alt = "Logo Biblioteca Treinamento"; }
     if (currentClient && currentClient.cor) {
         document.documentElement.style.setProperty('--client-color', currentClient.cor);
     }
