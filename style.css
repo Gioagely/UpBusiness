@@ -132,7 +132,7 @@ body {
 }
 
 .header-left .logo img { 
-    height: 100px; 
+    height: 150px; 
     width: auto; 
 }
 
@@ -1468,7 +1468,7 @@ input:checked + .toggle-slider:before {
 }
 
 .footer-logo img {
-    height: 130px;
+    height: 150px;
     width: auto;
 }
 
