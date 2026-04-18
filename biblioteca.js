@@ -905,7 +905,7 @@ clientes.becker = {
 let dadosImplantacao = [
     { 
         id: 1, 
-        nome: "Empresa Alpha", 
+        nome: "Empresa Madrellove", 
         responsavel: "João Silva", 
         status: "em-andamento", 
         modulos: { 
@@ -919,7 +919,7 @@ let dadosImplantacao = [
     },
     { 
         id: 2, 
-        nome: "Empresa Beta", 
+        nome: "Empresa Becker", 
         responsavel: "Maria Oliveira", 
         status: "concluido", 
         modulos: { 
@@ -933,7 +933,7 @@ let dadosImplantacao = [
     },
     { 
         id: 3, 
-        nome: "Empresa Gama", 
+        nome: "Empresa Duzani", 
         responsavel: "Pedro Costa", 
         status: "iniciado", 
         modulos: { 
@@ -947,7 +947,7 @@ let dadosImplantacao = [
     },
     { 
         id: 4, 
-        nome: "Empresa Delta", 
+        nome: "Empresa Alexa", 
         responsavel: "Ana Santos", 
         status: "em-andamento", 
         modulos: { 
