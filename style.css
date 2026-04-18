@@ -2551,11 +2551,11 @@ input:checked + .toggle-slider:before {
 }
 
 .implantacao-card {
-    background: linear-gradient(135deg, #2a2f3a 0%, #1e2329 100%);
+    background: #ffffff;
     border-radius: 12px;
     padding: 1.5rem;
-    border: 2px solid transparent;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     position: relative;
     overflow: visible;
@@ -2601,12 +2601,11 @@ input:checked + .toggle-slider:before {
 }
 
 .card-title h3 {
-    color: white;
+    color: #1e293b;
     font-size: 1.1rem;
     font-weight: 600;
     margin: 0 0 0.5rem 0;
     line-height: 1.3;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Status badges */
@@ -2707,7 +2706,7 @@ input:checked + .toggle-slider:before {
 }
 
 .card-info p {
-    color: rgba(255, 255, 255, 0.8);
+    color: #475569;
     font-size: 0.85rem;
     margin: 0.4rem 0;
     display: flex;
@@ -2716,13 +2715,13 @@ input:checked + .toggle-slider:before {
 }
 
 .card-info i {
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
     width: 14px;
     font-size: 0.8rem;
 }
 
 .card-info strong {
-    color: white;
+    color: #1e293b;
     font-weight: 600;
 }
 
@@ -2730,9 +2729,9 @@ input:checked + .toggle-slider:before {
 .progress-section {
     margin-bottom: 1.2rem;
     padding: 1rem;
-    background: rgba(0, 0, 0, 0.15);
+    background: #f8fafc;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid #e2e8f0;
 }
 
 .progress-header {
@@ -2743,16 +2742,16 @@ input:checked + .toggle-slider:before {
 }
 
 .progress-header span:first-child {
-    color: rgba(255, 255, 255, 0.9);
+    color: #475569;
     font-size: 0.85rem;
     font-weight: 500;
 }
 
 .progress-percentage {
-    color: white;
+    color: #1e293b;
     font-size: 0.9rem;
     font-weight: 600;
-    background: rgba(255, 255, 255, 0.1);
+    background: #f1f5f9;
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
 }
@@ -2797,7 +2796,7 @@ input:checked + .toggle-slider:before {
 }
 
 .checklist-section h4 {
-    color: white;
+    color: #1e293b;
     font-size: 0.9rem;
     font-weight: 600;
     margin: 0 0 0.8rem 0;
@@ -2807,7 +2806,7 @@ input:checked + .toggle-slider:before {
 }
 
 .checklist-section h4 i {
-    color: rgba(255, 255, 255, 0.7);
+    color: #64748b;
     font-size: 0.8rem;
 }
 
@@ -2828,12 +2827,12 @@ input:checked + .toggle-slider:before {
 }
 
 .checklist-grid::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.05);
+    background: #f1f5f9;
     border-radius: 2px;
 }
 
 .checklist-grid::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
+    background: #cbd5e1;
     border-radius: 2px;
 }
 
@@ -2846,8 +2845,8 @@ input:checked + .toggle-slider:before {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
     position: relative;
 }
 
@@ -2868,7 +2867,7 @@ input:checked + .toggle-slider:before {
 .checkmark {
     width: 16px;
     height: 16px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid #cbd5e1;
     border-radius: 3px;
     position: relative;
     transition: all 0.3s ease;
@@ -2892,7 +2891,7 @@ input:checked + .toggle-slider:before {
 }
 
 .checklist-item i {
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
     font-size: 0.8rem;
     width: 12px;
     flex-shrink: 0;
@@ -2903,7 +2902,7 @@ input:checked + .toggle-slider:before {
 }
 
 .item-label {
-    color: rgba(255, 255, 255, 0.8);
+    color: #475569;
     font-size: 0.8rem;
     font-weight: 500;
     flex: 1;
@@ -3037,11 +3036,11 @@ input:checked + .toggle-slider:before {
 
 /* Card de tarefa moderno e compacto */
 .kanban-task-modern {
-    background: linear-gradient(135deg, #2a3142 0%, #323749 100%);
+    background: #ffffff;
     border-radius: 10px;
     padding: 1.2rem;
-    border: 1px solid rgba(100, 116, 139, 0.15);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     cursor: grab;
     position: relative;
@@ -3076,27 +3075,26 @@ input:checked + .toggle-slider:before {
 }
 
 .task-id {
-    color: rgba(255, 255, 255, 0.6);
+    color: #64748b;
     font-size: 0.75rem;
     font-weight: 500;
-    background: rgba(0, 0, 0, 0.2);
+    background: #f1f5f9;
     padding: 0.2rem 0.5rem;
     border-radius: 8px;
 }
 
 /* Título da tarefa */
 .task-title {
-    color: white;
+    color: #1e293b;
     font-size: 1rem;
     font-weight: 600;
     margin: 0 0 0.6rem 0;
     line-height: 1.3;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Descrição da tarefa */
 .task-description {
-    color: rgba(255, 255, 255, 0.7);
+    color: #475569;
     font-size: 0.85rem;
     line-height: 1.4;
     margin: 0 0 1rem 0;
