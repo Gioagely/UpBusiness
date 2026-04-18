@@ -1304,7 +1304,7 @@ function alternarTema() {
 
 // ===== FUNÇÕES DE CLIENTE E VÍDEOS =====
 function updateClientBranding() {
-    const logoPath = "Logo escrita.png";
+    const logoPath = "Logo completa.png";
     const logoPath2 = "Logo completa.png";
     const logoHeader = document.getElementById('logoHeader');
     const logoFooter = document.getElementById('logoFooter');
