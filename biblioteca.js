@@ -1719,7 +1719,7 @@ function renderImplantacoesAdmin() {
                 
                 <div class="card-info">
                     <p><i class="fas fa-user"></i> <strong>Responsável:</strong> ${implantacao.responsavel}</p>
-                    <p><i class="fas fa-calendar"></i> <strong>Início:</strong> ${formatarData(implantacao.dataInicio || '2024-12-31')}</p>
+                    <p><i class="fas fa-calendar"></i> <strong>Início:</strong> ${formatarData(implantacao.dataInicio || '2026-02-01')}</p>
                 </div>
                 
                 <div class="progress-section">
